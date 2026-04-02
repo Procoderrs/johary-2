@@ -1,7 +1,7 @@
 import React from 'react';
 import Topbar from '../components/Topbar';
 import Header from '../components/Header';
-import {RiSearchLine,RiUser3Line,RiHeart3Line,RiShoppingBagLine,RiArrowDropDownLine ,RiTruckLine, RiBankFill , RiDiscountPercentLine, RiCustomerServiceLine   } from '@remixicon/react'
+import {RiSearchLine,RiUser3Line,RiHeart3Line,RiShoppingBagLine,RiArrowDropDownLine ,RiTruckLine, RiBankFill , RiDiscountPercentLine, RiCustomerServiceLine ,RiDoubleQuotesL  } from '@remixicon/react'
 import Hero from '../components/Hero';
 import CategorySection from '../components/CategorySection';
 import { categoriesData } from '../data/categories';
@@ -11,58 +11,17 @@ import TrendingProducts from '../components/TrendingProducts';
 import Delicate from '../components/Delicate';
 import Parallax from '../components/Parallax';
 import Services from '../components/Services';
+import CmsBanner from '../components/CmsBanner';
+import Signed from '../components/Signed';
+import BlogSlider from "../components/Blog/BlogSlider";
+import { blogsData } from "../data/blogs";
+import Newsletter from '../components/NewsLetter';
 
 const UserDashboard = () => {
  
- const topbarData = {
-  phone: "Free shipping world wide for all orders over $199",
-  leftItems: [               // Left side buttons / links
-    { label: "SHOP NOW", link: "/shop" },
-    //{ label: "TRACK ORDER", link: "/track" }, // optional future buttons
-  ],
-  menuItems: [               // Right side menu
-    { label: "About Us", link: "/about-us" },
-    { label: "Blog", link: "/blog" },
-    { label: "Contact Us", link: "/contact-us" },
-    { label: "FAQs", link: "/faq" },
-  ],
-};
+ 
 
 
-const headerData = {
-  logo: "/logo.svg",
-  searchPlaceholder: "Search products...",
-  searchIcon: RiSearchLine,
-  actionIcons: [
-    {
-      type: "user",
-      icon: RiUser3Line,
-      link: "/account",
-    },
-    {
-      type: "wishlist",
-      icon: RiHeart3Line,
-      link: "/wishlist",
-      badge: 0,
-    },
-    {
-      type: "cart",
-      icon: RiShoppingBagLine,
-      link: "/cart",
-      badge: 0,
-      extraText: "$0.00",
-    },
-  ],
-
-  navItems: [
-    { label: "Home", link: "/" },
-    { label: "Shop", link: "/shop",icon: RiArrowDropDownLine , },
-    { label: "Categories", link: "/categories", badge: "SALE",icon: RiArrowDropDownLine , },
-    { label: "Products", link: "/products",badge: "HOT" ,icon: RiArrowDropDownLine ,},
-    { label: "Top Deals", link: "/top-deals",icon: RiArrowDropDownLine ,  },
-    { label: "Elements", link: "/elements",icon: RiArrowDropDownLine , },
-  ],
-};
 
 
 const heroData=[
@@ -95,19 +54,49 @@ const parallex={
   img:'/parallax-banner-1.jpg'
 }
 
-
 const services=[
   {icon:RiTruckLine,heading:'Worldwide Shipping', description:'Contrary to popular belief lorem Ipsum is not simply',},
    {icon:RiBankFill,heading:'Money Back Guarantee', description:'Contrary to popular belief lorem Ipsum is not simply',},
    {icon: RiDiscountPercentLine,heading:'Offers And Discounts', description:'Contrary to popular belief lorem Ipsum is not simply',},
    {icon:RiCustomerServiceLine,heading:'24/7 Support Services', description:'Contrary to popular belief lorem Ipsum is not simply',},
+
   ]
 
+  const cms={
+  img_1:'/cms-banner-1.jpg',
+  discount:'20% SALE EVENT  THIS WEEKEND',
+  heading:'Best Charms Embracing The Essence Of Classic Style',
+  img_2:'/cms-banner-2-1.jpg',
+  discount:'30% SALE EVENT  THIS WEEKEND',
+  heading:'Radiant Adornments Adding Glamour To Your Ensemble',
+
+
+}
+
+const signed={
+  icon:RiDoubleQuotesL,
+  description:"There are many passengets of lorem ipsum available but the majorityy suffered alteration in some form by injected humour or random words which don't look even slighlty believable. ",
+  name:[
+    'Mr. Meckdom Mery','Stefaine Rashford','Augusta Wind',
+  ],
+  designation:[
+     'Designer','Founder','CEO'
+  ],
+  logos:['/1.png','/2.png','/3.png','/4.png','/5.png','/1.png','/2.png','/3.png','/4.png','/5.png']
+}
+
+const footer=[
+  {name:'Store Information',address:'60 29th Street San Francisco, 507-Union Trade Center, United States America - 94110',landline:'(+91)-0123-456-789',phone:'(+91) 9876-543-210',email:'demo@example.com',},
+ ['Help','order Status','Checkout','My Account','Locality','Privacy Policy','Contact Us'],
+ ['Services','Order Status','Terms And Conditions','Policy For Sellers','Policy For Buyers','Shipping & Refund','Wholesale Policy'],
+ ['Services','Order Status','Terms And Conditions','Policy For Sellers','Policy For Buyers','Shipping & Refund','Wholesale Policy'],
+ ['Services','Order Status','Terms And Conditions','Policy For Sellers','Policy For Buyers','Shipping & Refund','Wholesale Policy']
+
+]
   
   return (
     <div>
-      <Topbar data={topbarData}  />
-      <Header data={headerData} />
+    
       <Hero data={heroData}/>
       <CategorySection categories={categoriesData} />
       <SubBanner data={sub_banner}/>
@@ -115,6 +104,14 @@ const services=[
       <Delicate data={delicate}/>
       <Parallax data={parallex}/>
       <Services data={services}/>
+      <TrendingProducts products={productsData} title="Featured Products" subtitle="Best Collection" showTabs={false}filterTrending={false} />
+      <CmsBanner data={cms}/>
+      <Signed data={signed}/>
+      <BlogSlider blogs={blogsData} />
+      
+
+
+
     </div>
   );
 };

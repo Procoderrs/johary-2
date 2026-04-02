@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Delicate({ data }) {
   return (
-    <section className="w-full py-16 md:py-16 px-4 md:px-10 lg:px-16 font-body">
+    <section className="w-full py-16 md:py-12 px-4 md:px-10 lg:px-16 font-body">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10 items-center">
         
         {/* Left Text Column */}

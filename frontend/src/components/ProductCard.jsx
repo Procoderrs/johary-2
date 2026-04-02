@@ -55,7 +55,7 @@ export default function ProductCard({ product }) {
 
         <Link to={`/product/${product.slug}`}>
           {/* FIXED IMAGE WRAPPER */}
-          <div className="relative h-[250px] w-[280px] overflow-hidden rounded-2xl">
+          <div className="relative h-[250px] w-full overflow-hidden rounded-2xl">
             <img
               src={product.images.main}
               alt={product.name}

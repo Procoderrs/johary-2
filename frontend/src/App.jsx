@@ -5,7 +5,8 @@ import AdminDashboard from "./pages/AdminDashboard";
 import UserDashboard from "./pages/UserDashboard";
 import ProductPage from "./pages/ProductPage";
 import ShopPage from "./pages/ShopPage";
-
+import BlogPage from "./pages/Blog";
+import CustomerLayout from "./Layout/CustomerLayout";
 
 function App() {
   return (
@@ -19,9 +20,12 @@ function App() {
         <Route path="/login" element={<Login />} /> */}
 
         {/* User dashboard */}
+        <Route element={<CustomerLayout />}>
         <Route path="/dashboard" element={<UserDashboard />} />
  <Route path="/product/:slug" element={<ProductPage />} />
  <Route path="/shop" element={<ShopPage />} />
+ <Route path="/blog/:slug" element={<BlogPage />} />
+ </Route>
         {/* Admin dashboard */}
         <Route path="/admin" element={<AdminDashboard />} />
       </Routes>

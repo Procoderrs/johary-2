@@ -1,10 +1,10 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-export default function Header({ data }) {
+export default function Header({ data = {} }) {
   const {
-    logo,
-    searchPlaceholder,
+    logo = "/logo.svg",
+    searchPlaceholder = "Search products...",
     searchIcon: SearchIcon,
     actionIcons = [],
     navItems = [],
@@ -12,24 +12,30 @@ export default function Header({ data }) {
 
   return (
     <>
-      {/* Top Header Row */}
-      <div className="flex items-center px-8 py-6 border-b border-[#e5e5e5] font-body">
+      {/* ===================== TOP HEADER ===================== */}
+      <div className="flex items-center px-4 md:px-8 py-6 border-b border-[#e5e5e5] font-body gap-4">
         
         {/* Left - Search */}
-        <div className="flex items-center overflow-hidden bg-[#f5f5f5] w-[320px]">
+        <div className="hidden md:flex items-center overflow-hidden bg-[#f5f5f5] w-[260px] lg:w-[320px]">
           <input
             type="text"
-            className="p-3 outline-none w-full bg-transparent"
+            className="p-3 outline-none w-full bg-transparent text-sm"
             placeholder={searchPlaceholder}
           />
-          <button className="px-4">
-            {SearchIcon && <SearchIcon size={25} />}
+          <button className="px-4 text-[#111111]">
+            {SearchIcon ? <SearchIcon size={24} /> : null}
           </button>
         </div>
 
         {/* Logo */}
-        <div className="ml-36">
-          <img src={logo} alt="Johary Logo" className="h-8 object-contain" />
+        <div className="mx-auto lg:mx-0 lg:ml-24 xl:ml-36">
+          <Link to="/">
+            <img
+              src={logo}
+              alt="Logo"
+              className="h-8 md:h-9 object-contain"
+            />
+          </Link>
         </div>
 
         {/* Right - Icons */}
@@ -40,12 +46,12 @@ export default function Header({ data }) {
             return (
               <Link
                 key={index}
-                to={item.link}
-                className="flex items-center gap-2  hover:text-pink-500 relative"
+                to={item.link || "/"}
+                className="flex items-center gap-2 hover:text-[#c19417] relative transition duration-300"
               >
-                {/* Icon wrapper */}
-                <div className="relative ">
-                  <IconComponent size={29} />
+                {/* Icon */}
+                <div className="relative">
+                  {IconComponent ? <IconComponent size={27} /> : null}
 
                   {/* Badge */}
                   {item.badge !== undefined && (
@@ -55,10 +61,14 @@ export default function Header({ data }) {
                   )}
                 </div>
 
-                {/* Extra text like cart price */}
+                {/* Extra text like cart */}
                 {item.extraText && (
-                  <p className="text-sm font-medium  ml-1 flex flex-col"><span className='text-[#666666]'>{item.extraText}</span>
-                  <span className='font-semibold'>My Cart</span></p>
+                  <p className="hidden md:flex text-sm font-medium ml-1 flex-col leading-tight">
+                    <span className="text-[#666666]">{item.extraText}</span>
+                    <span className="font-semibold text-[#111111]">
+                      My Cart
+                    </span>
+                  </p>
                 )}
               </Link>
             );
@@ -66,40 +76,40 @@ export default function Header({ data }) {
         </div>
       </div>
 
-      
-{/* Bottom Nav Row */}
-<div className="flex justify-center items-center gap-9 py-6 border-b font-body">
-  {navItems.map((item, index) => {
-    // if icon property exists, use it
-    const DropdownIcon = item.icon;
+      {/* ===================== BOTTOM NAV ===================== */}
+      <div className="hidden md:flex justify-center items-center gap-6 lg:gap-9 py-6 border-b border-[#e5e5e5] font-body">
+        {navItems.map((item, index) => {
+          const DropdownIcon = item.icon;
 
-    return (
-      <Link
-        key={index}
-        to={item.link}
-        className="relative text-sm font-medium uppercase hover:text-[#c19417]"
-      >
-        <div className="flex items-center text-[15px] font-medium gap-1">
-          <span>{item.label}</span>
-
-          {/* Badge first */}
-          {item.badge && (
-            <span
-              className={`ml-1 text-[10px] px-2 py-0.5 rounded text-white font-semibold ${
-                item.badge === "HOT" ? "bg-[#e62a65]" : "bg-[#199588]"
-              }`}
+          return (
+            <Link
+              key={index}
+              to={item.link || "/"}
+              className="relative text-sm font-medium uppercase hover:text-[#c19417] transition duration-300"
             >
-              {item.badge}
-            </span>
-          )}
+              <div className="flex items-center text-[14px] lg:text-[15px] font-medium gap-1">
+                <span>{item.label}</span>
 
-          {/* Dropdown icon after badge */}
-          {DropdownIcon && <DropdownIcon size={20} />}
-        </div>
-      </Link>
-    );
-  })}
-</div>
+                {/* Badge */}
+                {item.badge && (
+                  <span
+                    className={`ml-1 text-[10px] px-2 py-0.5 rounded text-white font-semibold ${
+                      item.badge === "HOT"
+                        ? "bg-[#e62a65]"
+                        : "bg-[#199588]"
+                    }`}
+                  >
+                    {item.badge}
+                  </span>
+                )}
+
+                {/* Dropdown Icon */}
+                {DropdownIcon ? <DropdownIcon size={18} /> : null}
+              </div>
+            </Link>
+          );
+        })}
+      </div>
     </>
   );
 }

@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Services({ data }) {
   return (
-    <section className="w-full py-14 md:py-16 px-4 md:px-10 lg:px-16 font-body">
+    <section className="w-full py-14 md:py-16 border-[#e5e5e5e5] border-b px-4 md:px-10 lg:px-16 font-body">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {data.map((item, index) => {
           const Icon = item.icon;
