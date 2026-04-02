@@ -12,11 +12,11 @@ function App() {
     <BrowserRouter>
       <Routes>
         {/* Default route */}
-        <Route path="/" element={<Navigate to="/dashboard" replace />} />
+        <Route path="/" element={<Navigate to="/dashboard" />} />
 
         {/* Public routes */}
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
+        {/* <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} /> */}
 
         {/* User dashboard */}
         <Route path="/dashboard" element={<UserDashboard />} />
