@@ -20,11 +20,11 @@ export default function CategorySection({ categories }) {
   };
 
   return (
-    <section className="w-full py-16 px-4 md:px-10 lg:px-4">
+    <section className="w-full py-16 px-4 font-body md:px-10 lg:px-4">
       {/* Heading */}
       <div className="mb-10">
-        <h2 className="text-3xl text-center md:text-4xl font-semibold text-gray-900">
-          Explore Our Collection
+        <h2 className="text-[28px] text-center md:text-4xl font-medium text-gray-900">
+          Shop By Categories
         </h2>
       </div>
 
@@ -49,12 +49,12 @@ export default function CategorySection({ categories }) {
         {/* Scroll Row */}
         <div
           ref={scrollRef}
-          className="flex gap-5 overflow-x-auto scroll-smooth scrollbar-hide px-2"
+          className="flex gap-2 overflow-x-auto scroll-smooth scrollbar-hide px-2"
         >
           {categories.map((category) => (
             <div
               key={category.id}
-              className="min-w-[150px] sm:min-w-[170px] md:min-w-[180px] lg:min-w-[190px] flex-shrink-0"
+              className="min-w-[60px] sm:min-w-[120px] md:min-w-[130px] lg:min-w-[160px] flex-shrink-0"
             >
               <CategoryCard category={category} />
             </div>

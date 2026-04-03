@@ -6,7 +6,6 @@ export default function TrendingProducts({
   products,
   limit,
   title = "Trending Products",
-  subtitle = "New Collection",
   showTabs = true,
   filterTrending = true,
 }) {
@@ -39,26 +38,26 @@ export default function TrendingProducts({
   };
 
   return (
-    <section className="w-full py-16 px-4 md:px-10 lg:px-8 font-body">
+    <section className="w-full py-14 md:py-16 px-4 md:px-10 lg:px-8 font-body">
       {/* Top Heading + Tabs */}
-      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-10">
-        <div>
-          <p className="text-sm uppercase tracking-[4px] text-[#c19417] mb-2">
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2 mb-8 md:mb-10">
+        <div className="text-left">
+          {/* <p className="text-xs sm:text-sm uppercase tracking-[3px] sm:tracking-[4px] text-[#c19417] mb-2">
             {subtitle}
-          </p>
-          <h2 className="text-3xl md:text-4xl font-semibold text-gray-900">
+          </p> */}
+          <h2 className="text-2xl sm:text-[26px] md:text-4xl font-medium text-gray-900">
             {title}
           </h2>
         </div>
 
         {/* Tabs only if showTabs = true */}
         {showTabs && (
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap  lg:justify-start gap-3">
             {tabs.map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-6 py-2.5 text-[15px] font-medium capitalize transition duration-300 border ${
+                className={`px-4 sm:px-6 py-2.5 text-[14px] sm:text-[15px] font-medium capitalize transition duration-300 border ${
                   activeTab === tab
                     ? "bg-[#c19417] text-white"
                     : "bg-white text-gray-700 border-gray-300 hover:bg-black hover:text-white hover:border-black"
@@ -77,10 +76,10 @@ export default function TrendingProducts({
         onMouseEnter={() => setShowButtons(true)}
         onMouseLeave={() => setShowButtons(false)}
       >
-        {/* Left Button */}
+        {/* Left Button - desktop only */}
         <button
           onClick={scrollLeft}
-          className={`absolute left-0 md:-left-5 top-[26%] -translate-y-1/2 z-20 w-11 h-11 md:w-12 md:h-12 rounded-full bg-[#c19417] text-white shadow-lg flex items-center justify-center transition-all duration-300 ${
+          className={`hidden md:flex absolute left-0 lg:-left-5 top-[26%] -translate-y-1/2 z-20 w-11 h-11 md:w-12 md:h-12 rounded-full bg-[#c19417] text-white shadow-lg items-center justify-center transition-all duration-300 ${
             showButtons
               ? "opacity-100 visible translate-x-0"
               : "opacity-0 invisible -translate-x-3"
@@ -89,10 +88,10 @@ export default function TrendingProducts({
           <RiArrowLeftSLine size={26} />
         </button>
 
-        {/* Right Button */}
+        {/* Right Button - desktop only */}
         <button
           onClick={scrollRight}
-          className={`absolute right-0 md:-right-5 top-[26%] -translate-y-1/2 z-20 w-11 h-11 md:w-12 md:h-12 rounded-full bg-[#c19417] text-white shadow-lg flex items-center justify-center transition-all duration-300 ${
+          className={`hidden md:flex absolute right-0 lg:-right-5 top-[26%] -translate-y-1/2 z-20 w-11 h-11 md:w-12 md:h-12 rounded-full bg-[#c19417] text-white shadow-lg items-center justify-center transition-all duration-300 ${
             showButtons
               ? "opacity-100 visible translate-x-0"
               : "opacity-0 invisible translate-x-3"
@@ -104,12 +103,12 @@ export default function TrendingProducts({
         {/* Scroll Row */}
         <div
           ref={scrollRef}
-          className="flex gap-6 overflow-x-auto scroll-smooth scrollbar-hide"
+          className="flex gap-4 sm:gap-5 md:gap-6 overflow-x-auto scroll-smooth scrollbar-hide"
         >
           {filteredProducts.map((product) => (
             <div
               key={product.id}
-            className="min-w-[220px] sm:min-w-[230px] md:min-w-[240px] lg:min-w-[220px] md:min-h-[400px]"
+              className="min-w-[48%] min-h-[45%] sm:min-w-[48%] md:min-w-[240px] lg:min-w-[220px] md:min-h-[400px]"
             >
               <ProductCard product={product} />
             </div>

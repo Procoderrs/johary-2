@@ -5,18 +5,18 @@ function Topbar({ data }) {
   const { phone, leftItems = [], menuItems = [] } = data;
 
   return (
-    <div className="flex justify-between font-body text-sm  items-center p-3 bg-[#222222] text-white">
+    <div className="flex justify-between font-body text-[12px]  items-center  lg:px-16 py-2 bg-[#222222] text-white">
       {/* Left Section */}
-      <div className="flex items-center gap-1">
+      <div className="flex md:flex-row flex-col mx-5 text-center justify-center items-center tracking-[0.7px] gap-1">
         <span className="">{phone}</span>
 
         {/* Left buttons */}
-        <div className="flex tracking-[0.7px] ">
+        <div className="flex  ">
           {leftItems.map((item, index) => (
             <Link
               key={index}
               to={item.link}
-              className="  underline hover:text-[#c19417]   rounded "
+              className="  underline  hover:text-[#c19417]    "
             >
               {item.label}
             </Link>
@@ -25,12 +25,12 @@ function Topbar({ data }) {
       </div>
 
       {/* Right Section (menu items) */}
-      <nav className="flex gap-4">
+      <nav className="lg:flex gap-4 hidden ">
         {menuItems.map((menu, index) => (
           <Link
             key={index}
             to={menu.link}
-            className="hover:text-blue-400 pr-5 border-[#666666] last:border-r-0 border-r"
+            className="hover:text-blue-400 text-sm tracking-[0.7px] pr-5 border-[#666666] last:border-r-0 border-r"
           >
             {menu.label}
           </Link>

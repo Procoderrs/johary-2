@@ -25,8 +25,9 @@ const UserDashboard = () => {
 
 
 const heroData=[
-  {img:'/main-banner-1.jpg',heading:'Sparkle and Shine with Dazzling Jewelry',description:'lorem ipsum is simply a dummy text of printing and typesetting'},
-  {img:'/main-banner-2.jpg',heading:'Glamour And Glitz to Your Style With Stunning',description:'lorem ipsum is simply a dummy text of printing and typesetting'}
+  {img:'/main-banner-1.jpg',heading:'Sparkle and Shine with Dazzling Jewelry',description:'lorem ipsum is simply a dummy text of printing and typesetting',label:'SHOP NOW',link:'/shop'},
+
+  {img:'/main-banner-2.jpg',heading:'Glamour And Glitz to Your Style With Stunning',description:'lorem ipsum is simply a dummy text of printing and typesetting',label:'SHOP NOW',link:'/shop'}
 ]
 
 
@@ -85,14 +86,7 @@ const signed={
   logos:['/1.png','/2.png','/3.png','/4.png','/5.png','/1.png','/2.png','/3.png','/4.png','/5.png']
 }
 
-const footer=[
-  {name:'Store Information',address:'60 29th Street San Francisco, 507-Union Trade Center, United States America - 94110',landline:'(+91)-0123-456-789',phone:'(+91) 9876-543-210',email:'demo@example.com',},
- ['Help','order Status','Checkout','My Account','Locality','Privacy Policy','Contact Us'],
- ['Services','Order Status','Terms And Conditions','Policy For Sellers','Policy For Buyers','Shipping & Refund','Wholesale Policy'],
- ['Services','Order Status','Terms And Conditions','Policy For Sellers','Policy For Buyers','Shipping & Refund','Wholesale Policy'],
- ['Services','Order Status','Terms And Conditions','Policy For Sellers','Policy For Buyers','Shipping & Refund','Wholesale Policy']
 
-]
   
   return (
     <div>

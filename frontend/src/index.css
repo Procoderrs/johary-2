@@ -6,6 +6,10 @@
 @theme{
 
   --font-body: "Lora", serif;
+
+
+
+  --breakpoint-sm:26.563rem;
 }
 
 .scrollbar-hide::-webkit-scrollbar {

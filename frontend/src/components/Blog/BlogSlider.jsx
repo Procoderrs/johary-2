@@ -51,7 +51,7 @@ export default function BlogSlider({ blogs }) {
       <button
         onClick={() => scroll("left")}
         disabled={!canScrollLeft}
-        className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full border bg-white shadow-md flex items-center justify-center transition ${
+        className={`absolute left-0  -translate-y-1/2 z-10 w-11 h-11 rounded-full border bg-white shadow-md flex items-center justify-center transition ${
           !canScrollLeft
             ? "opacity-50 cursor-not-allowed"
             : "hover:bg-[#c19417] hover:text-white"
@@ -79,7 +79,7 @@ export default function BlogSlider({ blogs }) {
       <button
         onClick={() => scroll("right")}
         disabled={!canScrollRight}
-        className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full border bg-white shadow-md flex items-center justify-center transition ${
+        className={`absolute right-0  -translate-y-1/2 z-10 w-11 h-11 rounded-full border bg-white shadow-md flex items-center justify-center transition ${
           !canScrollRight
             ? "opacity-50 cursor-not-allowed"
             : "hover:bg-[#c19417] hover:text-white"

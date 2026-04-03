@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Header({ data = {} }) {
+  const [showSearch, setShowSearch] = useState(false);
+
   const {
     logo = "/logo.svg",
     searchPlaceholder = "Search products...",
@@ -13,10 +15,10 @@ export default function Header({ data = {} }) {
   return (
     <>
       {/* ===================== TOP HEADER ===================== */}
-      <div className="flex items-center px-4 md:px-8 py-6 border-b border-[#e5e5e5] font-body gap-4">
+      <div className="relative flex items-center px-4 md:px-8 py-6 border-b border-[#e5e5e5] font-body gap-4">
         
-        {/* Left - Search */}
-        <div className="hidden md:flex items-center overflow-hidden bg-[#f5f5f5] w-[260px] lg:w-[320px]">
+        {/* Left - Search (only lg+) */}
+        <div className="hidden lg:flex items-center overflow-hidden bg-[#f5f5f5] w-[260px] lg:w-[320px]">
           <input
             type="text"
             className="p-3 outline-none w-full bg-transparent text-sm"
@@ -28,18 +30,27 @@ export default function Header({ data = {} }) {
         </div>
 
         {/* Logo */}
-        <div className="mx-auto lg:mx-0 lg:ml-24 xl:ml-36">
+        <div className=" lg:mx-0 lg:ml-24 xl:ml-64">
           <Link to="/">
             <img
               src={logo}
               alt="Logo"
-              className="h-8 md:h-9 object-contain"
+              className="h-6 md:h-6 object-contain"
             />
           </Link>
         </div>
 
         {/* Right - Icons */}
         <div className="flex items-center gap-4 ml-auto">
+          
+          {/* Search Icon (show before lg only) */}
+          <button
+            onClick={() => setShowSearch(true)}
+            className="lg:hidden font-thin hover:text-[#c19417] transition duration-300"
+          >
+            {SearchIcon ? <SearchIcon size={27} /> : null}
+          </button>
+
           {actionIcons.map((item, index) => {
             const IconComponent = item.icon;
 
@@ -61,9 +72,9 @@ export default function Header({ data = {} }) {
                   )}
                 </div>
 
-                {/* Extra text like cart */}
+                {/* My Cart Text only on lg+ */}
                 {item.extraText && (
-                  <p className="hidden md:flex text-sm font-medium ml-1 flex-col leading-tight">
+                  <p className="hidden lg:flex text-sm font-medium ml-1 flex-col leading-tight">
                     <span className="text-[#666666]">{item.extraText}</span>
                     <span className="font-semibold text-[#111111]">
                       My Cart
@@ -76,8 +87,49 @@ export default function Header({ data = {} }) {
         </div>
       </div>
 
+      {/* ===================== SEARCH OVERLAY (before lg) ===================== */}
+      {showSearch && (
+        <div className="lg:hidden w-full border-b border-[#e5e5e5] bg-white font-body px-4 md:px-8 py-4 animate-fadeIn">
+          
+          {/* Search Box */}
+          <div className="flex items-center bg-[#f5f5f5] overflow-hidden mb-4">
+            <input
+              type="text"
+              className="p-3 outline-none w-full bg-transparent text-sm"
+              placeholder={searchPlaceholder}
+              autoFocus
+            />
+            <button className="px-4 text-[#111111]">
+              {SearchIcon ? <SearchIcon size={24} /> : null}
+            </button>
+          </div>
+
+          {/* Mobile / Tablet Nav */}
+          <div className="flex flex-wrap gap-4">
+            {navItems.map((item, index) => (
+              <Link
+                key={index}
+                to={item.link || "/"}
+                onClick={() => setShowSearch(false)}
+                className="text-sm font-medium uppercase hover:text-[#c19417] transition duration-300"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+
+          {/* Close button */}
+          <button
+            onClick={() => setShowSearch(false)}
+            className="mt-4 text-sm text-[#666666] hover:text-[#c19417] transition"
+          >
+            Close
+          </button>
+        </div>
+      )}
+
       {/* ===================== BOTTOM NAV ===================== */}
-      <div className="hidden md:flex justify-center items-center gap-6 lg:gap-9 py-6 border-b border-[#e5e5e5] font-body">
+      <div className="hidden lg:flex justify-center items-center gap-6 lg:gap-9 py-6 border-b border-[#e5e5e5] font-body">
         {navItems.map((item, index) => {
           const DropdownIcon = item.icon;
 

@@ -30,11 +30,12 @@ export default function CmsBanner({ data }) {
 
             {/* Text */}
             <div className="pt-6 ">
-              <p className="text-sm md:text-[13px] font-medium uppercase tracking-[3px] text-[#111111] ">
+              <p className="text-[11px] md:text-[13px] text-center  font-medium uppercase tracking-[0.3px] text-[#111111] ">
                 {item.discount}
               </p>
 
-              <h2 className="text-[24px] md:text-[28px] leading-9 lg:text-[32px] font-medium text-[#111111]  max-w-[90%] ">
+              <h2 className="text-[14px] leading-5 md:leading-5  text-center mt-3 
+              md:text-[18px]  lg:text-[32px] font-medium text-[#111111]   ">
                 {item.heading}
               </h2>
             </div>

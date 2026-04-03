@@ -40,7 +40,7 @@ export default function Signed({ data }) {
   return (
     <section className="w-full bg-[#f5f3ed] font-body">
       {/* Testimonial Area */}
-      <div className="py-20 px-4 md:px-10 lg:px-8 border-b border-[#e5e5e5]">
+      <div className="py-12 px-4 md:px-10 lg:px-8 border-b border-[#e5e5e5]">
         <div className="max-w-5xl mx-auto">
           {/* Slider */}
           <div
@@ -61,17 +61,17 @@ export default function Signed({ data }) {
                   </div>
 
                   {/* Description */}
-                  <p className="text-[18px] md:text-[20px] lg:text-[20px] tracking-[0.3px] leading-9 text-[#111111] max-w-[450px] mb-8">
+                  <p className="text-[15px] md:text-[15px] lg:text-[20px] tracking-[0.3px] leading-6 text-[#111111] max-w-[450px] md:max-w-[570px] mb-8">
                     {profile.description}
                   </p>
 
                   {/* Name */}
-                  <h3 className="text-[22px] md:text-[20px] font-semibold tracking-[0.3px] text-[#111111] mb-2">
+                  <h3 className="text-[14px] md:text-[20px] font-semibold tracking-[0.3px] text-[#111111] ">
                     {profile.name}
                   </h3>
 
                   {/* Designation */}
-                  <p className="text-[18px] tracking-[0.3px] text-[#111111]">
+                  <p className="text-[15px] tracking-[0.3px] text-[#111111]">
                     {profile.designation}
                   </p>
                 </div>
@@ -103,12 +103,12 @@ export default function Signed({ data }) {
             {data.logos?.map((logo, index) => (
               <div
                 key={index}
-                className="flex items-center justify-center min-w-[120px] md:min-w-[150px] opacity-80 hover:opacity-100 transition duration-300"
+                className="flex items-center justify-center min-w-[120px] md:min-w-[50px] opacity-80 hover:opacity-100 transition duration-300"
               >
                 <img
                   src={logo}
                   alt={`brand-logo-${index + 1}`}
-                  className="max-h-[40px] md:max-h-[50px] object-contain transition duration-300"
+                  className="max-h-[20px] md:max-h-[50px] object-contain transition duration-300"
                 />
               </div>
             ))}
