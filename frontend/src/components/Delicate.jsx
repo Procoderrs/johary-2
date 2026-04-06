@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Delicate({ data }) {
   return (
-    <section className="w-full py-16 px-4 md:px-10 lg:px-16 max-w-[1440px] mx-auto font-body">
+    <section className="w-full py-16 px-4  max-w-[1440px] mx-auto font-body">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10 items-center">
         
         {/* Left Text Column */}
@@ -12,11 +12,11 @@ export default function Delicate({ data }) {
             Elegant Jewelry
           </p> */}
 
-          <h2 className="text-[22px] text-center md:text-4xl lg:text-[32px] leading-[30px] text-[#111111] mb-2 max-w-[420px]">
+          <h2 className="text-[22px] text-center lg:text-[32px] md:text-left lg:leading-[42px] leading-[30px] text-[#111111] mb-2 max-w-[420px]">
             {data.heading}
           </h2>
 
-          <p className="text-[#666666] text-[14px] text-center leading- max-w-[420px] mb-4">
+          <p className="text-[#666666] text-[14px] text-center md:text-left leading- max-w-[420px] mb-4">
             {data.description}
           </p>
 

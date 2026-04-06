@@ -40,7 +40,7 @@ export default function Signed({ data }) {
   return (
     <section className="w-full bg-[#f5f3ed] font-body">
       {/* Testimonial Area */}
-      <div className="py-12 px-4 md:px-10 lg:px-8 border-b border-[#e5e5e5]">
+      <div className="py-12 px-4 border-b border-[#e5e5e5]">
         <div className="max-w-5xl mx-auto">
           {/* Slider */}
           <div

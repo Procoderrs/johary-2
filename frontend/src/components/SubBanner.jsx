@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function SubBanner({ data }) {
   return (
-    <section className="w-full py-16 px-4 md:px-10 lg:px-16 max-w-[1440px] mx-auto font-body">
+    <section className="w-full py-16 px-4  max-w-[1440px] mx-auto font-body">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {data.map((item, index) => (
           <div

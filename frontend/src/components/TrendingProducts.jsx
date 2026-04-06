@@ -38,7 +38,7 @@ export default function TrendingProducts({
   };
 
   return (
-    <section className="w-full py-16 px-4 md:px-10 lg:px-16 max-w-[1440px] mx-auto font-body">
+    <section className="w-full py-16 px-4 max-w-[1440px] mx-auto font-body">
       {/* Top Heading + Tabs */}
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2 mb-8 md:mb-10">
         <div className="text-left">

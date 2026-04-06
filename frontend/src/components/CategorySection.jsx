@@ -20,7 +20,7 @@ export default function CategorySection({ categories }) {
   };
 
   return (
-    <section className="w-full py-16 px-4 font-body md:px-10 lg:px-10 max-w-[1440px] mx-auto">
+    <section className="w-full py-16 px-4 font-body  max-w-[1440px] mx-auto">
   {/* Heading */}
   <div className="mb-10">
     <h2 className="text-[28px] text-center md:text-4xl font-medium text-gray-900">

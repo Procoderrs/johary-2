@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Services({ data }) {
   return (
-    <section className="w-full font-body py-14 md:py-16 px-4 md:px-10 lg:px-16 max-w-[1440px] mx-auto border-b border-[#e5e5e5]">
+    <section className="w-full font-body py-14 md:py-16 px-4  max-w-[1440px] mx-auto border-b border-[#e5e5e5]">
       
       {/* Desktop Grid / Mobile Scroll */}
       <div className="flex lg:grid lg:grid-cols-4 gap-5 overflow-x-auto lg:overflow-visible scroll-smooth scrollbar-hide">
