@@ -25,9 +25,9 @@ const UserDashboard = () => {
 
 
 const heroData=[
-  {img:'/main-banner-1.jpg',heading:'Sparkle and Shine with Dazzling Jewelry',description:'lorem ipsum is simply a dummy text of printing and typesetting',label:'SHOP NOW',link:'/shop'},
+  {img:'/main-banner-1.jpg',heading:'Glamour And Glitz to Your Style With Stunning',description:'lorem ipsum is simply a dummy text of printing and typesetting',label:'SHOP NOW',link:'/shop'},
 
-  {img:'/main-banner-2.jpg',heading:'Glamour And Glitz to Your Style With Stunning',description:'lorem ipsum is simply a dummy text of printing and typesetting',label:'SHOP NOW',link:'/shop'}
+  {img:'/main-banner-2.jpg',heading:'Sparkle And Shine With Dazzling Jewellary',description:'lorem ipsum is simply a dummy text of printing and typesetting',label:'SHOP NOW',link:'/shop'}
 ]
 
 

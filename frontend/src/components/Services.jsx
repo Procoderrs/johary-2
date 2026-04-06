@@ -2,17 +2,20 @@ import React from "react";
 
 export default function Services({ data }) {
   return (
-    <section className="w-full py-14 md:py-16 border-[#e5e5e5e5] border-b px-4 md:px-10 lg:px-16 font-body">
+    <section className="w-full font-body py-14 md:py-16 px-4 md:px-10 lg:px-16 max-w-[1440px] mx-auto border-b border-[#e5e5e5]">
       
-      {/* Mobile / Tablet Scroll */}
-      <div className="flex lg:grid lg:grid-cols-4 gap-5 overflow-x-auto scrollbar-hide scroll-smooth">
+      {/* Desktop Grid / Mobile Scroll */}
+      <div className="flex lg:grid lg:grid-cols-4 gap-5 overflow-x-auto lg:overflow-visible scroll-smooth scrollbar-hide">
         {data.map((item, index) => {
           const Icon = item.icon;
 
           return (
             <div
               key={index}
-              className="group min-w-[260px] sm:min-w-[280px] lg:min-w-0 flex flex-col items-center text-center px-6 py-8 transition duration-300"
+              className="group flex-shrink-0 lg:flex-shrink-1 min-w-[260px] sm:min-w-[280px] lg:min-w-0 flex flex-col items-center text-center px-6 py-8 transition duration-300"
+              style={{
+                height: 'clamp(220px, 20vw, 320px)' // smooth step height
+              }}
             >
               {/* Icon */}
               <div className="w-16 h-16 rounded-full bg-[#f8f8f8] flex items-center justify-center mb-5 transition duration-300">

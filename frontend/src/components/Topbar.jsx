@@ -5,9 +5,9 @@ function Topbar({ data }) {
   const { phone, leftItems = [], menuItems = [] } = data;
 
   return (
-    <div className="flex justify-between font-body text-[12px]  items-center  lg:px-16 py-2 bg-[#222222] text-white">
+    <div className="flex justify-between font-body text-[14px]  items-center  max-w-full mx-auto px-4 py-2  2xl:px-24 bg-[#222222] text-white">
       {/* Left Section */}
-      <div className="flex md:flex-row flex-col mx-5 text-center justify-center items-center tracking-[0.7px] gap-1">
+      <div className="flex md:flex-row flex-col mx-2 text-center justify-center items-center tracking-[0.7px] gap-1">
         <span className="">{phone}</span>
 
         {/* Left buttons */}

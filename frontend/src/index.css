@@ -10,6 +10,7 @@
 
 
   --breakpoint-sm:26.563rem;
+  --breakpoint-3xl:106.25rem;
 }
 
 .scrollbar-hide::-webkit-scrollbar {

@@ -15,77 +15,84 @@ export default function Header({ data = {} }) {
   return (
     <>
       {/* ===================== TOP HEADER ===================== */}
-      <div className="relative flex items-center px-4 md:px-8 py-6 border-b border-[#e5e5e5] font-body gap-4">
-        
-        {/* Left - Search (only lg+) */}
-        <div className="hidden lg:flex items-center overflow-hidden bg-[#f5f5f5] w-[260px] lg:w-[320px]">
-          <input
-            type="text"
-            className="p-3 outline-none w-full bg-transparent text-sm"
-            placeholder={searchPlaceholder}
-          />
-          <button className="px-4 text-[#111111]">
-            {SearchIcon ? <SearchIcon size={24} /> : null}
-          </button>
-        </div>
+      <header className="border-b border-[#e5e5e5] font-body">
+        <div className="max-w-full mx-auto px-4  2xl:px-24">
+          <div className="relative grid grid-cols-[1fr_auto_1fr] items-center py-6 gap-4">
+            
+            {/* Left - Search (Desktop only) */}
+            <div className="hidden lg:flex items-center justify-self-start overflow-hidden bg-[#f5f5f5] w-[260px] xl:w-[320px]">
+              <input
+                type="text"
+                className="p-3 outline-none w-full bg-transparent text-[#77777] text-sm"
+                placeholder={searchPlaceholder}
+              />
+              <button className="px-4 text-[#111111]">
+                {SearchIcon ? <SearchIcon size={24} /> : null}
+              </button>
+            </div>
 
-        {/* Logo */}
-        <div className=" lg:mx-0 lg:ml-24 xl:ml-64">
-          <Link to="/">
-            <img
-              src={logo}
-              alt="Logo"
-              className="h-6 md:h-6 object-contain"
-            />
-          </Link>
-        </div>
+            {/* Left placeholder on small screens to keep logo centered */}
+            <div className="lg:hidden"></div>
 
-        {/* Right - Icons */}
-        <div className="flex items-center gap-4 ml-auto">
-          
-          {/* Search Icon (show before lg only) */}
-          <button
-            onClick={() => setShowSearch(true)}
-            className="lg:hidden font-thin hover:text-[#c19417] transition duration-300"
-          >
-            {SearchIcon ? <SearchIcon size={27} /> : null}
-          </button>
-
-          {actionIcons.map((item, index) => {
-            const IconComponent = item.icon;
-
-            return (
-              <Link
-                key={index}
-                to={item.link || "/"}
-                className="flex items-center gap-2 hover:text-[#c19417] relative transition duration-300"
-              >
-                {/* Icon */}
-                <div className="relative">
-                  {IconComponent ? <IconComponent size={27} /> : null}
-
-                  {/* Badge */}
-                  {item.badge !== undefined && (
-                    <span className="absolute -top-2 -right-2 bg-[#c19417] text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">
-                      {item.badge}
-                    </span>
-                  )}
-                </div>
-
-                {/* My Cart Text only on lg+ */}
-                {item.extraText && (
-                  <p className="hidden lg:flex text-sm font-medium ml-1 flex-col leading-tight">
-                    <span className="text-[#666666]">{item.extraText}</span>
-                    <span className="font-semibold text-[#111111]">
-                      My Cart
-                    </span>
-                  </p>
-                )}
+            {/* Center - Logo */}
+            <div className="flex justify-center">
+              <Link to="/" className="inline-flex items-center justify-center">
+                <img
+                  src={logo}
+                  alt="Logo"
+                  className="h-6 object-contain"
+                />
               </Link>
-            );
-          })}
+            </div>
+
+            {/* Right - Icons */}
+            <div className="flex items-center justify-self-end gap-4">
+              
+              {/* Search Icon (Mobile / Tablet only) */}
+              <button
+                onClick={() => setShowSearch(true)}
+                className="lg:hidden font-thin hover:text-[#c19417] transition duration-300"
+              >
+                {SearchIcon ? <SearchIcon size={27} /> : null}
+              </button>
+
+              {actionIcons.map((item, index) => {
+                const IconComponent = item.icon;
+
+                return (
+                  <Link
+                    key={index}
+                    to={item.link || "/"}
+                    className="flex items-center gap-2 hover:text-[#c19417] relative transition duration-300"
+                  >
+                    {/* Icon */}
+                    <div className="relative">
+                      {IconComponent ? <IconComponent size={27} /> : null}
+
+                      {/* Badge */}
+                      {item.badge !== undefined && (
+                        <span className="absolute -top-2 -right-2 bg-[#c19417] text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">
+                          {item.badge}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Extra Text (Desktop only) */}
+                    {item.extraText && (
+                      <p className="hidden lg:flex text-sm font-medium ml-1 mr-3 flex-col leading-tight">
+                        <span className="text-[#666666]">{item.extraText}</span>
+                        <span className="font-semibold text-[#111111]">
+                          My Cart
+                        </span>
+                      </p>
+                    )}
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
         </div>
-      </div>
+      </header>
 
       {/* ===================== SEARCH OVERLAY (before lg) ===================== */}
       {showSearch && (
@@ -129,38 +136,42 @@ export default function Header({ data = {} }) {
       )}
 
       {/* ===================== BOTTOM NAV ===================== */}
-      <div className="hidden lg:flex justify-center items-center gap-6 lg:gap-9 py-6 border-b border-[#e5e5e5] font-body">
-        {navItems.map((item, index) => {
-          const DropdownIcon = item.icon;
+      <div className="hidden lg:block border-b border-[#e5e5e5] font-body">
+        <div className="max-w-[1440px] mx-auto px-4 md:px-8 xl:px-12">
+          <div className="flex justify-center items-center gap-6 lg:gap-9 py-6">
+            {navItems.map((item, index) => {
+              const DropdownIcon = item.icon;
 
-          return (
-            <Link
-              key={index}
-              to={item.link || "/"}
-              className="relative text-sm font-medium uppercase hover:text-[#c19417] transition duration-300"
-            >
-              <div className="flex items-center text-[14px] lg:text-[15px] font-medium gap-1">
-                <span>{item.label}</span>
+              return (
+                <Link
+                  key={index}
+                  to={item.link || "/"}
+                  className="relative text-sm font-medium uppercase hover:text-[#c19417] transition duration-300"
+                >
+                  <div className="flex items-center text-[14px] lg:text-[15px] font-medium gap-1">
+                    <span>{item.label}</span>
 
-                {/* Badge */}
-                {item.badge && (
-                  <span
-                    className={`ml-1 text-[10px] px-2 py-0.5 rounded text-white font-semibold ${
-                      item.badge === "HOT"
-                        ? "bg-[#e62a65]"
-                        : "bg-[#199588]"
-                    }`}
-                  >
-                    {item.badge}
-                  </span>
-                )}
+                    {/* Badge */}
+                    {item.badge && (
+                      <span
+                        className={`ml-1 text-[10px] px-2 py-0.5 rounded text-white font-semibold ${
+                          item.badge === "HOT"
+                            ? "bg-[#e62a65]"
+                            : "bg-[#199588]"
+                        }`}
+                      >
+                        {item.badge}
+                      </span>
+                    )}
 
-                {/* Dropdown Icon */}
-                {DropdownIcon ? <DropdownIcon size={18} /> : null}
-              </div>
-            </Link>
-          );
-        })}
+                    {/* Dropdown Icon */}
+                    {DropdownIcon ? <DropdownIcon size={18} /> : null}
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </>
   );

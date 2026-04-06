@@ -4,17 +4,19 @@ import { Link } from "react-router-dom";
 export default function Parallax({ data }) {
   return (
     <section
-      className="font-body relative w-full min-h-[350px] sm:min-h-[420px] md:min-h-[500px] bg-cover bg-top md:bg-fixed flex items-center"
+      className="font-body relative w-full min-h-[350px] sm:min-h-[420px] md:min-h-[500px] lg:min-h-[500px] xl:min-h-[550px] overflow-hidden bg-cover bg-top md:bg-fixed flex items-center"
       style={{ backgroundImage: `url(${data.img})` }}
     >
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/10"></div>
+     {/*  <div className="absolute inset-0 bg-black/10"></div> */}
 
-      {/* Content */}
-      <div className="relative z-10 w-full px-4 sm:px-6 md:px-10 lg:px-16">
-        <div className="w-full flex justify-end">
-          {/* Right side block */}
-          <div className="w-full max-w-[180px] sm:max-w-[280px] md:max-w-[420px] lg:max-w-[500px] text-right mt-6 sm:mt-8 md:mt-10 ml-auto">
+      {/* Main Content Wrapper */}
+      <div className="relative z-10 w-full max-w-[1440px] mx-auto px-4 sm:px-6 md:px-10 lg:px-12 xl:px-16">
+        <div className="w-full flex justify-end items-center">
+          
+          {/* Text Block */}
+          <div className="w-full max-w-[180px] sm:max-w-[260px] md:max-w-[360px] lg:max-w-[430px] xl:max-w-[400px]  mr-[2%] sm:mr-[4%] md:mr-[6%] xl:mr-[15%] 2xl:mr-[10%]">
+            
             <h2 className="text-[16px] sm:text-[28px] md:text-[38px] lg:text-[45px] leading-tight font-medium text-white mb-3 sm:mb-4 md:mb-5">
               {data.heading}
             </h2>

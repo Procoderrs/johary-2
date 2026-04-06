@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import BlogCard from "./BlogCard";
-import { RiArrowLeftSLine ,RiArrowRightSLine  } from '@remixicon/react';
+import { RiArrowLeftSLine, RiArrowRightSLine } from "@remixicon/react";
 
 export default function BlogSlider({ blogs }) {
   const sliderRef = useRef(null);
@@ -9,22 +9,17 @@ export default function BlogSlider({ blogs }) {
 
   const checkScroll = () => {
     if (!sliderRef.current) return;
-
     const { scrollLeft, scrollWidth, clientWidth } = sliderRef.current;
-
     setCanScrollLeft(scrollLeft > 0);
     setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 5);
   };
 
   useEffect(() => {
     checkScroll();
-
     const slider = sliderRef.current;
     if (!slider) return;
-
     slider.addEventListener("scroll", checkScroll);
     window.addEventListener("resize", checkScroll);
-
     return () => {
       slider.removeEventListener("scroll", checkScroll);
       window.removeEventListener("resize", checkScroll);
@@ -33,10 +28,10 @@ export default function BlogSlider({ blogs }) {
 
   const scroll = (direction) => {
     if (!sliderRef.current) return;
-
     const container = sliderRef.current;
-    const cardWidth = container.offsetWidth / 3; // desktop pe 3 cards
 
+    // Desktop pe approx 3 cards visible
+    const cardWidth = container.offsetWidth / 3;
     container.scrollBy({
       left: direction === "left" ? -cardWidth : cardWidth,
       behavior: "smooth",
@@ -44,14 +39,16 @@ export default function BlogSlider({ blogs }) {
   };
 
   return (
-    <section className="w-full py-14 md:py-16 px-4 md:px-10 lg:px-16 font-body">
-      <h2 className="text-[24px] md:text-[32px] text-center font-medium mb-8">Latest Blogs</h2>
+    <section className="relative w-full max-w-[1440px] mx-auto py-14 md:py-16 px-4 md:px-10 lg:px-16 font-body">
+      <h2 className="text-[24px] sm:text-[28px] md:text-[32px] text-center font-medium mb-8">
+        Latest Blogs
+      </h2>
 
       {/* Left Arrow */}
       <button
         onClick={() => scroll("left")}
         disabled={!canScrollLeft}
-        className={`absolute left-0  -translate-y-1/2 z-10 w-11 h-11 rounded-full border bg-white shadow-md flex items-center justify-center transition ${
+        className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full border bg-white shadow-md flex items-center justify-center transition ${
           !canScrollLeft
             ? "opacity-50 cursor-not-allowed"
             : "hover:bg-[#c19417] hover:text-white"
@@ -63,12 +60,12 @@ export default function BlogSlider({ blogs }) {
       {/* Slider */}
       <div
         ref={sliderRef}
-        className="flex overflow-x-auto scroll-smooth scrollbar-hide gap-6 px-2"
+        className="flex gap-6 overflow-x-auto scroll-smooth scrollbar-hide px-2"
       >
         {blogs.map((blog) => (
           <div
             key={blog.id}
-            className="min-w-full sm:min-w-[48%] lg:min-w-[31.5%] flex-shrink-0 px-2 py-2"
+            className="flex-shrink-0 w-full sm:w-[48%] md:w-[31%] lg:w-[31.5%] px-2 py-2"
           >
             <BlogCard blog={blog} />
           </div>
@@ -79,7 +76,7 @@ export default function BlogSlider({ blogs }) {
       <button
         onClick={() => scroll("right")}
         disabled={!canScrollRight}
-        className={`absolute right-0  -translate-y-1/2 z-10 w-11 h-11 rounded-full border bg-white shadow-md flex items-center justify-center transition ${
+        className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full border bg-white shadow-md flex items-center justify-center transition ${
           !canScrollRight
             ? "opacity-50 cursor-not-allowed"
             : "hover:bg-[#c19417] hover:text-white"
