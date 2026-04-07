@@ -1,6 +1,18 @@
 import React from "react";
 import { filterOptions } from "../data/filteroptions";
 
+const defaultFilters = {
+  categories: [],
+  subCategories: [],
+  highlights: [],
+  carats: [],
+  metals: [],
+  stones: [],
+  brands: [],
+  ratings: [],
+  maxPrice: 500,
+};
+
 export default function ProductFilters({ filters, setFilters }) {
   const handleCheckbox = (key, value) => {
     setFilters((prev) => {
@@ -52,7 +64,11 @@ export default function ProductFilters({ filters, setFilters }) {
         keyName="categories"
         options={filterOptions.categories}
       />
-
+<FilterGroup
+  title="Filter by Sub Categories"
+  keyName="subCategories"
+  options={filterOptions.subCategories}
+/>
       <FilterGroup
         title="Highlights"
         keyName="highlights"
@@ -106,24 +122,14 @@ export default function ProductFilters({ filters, setFilters }) {
         />
 
         <div className="mt-3 text-sm text-gray-600">
-          Max Price: <span className="font-medium text-black">${filters.maxPrice}</span>
+          Max Price:{" "}
+          <span className="font-medium text-black">${filters.maxPrice}</span>
         </div>
       </div>
 
       {/* Clear Button */}
       <button
-        onClick={() =>
-          setFilters({
-            categories: [],
-            highlights: [],
-            carats: [],
-            metals: [],
-            stones: [],
-            brands: [],
-            ratings: [],
-            maxPrice: 500,
-          })
-        }
+        onClick={() => setFilters(defaultFilters)}
         className="w-full bg-black text-white py-3 rounded-xl font-medium hover:bg-[#c19417] transition duration-300"
       >
         Clear Filters

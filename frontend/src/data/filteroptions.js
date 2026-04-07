@@ -5,6 +5,22 @@ export const filterOptions = {
     { label: "Pendant", value: "pendant" },
   ],
 
+  subCategories: [
+    { label: "Chain Bracelets", value: "chain-bracelets" },
+    { label: "Charm Bracelets", value: "charm-bracelets" },
+    { label: "Cuff Bracelets", value: "cuff-bracelets" },
+    { label: "Tennis Bracelets", value: "tennis-bracelets" },
+    { label: "Pearl Bracelets", value: "pearl-bracelets" },
+
+    { label: "Solitaire Rings", value: "solitaire-rings" },
+    { label: "Couple Rings", value: "couple-rings" },
+    { label: "Statement Rings", value: "statement-rings" },
+
+    { label: "Heart Pendants", value: "heart-pendants" },
+    { label: "Initial Pendants", value: "initial-pendants" },
+    { label: "Gemstone Pendants", value: "gemstone-pendants" },
+  ],
+
   highlights: [
     { label: "All Products", value: "all-products" },
     { label: "Best Sellers", value: "best-seller" },

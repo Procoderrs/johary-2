@@ -24,6 +24,7 @@ function App() {
         <Route path="/dashboard" element={<UserDashboard />} />
  <Route path="/product/:slug" element={<ProductPage />} />
  <Route path="/shop" element={<ShopPage />} />
+ <Route path="/shop/:categorySlug" element={<ShopPage />} />
  <Route path="/blog/:slug" element={<BlogPage />} />
  </Route>
         {/* Admin dashboard */}

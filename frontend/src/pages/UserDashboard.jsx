@@ -1,6 +1,5 @@
 import React from 'react';
-import Topbar from '../components/Topbar';
-import Header from '../components/Header';
+
 import {RiSearchLine,RiUser3Line,RiHeart3Line,RiShoppingBagLine,RiArrowDropDownLine ,RiTruckLine, RiBankFill , RiDiscountPercentLine, RiCustomerServiceLine ,RiDoubleQuotesL  } from '@remixicon/react'
 import Hero from '../components/Hero';
 import CategorySection from '../components/CategorySection';
