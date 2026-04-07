@@ -77,21 +77,21 @@ export default function Footer() {
             {footer.storeInfo.name}
           </h3>
 
-          <p className="text-[13px] leading-5 text-[#b2b2b2] mb-2">
+          <p className="text-[15px] leading-5 text-[#b2b2b2] mb-2">
             {footer.storeInfo.address}
           </p>
 
-          <p className="text-[13px] text-[#b2b2b2] mb-2">
+          <p className="text-[15px] text-[#b2b2b2] mb-2">
             {footer.storeInfo.landline}
           </p>
 
-          <p className="text-[13px] text-[#b2b2b2] mb-2">
+          <p className="text-[15px] text-[#b2b2b2] mb-2">
             {footer.storeInfo.phone}
           </p>
 
           <a
             href={`mailto:${footer.storeInfo.email}`}
-            className="text-[13px] text-[#b2b2b2] hover:text-[#c19417] transition duration-300"
+            className="text-[15px] text-[#b2b2b2] hover:text-[#c19417] transition duration-300"
           >
             {footer.storeInfo.email}
           </a>
@@ -109,7 +109,7 @@ export default function Footer() {
                 <li key={i}>
                   <a
                     href={item.link}
-                    className="text-[13px] text-[#b2b2b2] hover:text-[#c19417] transition duration-300"
+                    className="text-[15px] text-[#b2b2b2] hover:text-[#c19417] transition duration-300"
                   >
                     {item.label}
                   </a>
@@ -140,7 +140,7 @@ export default function Footer() {
         </div>
 
         {/* Center - Copyright */}
-        <p className="text-[13px] text-[#b2b2b2] text-center md:text-center">
+        <p className="text-[15px] text-[#b2b2b2] text-center md:text-center">
           © 2026 Johary Demo - WordPress Theme by Avanam
         </p>
 

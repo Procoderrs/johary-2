@@ -26,12 +26,12 @@ export default function Services({ data }) {
               </div>
 
               {/* Heading */}
-              <h3 className="text-[15px] font-medium text-[#111111] mb-3">
+              <h3 className=" text-lg font-medium text-[#111111] ">
                 {item.heading}
               </h3>
 
               {/* Description */}
-              <p className="text-[#666666] text-[13px] leading-7 max-w-[250px]">
+              <p className="text-[#666666] text-[px] leading-7 max-w-[250px]">
                 {item.description}
               </p>
             </div>
