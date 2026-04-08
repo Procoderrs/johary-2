@@ -38,29 +38,25 @@ export default function TrendingProducts({
   };
 
   return (
-    <section className="w-full py-16 px-4 max-w-[1440px] mx-auto font-body">
+    <section className="w-full pt-24 px-4 max-w-[1440px] mx-auto font-body overflow-hidden">
       {/* Top Heading + Tabs */}
-      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2 mb-8 md:mb-10">
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2 mb-6 ">
         <div className="text-left">
-          {/* <p className="text-xs sm:text-sm uppercase tracking-[3px] sm:tracking-[4px] text-[#c19417] mb-2">
-            {subtitle}
-          </p> */}
-          <h2 className="text-2xl sm:text-[26px] md:text-4xl font-medium text-gray-900">
+          <h2 className="text-2xl sm:text-[26px] md:text-[32px] font-medium text-gray-900">
             {title}
           </h2>
         </div>
 
-        {/* Tabs only if showTabs = true */}
         {showTabs && (
-          <div className="flex flex-wrap  lg:justify-start gap-3">
+          <div className="flex flex-wrap lg:justify-start gap-3">
             {tabs.map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-4 sm:px-6 py-2.5 text-[14px] sm:text-[15px] font-medium capitalize transition duration-300 border ${
+                className={`px-4 sm:px-8 py-2.5 text-[14px] sm:text-[15px] font-medium capitalize transition duration-300 text-black ${
                   activeTab === tab
                     ? "bg-[#c19417] text-white"
-                    : "bg-white text-gray-700 border-gray-300 hover:bg-black hover:text-white hover:border-black"
+                    : " text-black border-gray-300 hover:bg-[#c19417] hover:text-white bg-[#f5f5f5]"
                 }`}
               >
                 {tab}
@@ -72,14 +68,14 @@ export default function TrendingProducts({
 
       {/* Product Slider */}
       <div
-        className="relative group"
+        className="relative group overflow-hidden"
         onMouseEnter={() => setShowButtons(true)}
         onMouseLeave={() => setShowButtons(false)}
       >
-        {/* Left Button - desktop only */}
+        {/* Left Button */}
         <button
           onClick={scrollLeft}
-          className={`hidden md:flex absolute left-0 lg:-left-5 top-[26%] -translate-y-1/2 z-20 w-11 h-11 md:w-12 md:h-12 rounded-full bg-[#c19417] text-white shadow-lg items-center justify-center transition-all duration-300 ${
+          className={`hidden md:flex absolute left-2 top-[26%] -translate-y-1/2 z-20 w-11 h-11 md:w-12 md:h-12 rounded-full bg-[#c19417] text-white shadow-lg items-center justify-center transition-all duration-300 ${
             showButtons
               ? "opacity-100 visible translate-x-0"
               : "opacity-0 invisible -translate-x-3"
@@ -88,10 +84,10 @@ export default function TrendingProducts({
           <RiArrowLeftSLine size={26} />
         </button>
 
-        {/* Right Button - desktop only */}
+        {/* Right Button */}
         <button
           onClick={scrollRight}
-          className={`hidden md:flex absolute right-0 lg:-right-5 top-[26%] -translate-y-1/2 z-20 w-11 h-11 md:w-12 md:h-12 rounded-full bg-[#c19417] text-white shadow-lg items-center justify-center transition-all duration-300 ${
+          className={`hidden md:flex absolute right-2 top-[26%] -translate-y-1/2 z-20 w-11 h-11 md:w-12 md:h-12 rounded-full bg-[#c19417] text-white shadow-lg items-center justify-center transition-all duration-300 ${
             showButtons
               ? "opacity-100 visible translate-x-0"
               : "opacity-0 invisible translate-x-3"
@@ -108,7 +104,7 @@ export default function TrendingProducts({
           {filteredProducts.map((product) => (
             <div
               key={product.id}
-              className="min-w-[48%] min-h-[45%] sm:min-w-[48%] md:min-w-[240px] lg:min-w-[220px] md:min-h-[400px]"
+              className="min-w-[48%] sm:min-w-[48%] md:min-w-[240px] lg:min-w-[290px] flex-shrink-0"
             >
               <ProductCard product={product} />
             </div>

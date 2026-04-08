@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import DesktopNav from "./DesktopNav";
-import { categoriesData } from '../../data/categories'
+import { categoriesData } from "../../data/categories";
+import { productsData } from "../../data/product";
 
 export default function Header({ data = {} }) {
   const [showSearch, setShowSearch] = useState(false);
@@ -16,22 +17,26 @@ export default function Header({ data = {} }) {
 
   const menuCategories = categoriesData.filter((item) => item.showInMenu);
 
+  const bestSellingProducts = productsData
+    .filter((item) => item.highlight === "best-seller")
+    .slice(0, 4);
+
   return (
     <>
       {/* ===================== TOP HEADER ===================== */}
       <div className="relative border-b border-[#e5e5e5] font-body">
-        <div className="w-full max-w-[1440px] mx-auto px-4 md:px-8 xl:px-12 py-6">
+        <div className="w-full max-w-[1440px] mx-auto px-4  py-6">
           <div className="grid grid-cols-3 items-center">
             
             {/* Left - Search */}
-            <div className="hidden lg:flex items-center overflow-hidden bg-[#f5f5f5] w-[260px] lg:w-[320px]">
+            <div className="hidden lg:flex items-center overflow-hidden bg-[#f5f5f5] w-[260px] lg:w-[360px]">
               <input
                 type="text"
                 className="p-3 outline-none w-full bg-transparent text-sm"
                 placeholder={searchPlaceholder}
               />
               <button className="px-4 text-[#111111]">
-                {SearchIcon ? <SearchIcon size={24} /> : null}
+                {SearchIcon ? <SearchIcon size={23} /> : null}
               </button>
             </div>
 
@@ -41,7 +46,7 @@ export default function Header({ data = {} }) {
                 <img
                   src={logo}
                   alt="Logo"
-                  className="h-6 md:h-6 object-contain"
+                  className="h-6 md:h-7.5 object-contain"
                 />
               </Link>
             </div>
@@ -116,7 +121,11 @@ export default function Header({ data = {} }) {
       )}
 
       {/* ===================== DESKTOP NAV ===================== */}
-      <DesktopNav navItems={navItems} categories={menuCategories} />
+      <DesktopNav
+        navItems={navItems}
+        categories={menuCategories}
+        bestSellingProducts={bestSellingProducts}
+      />
     </>
   );
 }

@@ -61,7 +61,7 @@ export default function Signed({ data }) {
                   </div>
 
                   {/* Description */}
-                  <p className="text-[15px] md:text-[15px] lg:text-[20px] tracking-[0.3px] leading-6 text-[#111111] max-w-[450px] md:max-w-[570px] mb-8">
+                  <p className="text-[15px] md:text-[15px] lg:text-[20px] tracking-[0.3px] leading-6 lg:leading-[35px] text-[#111111] max-w-[450px] md:max-w-[570px] lg:max-w-3xl mb-6">
                     {profile.description}
                   </p>
 
@@ -85,7 +85,7 @@ export default function Signed({ data }) {
               <button
                 key={index}
                 onClick={() => scrollToSlide(index)}
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
                   activeIndex === index
                     ? "bg-[#c19417] scale-110"
                     : "bg-[#111111] hover:bg-[#c19417]"
@@ -97,8 +97,8 @@ export default function Signed({ data }) {
       </div>
 
       {/* Logos Area - Horizontal Scroll */}
-      <div className="py-12 px-4 md:px-10 lg:px-8">
-        <div className="max-w-6xl mx-auto overflow-x-auto scrollbar-hide">
+      <div className="py-16   lg:px-6">
+        <div className=" mx-auto overflow-x-auto scrollbar-hide">
           <div className="flex items-center gap-10 md:gap-14 w-max min-w-full">
             {data.logos?.map((logo, index) => (
               <div

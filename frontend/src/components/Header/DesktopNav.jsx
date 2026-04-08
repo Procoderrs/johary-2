@@ -2,9 +2,13 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import MegaMenu from "./MegaMenu";
 
-export default function DesktopNav({ navItems = [], categories = [] }) {
+export default function DesktopNav({
+  navItems = [],
+  categories = [],
+  bestSellingProducts = [],
+}) {
   return (
-    <div className="hidden lg:flex justify-center items-center gap-6 lg:gap-9 py-6 border-b border-[#e5e5e5] font-body">
+    <div className="sticky top-0 hidden lg:flex justify-center items-center gap-6 lg:gap-12 py-4.5 border-b border-[#e5e5e5] font-body z-[100] bg-white shadow-xl">
       {navItems.map((item, index) => {
         const DropdownIcon = item.icon;
 
@@ -24,7 +28,7 @@ export default function DesktopNav({ navItems = [], categories = [] }) {
                 {/* Badge */}
                 {item.badge && (
                   <span
-                    className={`ml-1 text-[10px] px-2 py-0.5 rounded text-white font-semibold ${
+                    className={`ml-1 text-[9px] px-2 py-0.5 rounded text-white font-semibold ${
                       item.badge === "HOT"
                         ? "bg-[#e62a65]"
                         : "bg-[#199588]"
@@ -41,7 +45,10 @@ export default function DesktopNav({ navItems = [], categories = [] }) {
 
             {/* Mega Menu only for Categories */}
             {item.label === "Categories" && (
-              <MegaMenu categories={categories} />
+              <MegaMenu
+                categories={categories}
+                bestSellingProducts={bestSellingProducts}
+              />
             )}
           </div>
         );

@@ -64,11 +64,11 @@ export default function ProductFilters({ filters, setFilters }) {
         keyName="categories"
         options={filterOptions.categories}
       />
-<FilterGroup
+{/* <FilterGroup
   title="Filter by Sub Categories"
   keyName="subCategories"
   options={filterOptions.subCategories}
-/>
+/> */}
       <FilterGroup
         title="Highlights"
         keyName="highlights"

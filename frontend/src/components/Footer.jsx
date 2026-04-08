@@ -15,7 +15,7 @@ export default function Footer() {
     storeInfo: {
       name: "Store Information",
       address:
-        "60 29th Street San Francisco, 507-Union Trade Center, United States",
+        "60 29th Street San Francisco, 507-Union Trade Center, United States America - 94110",
       landline: "(+91)-0123-456-789",
       phone: "(+91) 9876-543-210",
       email: "demo@example.com",
@@ -68,24 +68,24 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full bg-black text-[#f5f5f5] font-body py-14 md:py-16 px-4">
-      <div className="max-w-[1440px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+    <footer className="w-full bg-black text-[#f5f5f5] font-body pt-16 md:pt-20 lg:pt-24 pb-8 md:pb-10 px-4">
+      <div className="max-w-[1440px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[32%_22%_22%_30%] gap-10 pb-12 md:pb-16 lg:pb-20 border-b border-[#666666]">
         
         {/* Column 1 - Store Info */}
         <div>
-          <h3 className="text-[18px] font-semibold mb-2">
+          <h3 className="text-[18px] font-semibold mb-2 lg:mb-6">
             {footer.storeInfo.name}
           </h3>
 
-          <p className="text-[15px] leading-5 text-[#b2b2b2] mb-2">
+          <p className="text-[15px] w-[250px] leading-5 text-[#b2b2b2] mb-2 lg:mb-4">
             {footer.storeInfo.address}
           </p>
 
-          <p className="text-[15px] text-[#b2b2b2] mb-2">
+          <p className="text-[15px] text-[#b2b2b2] mb-2 lg:mb-6">
             {footer.storeInfo.landline}
           </p>
 
-          <p className="text-[15px] text-[#b2b2b2] mb-2">
+          <p className="text-[15px] text-[#b2b2b2] mb-2 lg:mb-6">
             {footer.storeInfo.phone}
           </p>
 
@@ -100,11 +100,11 @@ export default function Footer() {
         {/* Dynamic Footer Columns */}
         {footer.sections.map((section, index) => (
           <div key={index}>
-            <h3 className="text-[16px] font-semibold mb-2">
+            <h3 className="text-[16px] lg:text-lg font-semibold mb-2 lg:mb-6">
               {section.title}
             </h3>
 
-            <ul className="space-y-1">
+            <ul className="space-y-3">
               {section.links.map((item, i) => (
                 <li key={i}>
                   <a
@@ -121,7 +121,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom Footer */}
-      <div className="max-w-[1440px] mx-auto border-t border-white/10 mt-10 pt-6 flex flex-col md:flex-row items-center justify-between gap-5 px-4 md:px-0">
+      <div className="max-w-[1440px] mx-auto mt-8 md:mt-10 lg:mt-12 flex flex-col md:flex-row items-center justify-between gap-5 px-4 md:px-0">
         
         {/* Left - Social Icons */}
         <div className="flex items-center gap-4">
@@ -131,7 +131,7 @@ export default function Footer() {
               <a
                 key={index}
                 href={item.link}
-                className="text-[#b2b2b2] hover:text-[#c19417] transition duration-300"
+                className="text-black bg-white p-3 rounded-full hover:text-[#c19417] transition duration-300"
               >
                 <Icon size={20} />
               </a>
@@ -146,14 +146,7 @@ export default function Footer() {
 
         {/* Right - Payment Icons */}
         <div className="flex items-center gap-4">
-          {footer.paymentIcons.map((Icon, index) => (
-            <span
-              key={index}
-              className="text-[#b2b2b2] hover:text-[#c19417] transition duration-300"
-            >
-              <Icon size={26} />
-            </span>
-          ))}
+          <img src="/payment.png" alt="" />
         </div>
       </div>
     </footer>

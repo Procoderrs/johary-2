@@ -22,7 +22,7 @@ export default function CmsBanner({ data }) {
             {/* Image */}
             <div
               className="overflow-hidden w-full"
-              style={{ height: 'clamp(280px, 22vw, 400px)' }} // smooth responsive height
+             
             >
               <img
                 src={item.img}
@@ -33,11 +33,11 @@ export default function CmsBanner({ data }) {
 
             {/* Text */}
             <div className="pt-6 px-2 md:px-0">
-              <p className="text-[11px] sm:text-[12px] md:text-[13px] text-center md:text-center lg:text-left font-medium uppercase tracking-[0.3px] text-[#111111]">
+              <p className="text-[11px] sm:text-[12px] md:text-base text-center md:text-center lg:text-left font-medium uppercase tracking-[0.3px] text-[#111111]">
                 {item.discount}
               </p>
 
-              <h2 className="text-[14px] sm:text-[16px] md:text-[18px] lg:text-[32px] leading-5 md:leading-7 lg:leading-9 text-center md:text-center lg:text-left mt-3 font-medium text-[#111111]">
+              <h2 className="text-[14px] sm:text-[16px] md:text-[18px] lg:text-[25px] leading-5 md:leading-7 lg:leading-9 text-center md:text-center lg:text-left mt-4 font-medium text-[#111111]">
                 {item.heading}
               </h2>
             </div>

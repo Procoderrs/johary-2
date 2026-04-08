@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 
 function SubBanner({ data }) {
   return (
-    <section className="w-full py-16 px-4  max-w-[1440px] mx-auto font-body">
+    <section className="w-full pt-24 px-4  max-w-[1440px] mx-auto font-body">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {data.map((item, index) => (
           <div
             key={index}
-            className="relative overflow-hidden group h-[150px] sm:h-[180px] md:h-[220px] lg:h-[250px] xl:h-[280px] cursor-pointer"
+            className="relative overflow-hidden w-auto group h-[150px] sm:h-[180px] md:h-[220px] lg:h-[220px] xl:h-[235px] cursor-pointer"
           >
             {/* Background Image */}
             <img
@@ -18,19 +18,19 @@ function SubBanner({ data }) {
             />
 
             {/* Overlay Text */}
-            <div className="absolute top-[10%] left-4 sm:left-6 md:left-8 lg:left-10 flex flex-col max-w-[150px] sm:max-w-[160px] md:max-w-[180px] lg:max-w-[200px] z-10">
-              <p className="text-[12px] sm:text-[13px] md:text-[14px] font-medium text-white tracking-[2px] uppercase bg-[#c19417] px-2 mb-2 w-fit">
+            <div className="absolute top-[7%] left-4 sm:left-6  flex flex-col max-w-[150px] sm:max-w-[160px] md:max-w-[180px] lg:max-w-[150px] z-10">
+              <p className="text-[12px]  font-medium text-white  uppercase bg-[#c19417] px-1 mb-2 lg:mb-5 w-fit">
                 {item.off}
               </p>
 
-              <h3 className="text-[17px] sm:text-[18px] md:text-[20px] lg:text-[22px] font-medium leading-tight text-black">
+              <h3 className="text-[17px] mb-12 sm:text-[18px] md:text-[20px] font-medium leading-tight lg:leading-[29px] text-black">
                 {item.heading}
               </h3>
 
-              <div className="mt-2">
+              <div className="">
                 <Link
                   to={item.link}
-                  className="inline-block text-sm sm:text-[14px] md:text-[15px] lg:text-[16px] font-semibold underline pb-1 hover:text-[#c19417] hover:border-[#c19417] transition"
+                  className="inline-block text-sm sm:text-[14px] md:text-[15px] lg:text-[16px] font-semibold underline hover:no-underline pb-1  transition"
                 >
                   {item.label}
                 </Link>

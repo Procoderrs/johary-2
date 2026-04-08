@@ -33,7 +33,7 @@ export default function ProductCard({ product }) {
     <div className="group w-full font-body">
       {/* Image Box */}
       <div
-        className="relative overflow-hidden bg-[#f8f8f8] rounded-2xl"
+        className="relative overflow-hidden bg-[#f8f8f8] "
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
@@ -55,7 +55,7 @@ export default function ProductCard({ product }) {
 
         <Link to={`/product/${product.slug}`}>
           {/* FIXED IMAGE WRAPPER */}
-          <div className="relative h-[220px] xl:h-[250px] w-full overflow-hidden rounded-2xl">
+          <div className="relative h-[220px] lg:h-[230px] xl:h-[300px] w-full overflow-hidden ">
             <img
               src={product.images.main}
               alt={product.name}
@@ -86,21 +86,21 @@ export default function ProductCard({ product }) {
       </div>
 
       {/* Product Info */}
-      <div className="pt-5 text-center">
+      <div className="pt-5 ">
 
  <Link to={`/product/${product.slug}`}>
-          <h3 className="text-[17px] font-medium text-gray-900 leading-snug mb-2 hover:text-[#c19417] transition">
+          <h3 className="text-[17px]  text-gray-900 leading-snug mb-2 hover:text-[#c19417] transition">
             {product.name}
           </h3>
         </Link>
 
-        <div className="flex justify-center items-center gap-1 mb-2">
+        <div className="flex justify-start items-center gap-1 mb-2">
           {renderStars(product.rating)}
         </div>
 
        
 
-        <div className="flex items-center justify-center gap-2">
+        <div className="flex items-center justify-start gap-2">
           <span className="text-[18px] font-semibold text-black">
             ${product.price}
           </span>

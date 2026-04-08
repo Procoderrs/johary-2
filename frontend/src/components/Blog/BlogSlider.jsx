@@ -39,9 +39,9 @@ export default function BlogSlider({ blogs }) {
   };
 
   return (
-    <section className="relative w-full max-w-[1440px] mx-auto py-14 md:py-16 px-4   font-body">
+    <section className="relative border-b px-4 border-[#e5e5e5] w-full max-w-[1440px] mx-auto py-14 md:py-24    font-body">
       <h2 className="text-[24px] sm:text-[28px] md:text-[32px] text-center font-medium mb-8">
-        Latest Blogs
+       Our Latest Blogs
       </h2>
 
       {/* Left Arrow */}
@@ -60,12 +60,12 @@ export default function BlogSlider({ blogs }) {
       {/* Slider */}
       <div
         ref={sliderRef}
-        className="flex gap-6 overflow-x-auto scroll-smooth scrollbar-hide px-2"
+        className="flex gap-6 overflow-x-auto scroll-smooth scrollbar-hide "
       >
         {blogs.map((blog) => (
           <div
             key={blog.id}
-            className="flex-shrink-0 w-full sm:w-[48%] md:w-[31%] lg:w-[31.5%] px-2 py-2"
+            className="flex-shrink-0 w-full sm:w-[48%] md:w-[31%] lg:w-[31.5%]  py-2"
           >
             <BlogCard blog={blog} />
           </div>

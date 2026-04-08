@@ -3,26 +3,26 @@ import { Link } from "react-router-dom";
 
 export default function Delicate({ data }) {
   return (
-    <section className="w-full py-16 px-4  max-w-[1440px] mx-auto font-body">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10 items-center">
+    <section className="w-full py-24 px-4  max-w-[1440px] mx-auto font-body">
+      <div className="grid grid-cols-1 lg:grid-cols-[35%_32%_30%] gap-4 items-center">
         
         {/* Left Text Column */}
-        <div className="flex flex-col justify-center h-full">
+        <div className="flex flex-col justify-center h-full max-w-[500px]">
           {/* <p className="text-sm uppercase tracking-[4px] text-[#c19417] mb-4">
             Elegant Jewelry
           </p> */}
 
-          <h2 className="text-[22px] text-center lg:text-[30px] md:text-left lg:leading-[42px] leading-[30px] text-[#111111] mb-2 max-w-[320px]">
+          <h2 className="text-[22px] lg:text-[24px] text-center font-medium md:text-left lg:leading-[42px] leading-[30px] text-[#111111] mb-2 max-w-[320px]">
             {data.heading}
           </h2>
 
-          <p className="text-[#666666] text-[14px] lg:text-[16px] text-center md:text-left leading- max-w-[420px] mb-4">
+          <p className="text-[#666666] text-[14px] lg:text-[15px] tracking-[0.5px] lg:leading-[25px] text-center md:text-left   mb-4">
             {data.description}
           </p>
 
           <Link
             to={data.link}
-            className="inline-flex items-center justify-center w-fit px-4 py-3.5  hover:bg-black text-white text-sm md:text-lg  tracking-wide bg-[#c19417] transition duration-300"
+            className="inline-flex items-center justify-center w-fit px-8 py-3.5  hover:bg-black text-white  font-medium  tracking-wide bg-[#c19417] transition duration-300"
           >
             {data.label}
           </Link>
@@ -38,7 +38,7 @@ export default function Delicate({ data }) {
         </div>
 
         {/* Right Image */}
-        <div className="relative overflow-hidden rounded-[24px] group">
+        <div className="relative overflow-hidden group">
           <img
             src={data.img2}
             alt="Jewelry Banner 2"

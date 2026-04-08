@@ -3,11 +3,12 @@ import { RiArrowLeftSLine, RiArrowRightSLine } from "@remixicon/react";
 
 export default function Hero({ data }) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [showButtons, setShowButtons] = useState(true);
+  const [showButtons, setShowButtons] = useState(false);
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % data.length);
   };
+
   const prevSlide = () => {
     setCurrentIndex((prev) => (prev - 1 + data.length) % data.length);
   };
@@ -15,10 +16,14 @@ export default function Hero({ data }) {
   useEffect(() => {
     const interval = setInterval(nextSlide, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [data.length]);
 
   return (
-    <div className="relative w-full h-[60vh] sm:h-[70vh] md:h-[85vh] 2xl:h-[70vh] 3xl:h-[45vh] font-body overflow-hidden">
+    <div
+      className="relative w-full h-[60vh] sm:h-[70vh] md:h-[85vh] 2xl:h-[70vh] 3xl:h-[45vh] font-body overflow-hidden"
+      onMouseEnter={() => setShowButtons(true)}
+      onMouseLeave={() => setShowButtons(false)}
+    >
       {data.map((item, index) => (
         <div
           key={index}
@@ -33,10 +38,10 @@ export default function Hero({ data }) {
           />
 
           {/* Text Container */}
-          <div className="absolute top-0 left-0 h-full flex items-center px-4 sm:px-6 md:px-10  lg:pl-[10%] xl:pl-[15%] 2xl:pl-[25%] ">
-            <div className="max-w-[150px] md:max-w-[300px]  lg:max-w-[300px] ">
+          <div className="absolute top-0 left-0 h-full flex items-center px-4 sm:px-6 md:px-10 lg:pl-[10%] xl:pl-[17%] 2xl:pl-[25%]">
+            <div className="max-w-[150px] md:max-w-[300px] lg:max-w-[350px]">
               <h1
-                className={`text-[14px] sm:text-lg md:text-[39px] md:leading-11 text-white mb-2 transform transition-all duration-700 ${
+                className={`text-[14px] sm:text-lg md:text-[39px] md:leading-11 text-white mb-5 transform transition-all duration-700 ${
                   index === currentIndex
                     ? "scale-100 opacity-100"
                     : "scale-90 opacity-0"
@@ -57,7 +62,7 @@ export default function Hero({ data }) {
               {item.label && item.link && (
                 <a
                   href={item.link}
-                  className={`inline-block mt-4 md:mt-6 px-4 py-2 md:px-6 md:py-3 bg-white text-[10px] sm:text-[12px] font-medium transition-all duration-700 delay-500 ${
+                  className={`inline-block mt-4 md:mt-8 px-4 py-2 md:px-5 md:py-2 bg-white text-[10px] font-medium transition-all duration-700 delay-500 ${
                     index === currentIndex
                       ? "opacity-100 translate-y-0"
                       : "opacity-0 translate-y-3"
@@ -89,10 +94,10 @@ export default function Hero({ data }) {
       {/* Right Button */}
       <button
         onClick={nextSlide}
-        className={`hidden md:flex absolute right-0 md:right-5 top-1/2 -translate-y-1/2 z-20 w-11 h-11 md:w-6 md:h-6 rounded-full bg-white shadow-lg items-center justify-center transition-all duration-300 ${
+        className={`hidden md:flex absolute right-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/70 text-white shadow-lg items-center justify-center transition-all duration-500 ${
           showButtons
-            ? "opacity-100 visible translate-x-0"
-            : "opacity-0 invisible translate-x-3"
+            ? "opacity-100 translate-x-0 pointer-events-auto"
+            : "opacity-0 translate-x-4 pointer-events-none"
         }`}
       >
         <RiArrowRightSLine size={26} />
@@ -101,14 +106,14 @@ export default function Hero({ data }) {
       {/* Left Button */}
       <button
         onClick={prevSlide}
-        className={`hidden md:flex absolute left-0 md:left-5 top-1/2 -translate-y-1/2 z-20 w-11 h-11 md:w-6 md:h-6 rounded-full bg-white shadow-lg items-center justify-center transition-all duration-300 ${
+        className={`hidden md:flex absolute left-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-black/70 text-white shadow-lg items-center justify-center transition-all duration-500 ${
           showButtons
-            ? "opacity-100 visible translate-x-0"
-            : "opacity-0 invisible -translate-x-3"
+            ? "opacity-100 translate-x-0 pointer-events-auto"
+            : "opacity-0 -translate-x-4 pointer-events-none"
         }`}
       >
         <RiArrowLeftSLine size={26} />
       </button>
     </div>
   );
-} 
+}
