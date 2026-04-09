@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Newsletter() {
   return (
-    <section className="w-full  py-20 px-4 md:px-10 lg:px-16 font-body text-center">
+    <section className="w-full  py-20 px-4 md:px-16 lg:px-16 font-body text-center">
       {/* Heading */}
       <h2 className="text-[28px] md:text-[32px]  font-medium text-[#111111] mb-4">
        Subscribe To Our Newsletter
@@ -14,7 +14,7 @@ export default function Newsletter() {
       </p>
 
       {/* Email Input */}
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-3xl mx-auto">
+      <div className="flex flex-col lg:flex-row items-center justify-center gap-4 max-w-3xl mx-auto">
         <input
           type="email"
           placeholder="Enter your email"

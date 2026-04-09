@@ -40,7 +40,7 @@ export default function TrendingProducts({
   return (
     <section className="w-full pt-24 px-4 max-w-[1440px] mx-auto font-body overflow-hidden">
       {/* Top Heading + Tabs */}
-      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2 mb-6 ">
+      <div className="flex flex-col md:flex-row lg:items-center md:justify-between gap-2 mb-6 ">
         <div className="text-left">
           <h2 className="text-2xl sm:text-[26px] md:text-[32px] font-medium text-gray-900">
             {title}
@@ -104,7 +104,7 @@ export default function TrendingProducts({
           {filteredProducts.map((product) => (
             <div
               key={product.id}
-              className="min-w-[48%] sm:min-w-[48%] md:min-w-[240px] lg:min-w-[290px] flex-shrink-0"
+              className="max-w-[140px] sm:min-w-[48%] md:min-w-[240px] lg:min-w-[320px] flex-shrink-0"
             >
               <ProductCard product={product} />
             </div>

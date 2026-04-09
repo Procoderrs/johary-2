@@ -68,16 +68,16 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full bg-black text-[#f5f5f5] font-body pt-16 md:pt-20 lg:pt-24 pb-8 md:pb-10 px-4">
-      <div className="max-w-[1440px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[32%_22%_22%_30%] gap-10 pb-12 md:pb-16 lg:pb-20 border-b border-[#666666]">
+    <footer className="w-full overflow-hidden bg-black text-[#f5f5f5] font-body pt-16 md:pt-20 lg:pt-24 pb-8 md:pb-10 px-4">
+      <div className="max-w-[1440px] mx-auto grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-[1.2fr_1fr_1fr_1fr] gap-10 pb-12 md:pb-16 lg:pb-20 border-b border-[#666666]">
         
         {/* Column 1 - Store Info */}
-        <div>
+        <div className="min-w-0">
           <h3 className="text-[18px] font-semibold mb-2 lg:mb-6">
             {footer.storeInfo.name}
           </h3>
 
-          <p className="text-[15px] w-[250px] leading-5 text-[#b2b2b2] mb-2 lg:mb-4">
+          <p className="text-[15px] w-[250px] max-w-full leading-5 text-[#b2b2b2] mb-2 lg:mb-4">
             {footer.storeInfo.address}
           </p>
 
@@ -91,7 +91,7 @@ export default function Footer() {
 
           <a
             href={`mailto:${footer.storeInfo.email}`}
-            className="text-[15px] text-[#b2b2b2] hover:text-[#c19417] transition duration-300"
+            className="text-[15px] text-[#b2b2b2] hover:text-[#c19417] transition duration-300 break-words"
           >
             {footer.storeInfo.email}
           </a>
@@ -99,7 +99,7 @@ export default function Footer() {
 
         {/* Dynamic Footer Columns */}
         {footer.sections.map((section, index) => (
-          <div key={index}>
+          <div key={index} className="min-w-0">
             <h3 className="text-[16px] lg:text-lg font-semibold mb-2 lg:mb-6">
               {section.title}
             </h3>
@@ -109,7 +109,7 @@ export default function Footer() {
                 <li key={i}>
                   <a
                     href={item.link}
-                    className="text-[15px] text-[#b2b2b2] hover:text-[#c19417] transition duration-300"
+                    className="text-[15px] text-[#b2b2b2] hover:text-[#c19417] transition duration-300 break-words"
                   >
                     {item.label}
                   </a>
@@ -121,10 +121,10 @@ export default function Footer() {
       </div>
 
       {/* Bottom Footer */}
-      <div className="max-w-[1440px] mx-auto mt-8 md:mt-10 lg:mt-12 flex flex-col md:flex-row items-center justify-between gap-5 px-4 md:px-0">
+      <div className="max-w-[1440px] mx-auto mt-8 md:mt-10 lg:mt-12 flex flex-col lg:flex-row items-center justify-between gap-5">
         
         {/* Left - Social Icons */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 flex-wrap justify-center">
           {footer.socialLinks.map((item, index) => {
             const Icon = item.icon;
             return (
@@ -145,8 +145,8 @@ export default function Footer() {
         </p>
 
         {/* Right - Payment Icons */}
-        <div className="flex items-center gap-4">
-          <img src="/payment.png" alt="" />
+        <div className="flex items-center gap-4 max-w-full">
+          <img src="/payment.png" alt="" className="max-w-full h-auto object-contain" />
         </div>
       </div>
     </footer>

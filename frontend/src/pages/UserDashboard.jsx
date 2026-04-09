@@ -75,7 +75,7 @@ const services=[
 
 const signed={
   icon:RiDoubleQuotesL,
-  description:"There are many passengets of lorem ipsum available but the majorityy suffered alteration in some form by injected humour or random words which don't look even slighlty believable. ",
+  description:"There are many variations of  passages of lorem ipsum available but the majorityy suffered alteration in some form by injected humour or randomised words which don't look even slighlty believable. ",
   name:[
     'Mr. Meckdom Mery','Stefaine Rashford','Augusta Wind',
   ],
@@ -99,8 +99,8 @@ const signed={
       <Services data={services}/>
       <TrendingProducts products={productsData} title="Featured Products" subtitle="Best Collection" showTabs={false}filterTrending={false} />
       <CmsBanner data={cms}/>
-      <Signed data={signed}/>
-      <BlogSlider blogs={blogsData} />
+      {/* <Signed data={signed}/> */}
+      {/* <BlogSlider blogs={blogsData} /> */}
       
 
 

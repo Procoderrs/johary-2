@@ -61,17 +61,17 @@ export default function Signed({ data }) {
                   </div>
 
                   {/* Description */}
-                  <p className="text-[15px] md:text-[15px] lg:text-[20px] tracking-[0.3px] leading-6 lg:leading-[35px] text-[#111111] max-w-[450px] md:max-w-[570px] lg:max-w-3xl mb-6">
+                  <p className=" text-lg lg:text-[20px] tracking-[0.3px] leading-7 lg:leading-[35px] text-[#111111] max-w-[450px] md:max-w-[570px] lg:max-w-3xl mb-6">
                     {profile.description}
                   </p>
 
                   {/* Name */}
-                  <h3 className="text-[14px] md:text-[20px] font-semibold tracking-[0.3px] text-[#111111] ">
+                  <h3 className="text-[18px] md:text-[20px] font-semibold tracking-[0.3px] text-[#111111] ">
                     {profile.name}
                   </h3>
 
                   {/* Designation */}
-                  <p className="text-[15px] tracking-[0.3px] text-[#111111]">
+                  <p className="text-[18px] tracking-[0.3px] text-[#111111]">
                     {profile.designation}
                   </p>
                 </div>
@@ -103,7 +103,7 @@ export default function Signed({ data }) {
             {data.logos?.map((logo, index) => (
               <div
                 key={index}
-                className="flex items-center justify-center min-w-[120px] md:min-w-[50px] opacity-80 hover:opacity-100 transition duration-300"
+                className="flex items-center justify-center min-w-[80px] sm:min-w-[120px] md:min-w-[50px] opacity-80 hover:opacity-100 transition duration-300"
               >
                 <img
                   src={logo}

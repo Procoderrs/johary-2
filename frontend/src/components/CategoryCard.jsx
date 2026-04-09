@@ -7,7 +7,7 @@ export default function CategoryCard({ category }) {
         <img
           src={category.image}
           alt={category.name}
-          className="w-[135px] h-[135px] object-cover group-hover:scale-105 transition duration-500 mx-auto"
+          className="lg:w-[150px] lg:h-[150px] object-cover group-hover:scale-105 transition duration-500 mx-auto"
         />
       </div>
 

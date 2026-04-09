@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Parallax({ data }) {
   return (
     <section
-      className=" font-body relative w-full min-h-[350px] sm:min-h-[420px] md:min-h-[500px] lg:min-h-[500px] xl:min-h-[500px] overflow-hidden bg-cover bg-top  flex items-center"
+      className=" font-body relative w-full min-h-[350px] sm:min-h-[420px] md:min-h-[500px] lg:min-h-[500px] xl:min-h-[500px] overflow-hidden bg-cover 2xl:bg-fixed bg-top  flex items-center"
       style={{ backgroundImage: `url(${data.img})` }}
     >
       {/* Overlay */}
@@ -15,9 +15,9 @@ export default function Parallax({ data }) {
         <div className="w-full flex justify-end items-center">
           
           {/* Text Block */}
-          <div className="w-full max-w-[180px] sm:max-w-[260px] md:max-w-[360px] lg:max-w-[430px] xl:max-w-[430px]  mr-[2%] sm:mr-[4%] md:mr-[6%] xl:mr-[12%] 2xl:mr-[10%]">
+          <div className="w-full max-w-[180px] sm:max-w-[260px] md:max-w-[360px] lg:max-w-[430px] xl:max-w-[430px]  mr-[2%] sm:mr-[4%] md:mr-[-20px] lg:mr-[20px] lg:mt-[40px] xl:mr-[12%] 2xl:mr-[10%]">
             
-            <h2 className="text-[16px] sm:text-[28px] md:text-[38px] lg:text-[45px] lg:leading-[64px] font-medium text-white mb-3 sm:mb-4 md:mb-5">
+            <h2 className="text-[20px] sm:text-[28px] md:text-[38px] lg:text-[38px] lg:leading-[55px] font-medium text-white mb-3 sm:mb-4 md:mb-3">
               {data.heading}
             </h2>
 

@@ -39,9 +39,9 @@ export default function Hero({ data }) {
 
           {/* Text Container */}
           <div className="absolute top-0 left-0 h-full flex items-center px-4 sm:px-6 md:px-10 lg:pl-[10%] xl:pl-[17%] 2xl:pl-[25%]">
-            <div className="max-w-[150px] md:max-w-[300px] lg:max-w-[350px]">
+            <div className="max-w-[150px] sm:max-w-[180px] md:max-w-[240px] lg:max-w-[240px]">
               <h1
-                className={`text-[14px] sm:text-lg md:text-[39px] md:leading-11 text-white mb-5 transform transition-all duration-700 ${
+                className={`text-[14px] sm:text-lg md:text-[28px] md:leading-9 text-white mb-5 transform transition-all duration-700 ${
                   index === currentIndex
                     ? "scale-100 opacity-100"
                     : "scale-90 opacity-0"

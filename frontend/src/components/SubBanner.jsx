@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 function SubBanner({ data }) {
   return (
     <section className="w-full pt-24 px-4  max-w-[1440px] mx-auto font-body">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-6">
         {data.map((item, index) => (
           <div
             key={index}
-            className="relative overflow-hidden w-auto group h-[150px] sm:h-[180px] md:h-[220px] lg:h-[220px] xl:h-[235px] cursor-pointer"
+            className="relative overflow-hidden w-auto group h-[150px] sm:h-[180px] md:h-[150px] lg:h-[200px] xl:h-[235px] cursor-pointer"
           >
             {/* Background Image */}
             <img
@@ -18,12 +18,12 @@ function SubBanner({ data }) {
             />
 
             {/* Overlay Text */}
-            <div className="absolute top-[7%] left-4 sm:left-6  flex flex-col max-w-[150px] sm:max-w-[160px] md:max-w-[180px] lg:max-w-[150px] z-10">
+            <div className="absolute top-[7%] left-4 sm:left-6  flex flex-col max-w-[150px] sm:max-w-[160px] md:max-w-[140px] lg:max-w-[150px] z-10">
               <p className="text-[12px]  font-medium text-white  uppercase bg-[#c19417] px-1 mb-2 lg:mb-5 w-fit">
                 {item.off}
               </p>
 
-              <h3 className="text-[17px] mb-12 sm:text-[18px] md:text-[20px] font-medium leading-tight lg:leading-[29px] text-black">
+              <h3 className="text-[17px] mb-12 md:mb-4 sm:text-[18px] md:text-[18px] font-medium leading-tight lg:leading-[25px] text-black">
                 {item.heading}
               </h3>
 

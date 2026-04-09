@@ -38,24 +38,24 @@ export default function ProductCard({ product }) {
         onMouseLeave={() => setIsHovered(false)}
       >
         {/* Top Right Icons */}
-        <div className="absolute top-4 right-4 z-20 flex flex-col gap-2">
+        <div className="absolute sm:top-4 top-2 sm:right-4 right-3 z-20 flex flex-col gap-2">
           <button
             onClick={(e) => e.preventDefault()}
-            className="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-black hover:text-white transition duration-300"
+            className="sm:w-10 sm:h-10 w-5 h-5 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-black hover:text-white transition duration-300"
           >
-            <RiHeartLine size={18} />
+            <RiHeartLine size={14} />
           </button>
           <button
             onClick={(e) => e.preventDefault()}
-            className="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-black hover:text-white transition duration-300"
+            className="sm:w-10 sm:h-10 w-5 h-5 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-black hover:text-white transition duration-300"
           >
-            <RiEyeLine size={18} />
+            <RiEyeLine size={18} className=""  />
           </button>
         </div>
 
         <Link to={`/product/${product.slug}`}>
           {/* FIXED IMAGE WRAPPER */}
-          <div className="relative h-[220px] lg:h-[230px] xl:h-[300px] w-full overflow-hidden ">
+          <div className="relative h-[120px] sm:h-[220px] lg:h-[230px] xl:h-[300px] w-full overflow-hidden ">
             <img
               src={product.images.main}
               alt={product.name}
@@ -74,14 +74,15 @@ export default function ProductCard({ product }) {
           </div>
 
           {/* Button */}
-          <div className="absolute bottom-0 left-0 w-full px-4 pb-4 translate-y-full group-hover:translate-y-0 transition-all duration-500 z-20">
-            <button
-              onClick={(e) => e.preventDefault()}
-              className="w-full bg-[#c19417] text-white py-3  text-sm font-medium tracking-wide hover:bg-black transition duration-300"
-            >
-              Select Options
-            </button>
-          </div>
+        {/* Desktop Button - lg and up */}
+<div className="hidden lg:block absolute bottom-0 left-0 w-full px-4 pb-4 translate-y-full group-hover:translate-y-0 transition-all duration-500 z-20">
+  <button
+    onClick={(e) => e.preventDefault()}
+    className="w-full bg-[#c19417] text-white py-3 text-sm font-medium tracking-wide hover:bg-black transition duration-300"
+  >
+    Select Options
+  </button>
+</div>
         </Link>
       </div>
 
@@ -89,7 +90,7 @@ export default function ProductCard({ product }) {
       <div className="pt-5 ">
 
  <Link to={`/product/${product.slug}`}>
-          <h3 className="text-[17px]  text-gray-900 leading-snug mb-2 hover:text-[#c19417] transition">
+          <h3 className="sm:text-[17px] text-sm text-gray-900 leading-snug mb-2 hover:text-[#c19417] transition">
             {product.name}
           </h3>
         </Link>
@@ -105,6 +106,15 @@ export default function ProductCard({ product }) {
             ${product.price}
           </span>
         </div>
+<div className="  lg:hidden bottom-0 left-0 w-full   mt-1 z-20">
+            <button
+              onClick={(e) => e.preventDefault()}
+              className="w-full bg-[#c19417] text-white py-3  text-sm font-medium tracking-wide hover:bg-black transition duration-300"
+            >
+              Select Options
+            </button>
+          </div>
+
       </div>
     </div>
   );

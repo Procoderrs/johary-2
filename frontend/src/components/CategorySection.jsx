@@ -52,12 +52,12 @@ export default function CategorySection({ categories }) {
   {/* Scroll Row */}
   <div
     ref={scrollRef}
-    className="flex overflow-x-auto scroll-smooth scrollbar-hide gap-4 sm:gap-5 lg:gap-6"
+    className="flex overflow-x-auto scroll-smooth scrollbar-hide gap-4 sm:gap-4 lg:gap-6"
   >
     {categories.map((category) => (
       <div
         key={category.id}
-        className="flex-shrink-0 w-[calc((100%-20px)/2)] sm:w-[calc((100%-40px)/3)] md:w-[calc((100%-48px)/4)] lg:w-[calc((100%-120px)/6)]"
+        className="flex-shrink-0 w-[calc((100%-20px)/2)] sm:w-[calc((100%-40px)/3)] md:w-[calc((100%-48px)/5)] lg:w-[calc((100%-120px)/5)]"
       >
         <CategoryCard category={category} />
       </div>
