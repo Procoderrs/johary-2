@@ -15,8 +15,7 @@ export default function Header({ data = {} }) {
     navItems = [],
   } = data;
 
-  const menuCategories = categoriesData.filter((item) => item.showInMenu);
-
+const menuCategories = categoriesData.filter((item) => item.showInMenu).slice(0, 6);
   const bestSellingProducts = productsData
     .filter((item) => item.highlight === "best-seller")
     .slice(0, 4);
