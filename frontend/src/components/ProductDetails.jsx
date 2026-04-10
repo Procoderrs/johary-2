@@ -147,7 +147,7 @@ export default function ProductDetails({ product }) {
             <img
               src={selectedImage}
               alt=""
-              className="w-full h-[300px] sm:h-[450px] lg:h-[680px] object-cover"
+              className="w-full h-[300px] sm:h-[450px] lg:h-[600px] object-cover"
             />
           </div>
         </div>
