@@ -19,7 +19,7 @@ export const productsData = [
     stock: "In Stock",
     stockNumber: "BR-1001",
     description:
-      "A graceful handcrafted bracelet designed to add timeless elegance to your jewelry collection.",
+      "The Enchanting Sapphire Halo Necklace is a symbol of refined elegance and enduring style. Whether you're treating yourself or surprising a loved one, this necklace is a timeless expression of sophistication and grace. The Enchanting Sapphire Halo Necklace effortlessly transitions from day to night.",
     images: {
       main: "/bracelet-1.jpg",
       hover: "/earing-1.jpg",
@@ -67,7 +67,7 @@ export const productsData = [
     stock: "In Stock",
     stockNumber: "BR-1002",
     description:
-      "A delicate rose gold tennis bracelet featuring elegant stone detailing for refined sparkle.",
+      "The Enchanting Sapphire Halo Necklace is a symbol of refined elegance and enduring style. Whether you're treating yourself or surprising a loved one, this necklace is a timeless expression of sophistication and grace. The Enchanting Sapphire Halo Necklace effortlessly transitions from day to night.",
     images: {
       main: "/ring-1.jpg",
       hover: "/ring-2.jpg",
@@ -114,7 +114,7 @@ export const productsData = [
     stock: "In Stock",
     stockNumber: "BR-1003",
     description:
-      "A charming pearl bracelet crafted to create a soft and luxurious everyday statement.",
+      "The Enchanting Sapphire Halo Necklace is a symbol of refined elegance and enduring style. Whether you're treating yourself or surprising a loved one, this necklace is a timeless expression of sophistication and grace. The Enchanting Sapphire Halo Necklace effortlessly transitions from day to night.",
     images: {
       main: "/ring-1.jpg",
       hover: "/ring-4.jpg",
@@ -161,7 +161,7 @@ export const productsData = [
     stock: "In Stock",
     stockNumber: "BR-1003",
     description:
-      "A charming pearl bracelet crafted to create a soft and luxurious everyday statement.",
+      "The Enchanting Sapphire Halo Necklace is a symbol of refined elegance and enduring style. Whether you're treating yourself or surprising a loved one, this necklace is a timeless expression of sophistication and grace. The Enchanting Sapphire Halo Necklace effortlessly transitions from day to night.",
     images: {
       main: "/ring-4.jpg",
       hover: "/ring-6.jpg",
@@ -208,7 +208,7 @@ export const productsData = [
     stock: "In Stock",
     stockNumber: "BR-1003",
     description:
-      "A charming pearl bracelet crafted to create a soft and luxurious everyday statement.",
+      "The Enchanting Sapphire Halo Necklace is a symbol of refined elegance and enduring style. Whether you're treating yourself or surprising a loved one, this necklace is a timeless expression of sophistication and grace. The Enchanting Sapphire Halo Necklace effortlessly transitions from day to night.",
     images: {
       main: "/pendent-1.jpg",
       hover: "/pendent-2.jpg",
@@ -256,7 +256,7 @@ export const productsData = [
     stock: "In Stock",
     stockNumber: "BR-1003",
     description:
-      "A charming pearl bracelet crafted to create a soft and luxurious everyday statement.",
+      "The Enchanting Sapphire Halo Necklace is a symbol of refined elegance and enduring style. Whether you're treating yourself or surprising a loved one, this necklace is a timeless expression of sophistication and grace. The Enchanting Sapphire Halo Necklace effortlessly transitions from day to night.",
      images: {
       main: "/pendent-2.jpg",
       hover: "/pendent-1.jpg",
@@ -304,7 +304,7 @@ export const productsData = [
     stock: "In Stock",
     stockNumber: "BR-1003",
     description:
-      "A charming pearl bracelet crafted to create a soft and luxurious everyday statement.",
+      "The Enchanting Sapphire Halo Necklace is a symbol of refined elegance and enduring style. Whether you're treating yourself or surprising a loved one, this necklace is a timeless expression of sophistication and grace. The Enchanting Sapphire Halo Necklace effortlessly transitions from day to night.",
      images: {
       main: "/pendent-4.jpg",
       hover: "/pendent-5.jpg",
@@ -352,7 +352,7 @@ export const productsData = [
     stock: "In Stock",
     stockNumber: "BR-1003",
     description:
-      "A charming pearl bracelet crafted to create a soft and luxurious everyday statement.",
+      "The Enchanting Sapphire Halo Necklace is a symbol of refined elegance and enduring style. Whether you're treating yourself or surprising a loved one, this necklace is a timeless expression of sophistication and grace. The Enchanting Sapphire Halo Necklace effortlessly transitions from day to night.",
      images: {
       main: "/pendent-4.jpg",
       hover: "/pendent-5.jpg",
@@ -400,7 +400,7 @@ export const productsData = [
     stock: "In Stock",
     stockNumber: "RG-1001",
     description:
-      "A timeless solitaire ring with premium shine and classic craftsmanship.",
+      "The Enchanting Sapphire Halo Necklace is a symbol of refined elegance and enduring style. Whether you're treating yourself or surprising a loved one, this necklace is a timeless expression of sophistication and grace. The Enchanting Sapphire Halo Necklace effortlessly transitions from day to night.",
       images: {
       main: "/pendent-1.jpg",
       hover: "/pendent-2.jpg",
@@ -447,7 +447,7 @@ export const productsData = [
     stock: "In Stock",
     stockNumber: "RG-1002",
     description:
-      "A modern and elegant couple ring with a premium polished finish.",
+      "The Enchanting Sapphire Halo Necklace is a symbol of refined elegance and enduring style. Whether you're treating yourself or surprising a loved one, this necklace is a timeless expression of sophistication and grace. The Enchanting Sapphire Halo Necklace effortlessly transitions from day to night.",
      images: {
       main: "/pendent-4.jpg",
       hover: "/pendent-5.jpg",
@@ -494,7 +494,7 @@ export const productsData = [
     stock: "In Stock",
     stockNumber: "RG-1003",
     description:
-      "A bold statement ring with luxury detailing and brilliant diamond sparkle.",
+      "The Enchanting Sapphire Halo Necklace is a symbol of refined elegance and enduring style. Whether you're treating yourself or surprising a loved one, this necklace is a timeless expression of sophistication and grace. The Enchanting Sapphire Halo Necklace effortlessly transitions from day to night.",
     images: {
       main: "/ring-3.jpg",
       hover: "/ring-2.jpg",
@@ -541,7 +541,7 @@ export const productsData = [
     stock: "In Stock",
     stockNumber: "RG-1003",
     description:
-      "A bold statement ring with luxury detailing and brilliant diamond sparkle.",
+      "The Enchanting Sapphire Halo Necklace is a symbol of refined elegance and enduring style. Whether you're treating yourself or surprising a loved one, this necklace is a timeless expression of sophistication and grace. The Enchanting Sapphire Halo Necklace effortlessly transitions from day to night.",
     images: {
       main: "/ring-1.jpg",
       hover: "/ring-2.jpg",
@@ -589,7 +589,7 @@ export const productsData = [
     stock: "In Stock",
     stockNumber: "RG-1003",
     description:
-      "A bold statement ring with luxury detailing and brilliant diamond sparkle.",
+      "The Enchanting Sapphire Halo Necklace is a symbol of refined elegance and enduring style. Whether you're treating yourself or surprising a loved one, this necklace is a timeless expression of sophistication and grace. The Enchanting Sapphire Halo Necklace effortlessly transitions from day to night.",
     images: {
       main: "/pendent-2.jpg",
       hover: "/pendent-3.jpg",
@@ -637,7 +637,7 @@ export const productsData = [
     stock: "In Stock",
     stockNumber: "RG-1003",
     description:
-      "A bold statement ring with luxury detailing and brilliant diamond sparkle.",
+      "The Enchanting Sapphire Halo Necklace is a symbol of refined elegance and enduring style. Whether you're treating yourself or surprising a loved one, this necklace is a timeless expression of sophistication and grace. The Enchanting Sapphire Halo Necklace effortlessly transitions from day to night.",
    images: {
       main: "/pendent-2.jpg",
       hover: "/pendent-3.jpg",
@@ -685,7 +685,7 @@ export const productsData = [
     stock: "In Stock",
     stockNumber: "RG-1003",
     description:
-      "A bold statement ring with luxury detailing and brilliant diamond sparkle.",
+      "The Enchanting Sapphire Halo Necklace is a symbol of refined elegance and enduring style. Whether you're treating yourself or surprising a loved one, this necklace is a timeless expression of sophistication and grace. The Enchanting Sapphire Halo Necklace effortlessly transitions from day to night.",
     images: {
       main: "/pendent-2.jpg",
       hover: "/pendent-3.jpg",
@@ -732,7 +732,7 @@ export const productsData = [
     stock: "In Stock",
     stockNumber: "RG-1003",
     description:
-      "A bold statement ring with luxury detailing and brilliant diamond sparkle.",
+      "The Enchanting Sapphire Halo Necklace is a symbol of refined elegance and enduring style. Whether you're treating yourself or surprising a loved one, this necklace is a timeless expression of sophistication and grace. The Enchanting Sapphire Halo Necklace effortlessly transitions from day to night.",
     images: {
       main: "/pendent-2.jpg",
       hover: "/pendent-3.jpg",
@@ -780,7 +780,7 @@ export const productsData = [
     stock: "In Stock",
     stockNumber: "PD-1001",
     description:
-      "A delicate heart pendant designed for timeless elegance and shine.",
+      "The Enchanting Sapphire Halo Necklace is a symbol of refined elegance and enduring style. Whether you're treating yourself or surprising a loved one, this necklace is a timeless expression of sophistication and grace. The Enchanting Sapphire Halo Necklace effortlessly transitions from day to night.",
     images: {
       main: "/pendent-1.jpg",
       hover: "/pendent-2.jpg",
@@ -827,7 +827,7 @@ export const productsData = [
     stock: "In Stock",
     stockNumber: "PD-1002",
     description:
-      "A personalized pendant with elegant pearl finishing and graceful design.",
+      "The Enchanting Sapphire Halo Necklace is a symbol of refined elegance and enduring style. Whether you're treating yourself or surprising a loved one, this necklace is a timeless expression of sophistication and grace. The Enchanting Sapphire Halo Necklace effortlessly transitions from day to night.",
      images: {
       main: "/pendent-1.jpg",
       hover: "/pendent-2.jpg",
@@ -874,7 +874,7 @@ export const productsData = [
     stock: "In Stock",
     stockNumber: "PD-1003",
     description:
-      "A luxurious gemstone pendant crafted for premium shine and elegant styling.",
+      "The Enchanting Sapphire Halo Necklace is a symbol of refined elegance and enduring style. Whether you're treating yourself or surprising a loved one, this necklace is a timeless expression of sophistication and grace. The Enchanting Sapphire Halo Necklace effortlessly transitions from day to night.",
     images: {
       main: "/pendent-5.jpg",
       hover: "/pendent-3.jpg",
@@ -921,7 +921,7 @@ export const productsData = [
     stock: "In Stock",
     stockNumber: "PD-1003",
     description:
-      "A luxurious gemstone pendant crafted for premium shine and elegant styling.",
+      "The Enchanting Sapphire Halo Necklace is a symbol of refined elegance and enduring style. Whether you're treating yourself or surprising a loved one, this necklace is a timeless expression of sophistication and grace. The Enchanting Sapphire Halo Necklace effortlessly transitions from day to night.",
      images: {
       main: "/pendent-5.jpg",
       hover: "/pendent-3.jpg",
@@ -968,7 +968,7 @@ export const productsData = [
     stock: "In Stock",
     stockNumber: "PD-1003",
     description:
-      "A luxurious gemstone pendant crafted for premium shine and elegant styling.",
+      "The Enchanting Sapphire Halo Necklace is a symbol of refined elegance and enduring style. Whether you're treating yourself or surprising a loved one, this necklace is a timeless expression of sophistication and grace. The Enchanting Sapphire Halo Necklace effortlessly transitions from day to night.",
     images: {
       main: "/pendent-2.jpg",
       hover: "/pendent-5.jpg",
@@ -1015,7 +1015,7 @@ export const productsData = [
     stock: "In Stock",
     stockNumber: "PD-1003",
     description:
-      "A luxurious gemstone pendant crafted for premium shine and elegant styling.",
+      "The Enchanting Sapphire Halo Necklace is a symbol of refined elegance and enduring style. Whether you're treating yourself or surprising a loved one, this necklace is a timeless expression of sophistication and grace. The Enchanting Sapphire Halo Necklace effortlessly transitions from day to night.",
     images: {
       main: "/pendent-1.jpg",
       hover: "/pendent-2.jpg",
@@ -1062,7 +1062,7 @@ export const productsData = [
     stock: "In Stock",
     stockNumber: "PD-1003",
     description:
-      "A luxurious gemstone pendant crafted for premium shine and elegant styling.",
+      "The Enchanting Sapphire Halo Necklace is a symbol of refined elegance and enduring style. Whether you're treating yourself or surprising a loved one, this necklace is a timeless expression of sophistication and grace. The Enchanting Sapphire Halo Necklace effortlessly transitions from day to night.",
    images: {
       main: "/pendent-4.jpg",
       hover: "/pendent-1.jpg",
@@ -1109,7 +1109,7 @@ export const productsData = [
     stock: "In Stock",
     stockNumber: "PD-1003",
     description:
-      "A luxurious gemstone pendant crafted for premium shine and elegant styling.",
+      "The Enchanting Sapphire Halo Necklace is a symbol of refined elegance and enduring style. Whether you're treating yourself or surprising a loved one, this necklace is a timeless expression of sophistication and grace. The Enchanting Sapphire Halo Necklace effortlessly transitions from day to night, ",
     images: {
       main: "/pendent-2.jpg",
       hover: "/pendent-5.jpg",

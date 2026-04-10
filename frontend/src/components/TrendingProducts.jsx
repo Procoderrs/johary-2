@@ -8,6 +8,7 @@ export default function TrendingProducts({
   title = "Trending Products",
   showTabs = true,
   filterTrending = true,
+  spacing = "pt-24",
 }) {
   const [activeTab, setActiveTab] = useState("bracelets");
   const [showButtons, setShowButtons] = useState(false);
@@ -38,7 +39,7 @@ export default function TrendingProducts({
   };
 
   return (
-    <section className="w-full pt-24 px-4 max-w-[1440px] mx-auto font-body overflow-hidden">
+    <section className={`w-full ${spacing}  px-4 max-w-[1440px] mx-auto font-body overflow-hidden`} >
       {/* Top Heading + Tabs */}
       <div className="flex flex-col md:flex-row lg:items-center md:justify-between gap-2 mb-6 ">
         <div className="text-left">

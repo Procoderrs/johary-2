@@ -110,201 +110,163 @@ export default function ProductDetails({ product }) {
       </section>
 
       {/* ===================== PRODUCT DETAILS ===================== */}
-      <section className="w-full py-16 px-4 md:px-10 lg:px-16 font-body">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* LEFT SIDE */}
-          {/* LEFT SIDE */}
-<div className="space-y-5">
-  {/* Top Image Area */}
-  <div className="flex gap-5 items-start">
-    
-    {/* Thumbnails */}
-    <div className="flex flex-col gap-4 shrink-0">
-      {product.images.gallery.map((img, index) => (
-        <button
-          key={index}
-          onClick={() => setSelectedImage(img)}
-          className={`w-24 h-24 overflow-hidden border transition ${
-            selectedImage === img
-              ? "border-black"
-              : "border-gray-200 hover:border-gray-400"
-          }`}
-        >
-          <img
-            src={img}
-            alt={`${product.name}-${index}`}
-            className="w-full h-full object-cover"
-          />
-        </button>
-      ))}
-    </div>
+      <section className="w-full py-16 px-4 font-body">
+  <div className="max-w-[1400px] mx-auto">
 
-    {/* Main Image */}
-    <div className="flex-1 bg-[#f8f8f8] overflow-hidden">
-      <img
-        src={selectedImage}
-        alt={product.name}
-        className="w-full h-[600px] object-cover"
-      />
-    </div>
-  </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
 
-  {/* ===================== FEATURE STRIP ===================== */}
-  <div className="grid grid-cols-1 sm:grid-cols-3 border border-[#e5e5e5] bg-white">
-    {data.map((item, index) => {
-      const Icon = item.icon;
-      return (
-        <div
-          key={index}
-          className={`flex items-center gap-3 px-4 py-4 ${
-            index !== data.length - 1 ? "sm:border-r border-[#e5e5e5]" : ""
-          }`}
-        >
-          <div className="w-10 h-10 flex items-center justify-center bg-[#f8f8f8] text-[#c19417] shrink-0">
-            <Icon size={18} />
+      {/* LEFT SIDE */}
+      <div className="space-y-5">
+
+        {/* Image + Thumbnails */}
+        <div className="flex flex-col lg:flex-row gap-4 lg:gap-5">
+
+          {/* Thumbnails */}
+          <div className="flex lg:flex-col gap-3 lg:gap-4 order-2 lg:order-1 overflow-x-auto lg:overflow-visible">
+            {product.images.gallery.map((img, index) => (
+              <button
+                key={index}
+                onClick={() => setSelectedImage(img)}
+                className={`w-20 h-20 sm:w-24 sm:h-24 shrink-0 overflow-hidden border ${
+                  selectedImage === img
+                    ? "border-black"
+                    : "border-gray-200 hover:border-gray-400"
+                }`}
+              >
+                <img
+                  src={img}
+                  alt=""
+                  className="w-full h-full object-cover"
+                />
+              </button>
+            ))}
           </div>
 
-          <div>
-            <p className="text-[14px] font-medium text-black leading-[1.4]">
-              {item.heading}
-            </p>
+          {/* Main Image */}
+          <div className="flex-1 bg-[#f8f8f8] overflow-hidden order-1 lg:order-2">
+            <img
+              src={selectedImage}
+              alt=""
+              className="w-full h-[300px] sm:h-[450px] lg:h-[680px] object-cover"
+            />
           </div>
         </div>
-      );
-    })}
-  </div>
-</div>
 
-          {/* RIGHT SIDE */}
-          <div className="pt-2">
-            {/* Brand */}
-            <p className="text-sm mb-3">
-              <span className="tracking-wider text-[#666666]">Brand:</span>{" "}
-              <span className="text-[#c19417] tracking-wider">{product.brand}</span>
-            </p>
-
-            {/* Product Name */}
-            <h1 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-4 leading-tight">
-              {product.name}
-            </h1>
-
-            {/* Price + Rating */}
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
-              <div className="flex items-center gap-3">
-                <span className="text-3xl font-semibold text-black">${product.price}</span>
-                {product.oldPrice && (
-                  <span className="text-lg text-gray-400 line-through">
-                    ${product.oldPrice}
-                  </span>
-                )}
-              </div>
-
-              <div className="flex items-center gap-3">
-                <div className="flex items-center gap-1">{renderStars(product.rating)}</div>
-                <span className="text-sm text-gray-500">({product.reviews} Reviews)</span>
-              </div>
-            </div>
-
-            {/* Description */}
-            <p className="text-gray-600 leading-7 mb-8">{product.description}</p>
-
-            {/* Product Meta */}
-            <div className="space-y-2 mb-8 text-[15px] text-gray-700">
-              <p><span className="font-semibold text-black">Carat:</span> {product.carat}</p>
-              <p><span className="font-semibold text-black">Metal:</span> {product.metal}</p>
-              <p><span className="font-semibold text-black">Stone:</span> {product.stone}</p>
-              <p><span className="font-semibold text-black">Stock No:</span> {product.stockNumber}</p>
-              <p><span className="font-semibold text-black">Availability:</span> {product.stock}</p>
-            </div>
-
-            {/* ===================== CTA SECTION ===================== */}
-            <div className="mb-8">
-              {/* Add to cart + Counter */}
-              <div className="flex flex-col sm:flex-row gap-3 mb-3">
-                {/* Counter */}
-                <div className="flex items-center border border-[#d9d9d9] h-[52px] w-full sm:w-[160px]">
-                  <button
-                    onClick={() => setQuantity((prev) => Math.max(1, prev - 1))}
-                    className="w-[50px] h-full flex items-center justify-center hover:bg-[#f5f5f5] transition"
-                  >
-                    <RiSubtractLine size={18} />
-                  </button>
-
-                  <div className="flex-1 h-full flex items-center justify-center text-[15px] font-medium border-x border-[#d9d9d9]">
-                    {quantity}
-                  </div>
-
-                  <button
-                    onClick={() => setQuantity((prev) => prev + 1)}
-                    className="w-[50px] h-full flex items-center justify-center hover:bg-[#f5f5f5] transition"
-                  >
-                    <RiAddLine size={18} />
-                  </button>
+        {/* FEATURE STRIP */}
+<div className="flex md:grid md:grid-cols-3 overflow-x-auto md:overflow-visible border border-[#e5e5e5] bg-white">          {data.map((item, index) => {
+            const Icon = item.icon;
+            return (
+              <div
+                key={index}
+                className={`flex items-center gap-3 lg:px-4 lg:py-4 bg-[#f3f4fc] min-w-[200px] md:min-w-0 sm:min-w-0 ${
+                  index !== data.length - 1 ? "sm:border-r border-[#DEE3F2]" : ""
+                }`}
+              >
+                <div className="w-10 h-10 flex items-center justify-center text-[#47486f] shrink-0">
+                  <Icon size={18} />
                 </div>
 
-                {/* Add to Cart */}
-                <button className="flex-1 h-[52px] bg-[#c19417] text-white font-medium uppercase tracking-wide hover:bg-black transition duration-300">
-                  Add to Cart
-                </button>
-              </div>
-
-              {/* Buy Now */}
-              <button className="w-full h-[54px] bg-black text-white font-medium uppercase tracking-wide hover:bg-[#c19417] transition duration-300">
-                Buy Now
-              </button>
-            </div>
-
-            {/* Extra Actions */}
-            <div className="flex flex-wrap gap-5 text-sm text-gray-700 mb-6">
-              <button className="flex items-center gap-2 hover:text-black transition">
-                <RiShuffleLine size={18} /> Compare
-              </button>
-              <button className="flex items-center gap-2 hover:text-black transition">
-                <RiHeartLine size={18} /> Wishlist
-              </button>
-              <button className="flex items-center gap-2 hover:text-black transition">
-                <RiQuestionLine size={18} /> Ask Us
-              </button>
-              <button className="flex items-center gap-2 hover:text-black transition">
-                <RiShareLine size={18} /> Share
-              </button>
-            </div>
-
-            {/* Watch Count */}
-            <div className="flex items-center gap-2 text-sm text-gray-500 mb-6">
-              <RiEyeLine size={16} />
-              <span>18 people are viewing this right now</span>
-            </div>
-
-            {/* ===================== SMALL INFO ===================== */}
-            <div className="space-y-2 text-[13px] text-[#666666]">
-              <div className="flex items-start gap-2">
-                <RiTruckLine size={16} className="text-[#c19417] mt-[2px] shrink-0" />
-                <p>
-                  <span className="text-black font-medium">Delivery:</span>{" "}
-                  {product.shipping.estimatedDelivery}
+                <p className="text-[14px] font-medium text-[#47486F]">
+                  {item.heading}
                 </p>
               </div>
+            );
+          })}
+        </div>
+      </div>
 
-              <div className="flex items-start gap-2">
-                <RiShieldCheckLine size={16} className="text-[#c19417] mt-[2px] shrink-0" />
-                <p>
-                  <span className="text-black font-medium">Shipping:</span>{" "}
-                  Free shipping on orders above $200
-                </p>
-              </div>
+      {/* RIGHT SIDE */}
+      <div className="pt-2">
 
-              <div className="flex items-start gap-2">
-                <RiSecurePaymentLine size={16} className="text-[#c19417] mt-[2px] shrink-0" />
-                <p>
-                  <span className="text-black font-medium">Checkout:</span>{" "}
-                  Secure payment with trusted methods
-                </p>
-              </div>
-            </div>
+        <p className="text-sm mb-3">
+          <span className="text-[#666666]">Brand:</span>{" "}
+          <span className="text-[#c19417]">{product.brand}</span>
+        </p>
+
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4">
+          {product.name}
+        </h1>
+
+        {/* Price + Rating */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
+          <div className="flex items-center gap-3">
+            <span className="text-2xl sm:text-3xl font-semibold">
+              ${product.price}
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2">
+            {renderStars(product.rating)}
+            <span className="text-sm text-gray-500">
+              ({product.reviews})
+            </span>
           </div>
         </div>
 
+        <p className="text-gray-600 mb-6">{product.description}</p>
+
+        {/* Metal */}
+        <div className="mb-6">
+          <p className="mb-2">Choice of Metal</p>
+          <div className="flex flex-wrap gap-2 text-[13px]">
+            <div className="px-3 py-2 border">Yellow Gold</div>
+            <div className="px-3 py-2 border">Rose Gold</div>
+            <div className="px-3 py-2 border">Silver</div>
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div className="mb-8">
+
+          <div className="flex flex-col sm:flex-row gap-3 mb-3">
+
+            {/* Counter */}
+            <div className="flex items-center border h-[48px] sm:h-[52px] w-full sm:w-[160px]">
+              <button
+                onClick={() => setQuantity((p) => Math.max(1, p - 1))}
+                className="w-[45px] sm:w-[50px]"
+              >
+                <RiSubtractLine />
+              </button>
+
+              <div className="flex-1 text-center border-x">
+                {quantity}
+              </div>
+
+              <button
+                onClick={() => setQuantity((p) => p + 1)}
+                className="w-[45px] sm:w-[50px]"
+              >
+                <RiAddLine />
+              </button>
+            </div>
+
+            {/* Add to Cart */}
+            <button className="flex-1 h-[48px] sm:h-[52px] bg-[#c19417] text-white">
+              Add to Cart
+            </button>
+          </div>
+
+          <button className="w-full h-[50px] sm:h-[54px] bg-black text-white">
+            Buy Now
+          </button>
+        </div>
+
+        {/* Small Info */}
+        <div className="space-y-2 text-[13px] text-[#666]">
+          <div className="flex gap-2">
+            <RiTruckLine />
+            <p>{product.shipping.estimatedDelivery}</p>
+          </div>
+
+          <div className="flex gap-2">
+            <RiShieldCheckLine />
+            <p>Free shipping on orders above $200</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
 
 
 
@@ -315,61 +277,142 @@ export default function ProductDetails({ product }) {
 
 
           {/* Tab Buttons */}
-          <div className="flex flex-wrap gap-3 border-b border-[#e5e5e5] pb-4 mb-10">
-            {[
-              { key: "description", label: "Description" },
-              { key: "comparison", label: "Quick Comparison" },
-              { key: "reviews", label: "Reviews" },
-              { key: "shipping", label: "Shipping & Return Policy" },
-            ].map((tab) => (
-              <button
-                key={tab.key}
-                onClick={() => setActiveTab(tab.key)}
-                className={`px-5 py-3 text-[14px] uppercase tracking-wide transition duration-300 border ${
-                  activeTab === tab.key
-                    ? "bg-black text-white border-black"
-                    : "bg-white text-black border-[#d9d9d9] hover:bg-[#c19417] hover:text-white hover:border-[#c19417]"
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
+          <div className="">
 
+         
+         <div className="flex sm:flex-wrap overflow-x-auto sm:overflow-visible border border-[#e5e5e5] mb-10 no-scrollbar">
+  {[
+    { key: "description", label: "Description" },
+    { key: "comparison", label: "Quick Comparison" },
+    { key: "reviews", label: "Reviews" },
+    { key: "shipping", label: "Shipping & Return Policy" },
+  ].map((tab) => (
+    <button
+      key={tab.key}
+      onClick={() => setActiveTab(tab.key)}
+      className={`px-4 py-3 text-[16px] whitespace-nowrap shrink-0 font-medium tracking-wide transition duration-300 ${
+        activeTab === tab.key
+          ? "text-black border-b-2 border-[#c19417]"
+          : "text-[#777777] hover:text-black"
+      }`}
+    >
+      {tab.label}
+    </button>
+  ))}
+</div>
+ </div>
           
 
           {/* ===================== TAB CONTENT ===================== */}
-          {activeTab === "description" && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {/* Product Information */}
-              <div className="border border-gray-200 p-6">
-                <h3 className="text-lg font-semibold text-black mb-5">Product Information</h3>
-                <div className="space-y-4 text-gray-700 text-[15px]">
-                  <p>{product.description}</p>
-                  <p><span className="font-medium text-black">Category:</span> {product.category}</p>
-                  <p><span className="font-medium text-black">Sub Category:</span> {product.subCategory}</p>
-                  <p><span className="font-medium text-black">Carat:</span> {product.carat}</p>
-                  <p><span className="font-medium text-black">Metal:</span> {product.metal}</p>
-                  <p><span className="font-medium text-black">Stone:</span> {product.stone}</p>
-                </div>
-              </div>
 
-              {/* Sizes / Specs */}
-              <div className="border border-gray-200 p-6">
-                <h3 className="text-lg font-semibold text-black mb-5">Sizes & Specifications</h3>
-                <div className="space-y-4 text-gray-700 text-[15px]">
-                  <p><span className="font-medium text-black">Width:</span> {product.dimensions.width}</p>
-                  <p><span className="font-medium text-black">Height:</span> {product.dimensions.height}</p>
-                  <p><span className="font-medium text-black">Weight:</span> {product.dimensions.weight}</p>
-                  <p><span className="font-medium text-black">Purity:</span> {product.dimensions.purity}</p>
-                  <p><span className="font-medium text-black">Diamond Type:</span> {product.gemstones.diamondType}</p>
-                  <p><span className="font-medium text-black">Setting Type:</span> {product.gemstones.settingType}</p>
-                  <p><span className="font-medium text-black">Total Number:</span> {product.gemstones.totalNumber}</p>
-                  <p><span className="font-medium text-black">Total Weight:</span> {product.gemstones.totalWeight}</p>
-                </div>
-              </div>
+          <div className="border border-[#e5e5e5] p-6  bg-white">
+       {activeTab === "description" && (
+  <div className="space-y-6">
+
+    {/* ===== ABOUT THIS ITEM ===== */}
+    <div>
+      <h3 className="text-[28px] font-medium text-[#111111]">
+        About This Item
+      </h3>
+
+      <p className="text-gray-600 leading-7 text-[15px]">
+        {product.description}
+      </p>
+    </div>
+
+    {/* ===== IMAGE ===== */}
+    <img
+      src="/products-banner-2.jpg"
+      alt="Product Banner"
+      className="w-full object-cover"
+    />
+
+    {/* ===== SPECIFICATIONS ===== */}
+    <div>
+      <h3 className="text-[16px] font-medium text-[#666666] mb-2">
+        Specifications
+      </h3>
+
+      <ul className="list-disc pl-5 space-y-2 text-[15px] text-[#666666]">
+        <li>Premium quality material</li>
+        <li>Elegant handcrafted design</li>
+        <li>Perfect for daily & occasional wear</li>
+        <li>Lightweight & comfortable</li>
+      </ul>
+    </div>
+
+    {/* ===== PRODUCT INFORMATION ===== */}
+    <div>
+      <div className="w-full bg-[#f5f3ed] px-5 py-3 mb-4">
+        <h3 className="text-[16px] font-semibold text-[#c19417] uppercase">
+          Product Information
+        </h3>
+      </div>
+
+      {/* OUTER BOX (single border only) */}
+      <div className="border border-[#e5e5e5] text-[14px] text-[#666666]">
+
+        {/* Dimensions */}
+        <div className="grid grid-cols-[180px_auto] p-4">
+          <p className="font-medium">Dimensions</p>
+          <div className="space-y-1">
+            <p>Width - {product.dimensions.width}</p>
+            <p>Height - {product.dimensions.height}</p>
+            <p>Weight - {product.dimensions.weight}</p>
+          </div>
+        </div>
+
+        {/* single divider */}
+        <div className="border-t border-[#e5e5e5] grid grid-cols-[180px_auto] px-4 py-2 bg-[#f5f3ed]">
+          <p className="font-medium">Purity</p>
+          <p>{product.dimensions.purity}</p>
+        </div>
+
+        {/* ===== DIAMOND SECTION ===== */}
+        <div className="border-t border-[#e5e5e5]">
+
+          {/* Heading */}
+          <div className="px-4 py-3">
+            <h3 className="text-[16px] font-semibold text-[#c19417] uppercase">
+              Diamond & Gemstones
+            </h3>
+          </div>
+
+          {/* Rows */}
+          <div className="border-t border-[#e5e5e5]">
+
+            <div className="grid grid-cols-[180px_auto] px-4 py-2">
+              <p className="font-medium">Diamond Type</p>
+              <p className="border border-[#e5e5e5] px-2 py-1 w-fit">
+                {product.gemstones.diamondType}
+              </p>
             </div>
-          )}
+
+            <div className="border-t border-[#e5e5e5] grid grid-cols-[180px_auto] px-4 py-2 bg-[#f5f3ed]">
+              <p className="font-medium">Setting Type</p>
+              <p>{product.gemstones.settingType}</p>
+            </div>
+
+            <div className="border-t border-[#e5e5e5] grid grid-cols-[180px_auto] px-4 py-2">
+              <p className="font-medium">Total Number</p>
+              <p className="border border-[#e5e5e5] px-2 py-1 w-fit">
+                {product.gemstones.totalNumber}
+              </p>
+            </div>
+
+            <div className="border-t border-[#e5e5e5] grid grid-cols-[180px_auto] px-4 py-2 bg-[#f5f3ed]">
+              <p className="font-medium">Total Weight</p>
+              <p>{product.gemstones.totalWeight}</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+)}
 
           {activeTab === "comparison" && (
             <div>
@@ -379,6 +422,7 @@ export default function ProductDetails({ product }) {
                 subtitle="Quick Comparison"
                 showTabs={false}
                 filterTrending={false}
+                spacing="pt-6"
               />
             </div>
           )}
@@ -422,36 +466,67 @@ export default function ProductDetails({ product }) {
           )}
 
           {activeTab === "shipping" && (
-            <div className="border border-gray-200 p-6">
-              <h3 className="text-xl font-semibold text-black mb-6">Shipping & Return Policy</h3>
+  <div className="space-y-10 text-[15px] text-gray-700 leading-7">
 
-              <div className="space-y-5 text-[15px] text-gray-700 leading-7">
-                <p>
-                  We process all orders within 1–2 business days. Delivery timelines may vary depending on your location and product availability.
-                </p>
+    {/* ===== SHIPPING POLICY ===== */}
+    <div>
+      <div className="w-full bg-[#f3f4f6] px-5 py-3 mb-4">
+        <h3 className="text-[16px] font-semibold text-black uppercase">
+          Shipping Policy
+        </h3>
+      </div>
 
-                <p>
-                  Standard shipping is available on all orders, and free shipping may apply on selected order values or promotional campaigns.
-                </p>
+      <div className="space-y-4">
+        <p>
+          At our Company, we understand the importance of timely delivery. We offer a variety of shipping options including standard, expedited, and express shipping.
+        </p>
 
-                <p>
-                  If your item arrives damaged or incorrect, please contact our support team within 48 hours of receiving your order.
-                </p>
+        <p>
+          Our dedicated team works diligently to process and dispatch your orders promptly, aiming to deliver them within the estimated timeframe.
+        </p>
 
-                <p>
-                  Returns and exchanges are accepted according to our return eligibility terms. Products must be unused and in original packaging.
-                </p>
+        <ul className="list-disc pl-5 space-y-2">
+          <li>Dispatch: Within 24 Hours</li>
+          <li>Free shipping on orders above $99</li>
+          <li>International delivery: 5–7 business days</li>
+          <li>Cash on delivery might be available</li>
+          <li>Easy 30 days returns & exchanges</li>
+        </ul>
 
-                <p>
-                  For customized or engraved jewelry items, returns may not be applicable unless the item is faulty.
-                </p>
-              </div>
-            </div>
-          )}
+        <p>
+          Delivery times may vary depending on product availability, destination, and carrier delays.
+        </p>
+      </div>
+    </div>
+
+    {/* ===== RETURNS POLICY ===== */}
+    <div>
+      <div className="w-full bg-[#f3f4f6] px-5 py-3 mb-4">
+        <h3 className="text-[16px] font-semibold text-black uppercase">
+          Returns Policy
+        </h3>
+      </div>
+
+      <div className="space-y-4">
+        <p>
+          We want you to be completely satisfied with your purchase. If you're not happy, we're here to help.
+        </p>
+
+        <ul className="list-disc pl-5 space-y-2">
+          <li>Items must be unused and undamaged</li>
+          <li>Original packaging and tags must be intact</li>
+          <li>Proof of purchase is required</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+)}
+</div>
         </div>
 
         {/* ===================== RELATED PRODUCTS ===================== */}
-        <div className="mt-24">
+        <div className="mt-">
           <TrendingProducts
             products={relatedProducts}
             title="Related Products"
@@ -459,6 +534,7 @@ export default function ProductDetails({ product }) {
             showTabs={false}
             filterTrending={false}
           />
+        </div>
         </div>
       </section>
     </>
