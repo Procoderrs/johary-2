@@ -1,73 +1,180 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import TrendingProducts from "../TrendingProducts";
+import { productsData } from "../../data/product";
+import { useState,useRef ,useEffect} from "react";
 
 export default function MegaMenu({
+  
   categories = [],
   bestSellingProducts = [],
-}) {
+  type = "categories",
+  categoryImages=[],
+  headerHeight=0,
+}){
+  const [openMenu, setOpenMenu] = useState(null);
+  const timeoutRef = useRef(null);
+
+  const handleEnter = (label) => {
+    clearTimeout(timeoutRef.current);
+    setOpenMenu(label);
+  };
+
+  const handleLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setOpenMenu(null);
+    }, 200);
+  };
+
+
+
   return (
-    <div className="absolute top-full -left-96 z-50 hidden group-hover:grid w-[1200px] max-w-[calc(100vw-40px)] bg-white border border-[#e5e5e5] shadow-xl grid-cols-[1fr_1fr] gap-5 overflow-hidden">
+   <div
+  className="absolute top-full left-0 right-0 flex justify-center w-full z-[999]"
+  onMouseEnter={() => handleEnter(type === "products" ? "Products" : "Categories")}
+  onMouseLeave={handleLeave}
+>
       
-      {/* LEFT SIDE - Categories */}
-      <div className="grid grid-cols-3 px-6 py-8 gap-y-4 min-w-0 pr-2">
-        {categories.map((category) => (
-          <div key={category.id} className="min-w-0">
-            <Link
-              to={`/shop/${category.slug}`}
-              className="block text-[18px] font-semibold text-[#111111] mb-4 hover:text-[#c19417] transition duration-300 break-words"
-            >
-              {category.name}
-            </Link>
+      {/* OUTER SPACING */}
+      <div className="px-6 w-full flex justify-center">
+        
+        {/* CENTER CONTAINER */}
+        <div className="max-w-[1200px] w-full mx-auto bg-white border border-[#e5e5e5] shadow-xl overflow-hidden">
 
-            <div className="space-y-2">
-              {category.children?.map((child) => (
-                <Link
-                  key={child.id}
-                  to={`/shop/${child.slug}`}
-                  className="block text-[15px] text-[#666666] hover:text-[#c19417] transition duration-300 break-words"
-                >
-                  {child.name}
-                </Link>
-              ))}
+          {/* ================= PRODUCTS ================= */}
+          {type === "products" && (
+            <div className="p-6 text-2xl" >
+              <TrendingProducts
+                products={productsData}
+                limit={6}
+                showTabs={true}
+                hideHeading={true}
+                tabsList={["bracelets", "rings"]}
+                simpleTabs={true}
+                spacing="pt-0"
+                fullWidth={true}
+              />
             </div>
-          </div>
-        ))}
+          )}
+
+          {/* ================= CATEGORIES ================= */}
+          {type === "categories" && (
+            <div className="grid grid-cols-2 gap-6">
+
+              {/* LEFT */}
+              <div className="grid grid-cols-3 gap-6 p-6">
+                {categories.map((category) => (
+                  <div key={category.id}>
+                    <p className="text-[18px] font-semibold mb-3 hover:text-[#c19417]">
+                      {category.name}
+                    </p>
+
+                    <div className="space-y-2">
+                      {category.children?.map((child) => (
+                        <p
+                          key={child.id}
+                          className="text-[14px] text-gray-600 hover:text-[#c19417]"
+                        >
+                          {child.name}
+                        </p>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* RIGHT */}
+              <div className="border-l bg-[#f5f3ed] p-6">
+                <h3 className="text-[18px] font-semibold mb-4 text-center">
+                  Best Selling
+                </h3>
+
+                <div className="space-y-4">
+                  {bestSellingProducts.map((product) => (
+                    <div key={product.id} className="flex gap-4 bg-white p-3">
+                      <img
+                        src={product.images?.main}
+                        className="w-[60px] h-[70px] object-cover"
+                      />
+                      <div>
+                        <p className="text-[14px]">{product.name}</p>
+                        <p className="font-semibold">${product.price}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+            </div>
+          )}
+
+          {/* ================= TOPDEALS ================= */}
+          {type === "topdeals" && (
+
+            
+     
+  <div className="grid grid-cols-2 gap-6 p-6">
+        
+    {/* LEFT - IMAGES */}
+   <div className="flex flex-col gap-5">
+
+  {/* TITLE */}
+  <h3 className="text-[18px] font-semibold text-center">
+    Top Deals
+  </h3>
+
+  {/* GRID */}
+  <div className="grid grid-cols-4 gap-x-5 gap-y-5">
+    {categoryImages.map((item) => (
+      <div
+        key={item.id}
+        className="group cursor-pointer flex flex-col items-center text-center"
+      >
+        {/* IMAGE */}
+        <div className="w-[130px] h-[130px] rounded-full overflow-hidden border-4 border-[#f5f3ed] bg-white flex items-center justify-center transition-colors duration-300 group-hover:border-[#c19417]">
+          
+          <img
+            src={item.image}
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+          />
+        </div>
+
+        {/* TEXT */}
+        <p className="text-[13px] mt-2 text-black transition-colors duration-300 group-hover:text-[#c19417]">
+          {item.name}
+        </p>
+
       </div>
+    ))}
+  </div>
 
-      {/* RIGHT SIDE - Best Selling */}
-      <div className="min-w-0 border-l border-[#e5e5e5] bg-[#f5f3ed] p-9">
-        <h3 className="text-[20px] text-center font-semibold text-[#111111] mb-6">
-          Best Selling
-        </h3>
+</div>
+    {/* RIGHT - TOP DEALS (reuse bestSellingProducts or custom) */}
+    <div className="border-l bg-[#f5f3ed] p-6">
+                <h3 className="text-[18px] font-semibold mb-4 text-center">
+                  Top Rated
+                </h3>
 
-        <div className="space-y-4">
-          {bestSellingProducts.map((product) => (
-            <Link
-              key={product.id}
-              to={`/product/${product.slug}`}
-              className="flex items-center gap-4 p-3 group/product min-w-0 bg-white hover:shadow-sm transition duration-300"
-            >
-              {/* Image */}
-              <div className="w-[70px] h-[80px] bg-[#f8f8f8] overflow-hidden shrink-0">
-                <img
-                  src={product.images?.main}
-                  alt={product.name}
-                  className="w-full h-full object-cover group-hover/product:scale-105 transition duration-300"
-                />
+                <div className="space-y-4">
+                  {bestSellingProducts.map((product) => (
+                    <div key={product.id} className="flex gap-4 bg-white p-3">
+                      <img
+                        src={product.images?.main}
+                        className="w-[60px] h-[70px] object-cover"
+                      />
+                      <div>
+                        <p className="text-[14px]">{product.name}</p>
+                        <p className="font-semibold">${product.price}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
 
-              {/* Content */}
-              <div className="min-w-0">
-                <h4 className="text-[15px] text-[#111111] leading-[1.5] mb-1 group-hover/product:text-[#c19417] transition duration-300 break-words">
-                  {product.name}
-                </h4>
+  </div>
+  
+)}
 
-                <p className="text-[18px] font-semibold text-[#111111]">
-                  ${product.price}
-                </p>
-              </div>
-            </Link>
-          ))}
         </div>
       </div>
     </div>

@@ -99,8 +99,8 @@ const signed={
       <Services data={services}/>
       <TrendingProducts products={productsData} title="Featured Products" subtitle="Best Collection" showTabs={false}filterTrending={false} />
       <CmsBanner data={cms}/>
-      {/* <Signed data={signed}/> */}
-      {/* <BlogSlider blogs={blogsData} /> */}
+      <Signed data={signed}/>
+      <BlogSlider blogs={blogsData} />
       
 
 

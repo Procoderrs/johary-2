@@ -9,13 +9,19 @@ export default function TrendingProducts({
   showTabs = true,
   filterTrending = true,
   spacing = "pt-24",
+  hideHeading = false,     // ✅ ADD
+  tabsList,                // ✅ ADD
+  simpleTabs = false ,
+  fullWidth = false   // NEW      // ✅ ADD
 }) {
-  const [activeTab, setActiveTab] = useState("bracelets");
-  const [showButtons, setShowButtons] = useState(false);
+const [activeTab, setActiveTab] = useState(
+  tabsList?.[0] || "bracelets"
+);
+
+const [showButtons, setShowButtons] = useState(false);
   const scrollRef = useRef(null);
 
-  const tabs = ["bracelets", "rings", "pendant"];
-
+const tabs = tabsList || ["bracelets", "rings", "pendant"];
   const filteredProducts = showTabs
     ? products
         .filter((item) => item.category === activeTab && item.isTrending)
@@ -39,32 +45,45 @@ export default function TrendingProducts({
   };
 
   return (
-    <section className={`w-full ${spacing}  px-4 max-w-[1440px] mx-auto font-body overflow-hidden`} >
+   <section className={`w-full ${spacing} px-4 ${   fullWidth ? "" : "max-w-[1440px] mx-auto"} font-body overflow-hidden`}
+>
       {/* Top Heading + Tabs */}
-      <div className="flex flex-col md:flex-row lg:items-center md:justify-between gap-2 mb-6 ">
+      <div
+  className={`flex flex-col md:flex-row lg:items-center gap-2 mb-6 ${
+    hideHeading ? "md:justify-center" : "md:justify-between"
+  }`}
+>
         <div className="text-left">
-          <h2 className="text-2xl sm:text-[26px] md:text-[32px] font-medium text-gray-900">
-            {title}
-          </h2>
+          {!hideHeading && (
+  <div className="text-left">
+    <h2 className="text-2xl sm:text-[26px] md:text-[32px] font-medium text-gray-900">
+      {title}
+    </h2>
+  </div>
+)}
         </div>
 
         {showTabs && (
-          <div className="flex flex-wrap lg:justify-start gap-3">
-            {tabs.map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`px-4 sm:px-8 py-2.5 text-[14px] sm:text-[15px] font-medium capitalize transition duration-300 text-black ${
-                  activeTab === tab
-                    ? "bg-[#c19417] text-white"
-                    : " text-black border-gray-300 hover:bg-[#c19417] hover:text-white bg-[#f5f5f5]"
-                }`}
-              >
-                {tab}
-              </button>
-            ))}
-          </div>
-        )}
+  <div className="flex flex-wrap lg:justify-start gap-3">
+    {tabs.map((tab) => (
+      <button
+        key={tab}
+        onClick={() => setActiveTab(tab)}
+        className={`px-4 sm:px-8 py-2.5 text-[14px] sm:text-[15px] font-medium capitalize transition duration-300 ${
+          simpleTabs
+            ? activeTab === tab
+              ? "text-[#c19417]"
+              : "text-black hover:text-[#c19417]"
+            : activeTab === tab
+              ? "bg-[#c19417] text-white"
+              : "text-black border-gray-300 hover:bg-[#c19417] hover:text-white bg-[#f5f5f5]"
+        }`}
+      >
+        {tab}
+      </button>
+    ))}
+  </div>
+)}
       </div>
 
       {/* Product Slider */}

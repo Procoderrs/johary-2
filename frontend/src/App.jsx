@@ -7,6 +7,7 @@ import ProductPage from "./pages/ProductPage";
 import ShopPage from "./pages/ShopPage";
 import BlogPage from "./pages/Blog";
 import CustomerLayout from "./Layout/CustomerLayout";
+import Accordion from "./pages/Accordion";
 
 function App() {
   return (
@@ -26,6 +27,9 @@ function App() {
  <Route path="/shop" element={<ShopPage />} />
  <Route path="/shop/:categorySlug" element={<ShopPage />} />
  <Route path="/blog/:slug" element={<BlogPage />} />
+<Route path="/accordion" element={<Accordion />} />
+
+
  </Route>
         {/* Admin dashboard */}
         <Route path="/admin" element={<AdminDashboard />} />

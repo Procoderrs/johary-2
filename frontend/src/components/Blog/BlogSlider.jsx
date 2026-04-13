@@ -65,7 +65,7 @@ export default function BlogSlider({ blogs }) {
         {blogs.map((blog) => (
           <div
             key={blog.id}
-            className="flex-shrink-0 w-full sm:w-[100%] md:w-[51%] lg:w-[100%]  py-2"
+            className="flex-shrink-0 w-full sm:w-[100%] md:w-[51%] lg:w-[34%]  py-2"
           >
             <BlogCard blog={blog} />
           </div>
