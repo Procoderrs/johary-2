@@ -10,7 +10,7 @@ import CustomerLayout from "./Layout/CustomerLayout";
 import Accordion from "./pages/Accordion";
 import Icon from "./pages/Icon";
 import Portfolio from "./pages/Portfolio";
-import Faqs from "./pages/faqs";
+import Faqs from "./pages/Faqs";
 
 function App() {
   return (
