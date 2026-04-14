@@ -8,6 +8,9 @@ import ShopPage from "./pages/ShopPage";
 import BlogPage from "./pages/Blog";
 import CustomerLayout from "./Layout/CustomerLayout";
 import Accordion from "./pages/Accordion";
+import Icon from "./pages/Icon";
+import Portfolio from "./pages/Portfolio";
+import Faqs from "./pages/faqs";
 
 function App() {
   return (
@@ -28,6 +31,12 @@ function App() {
  <Route path="/shop/:categorySlug" element={<ShopPage />} />
  <Route path="/blog/:slug" element={<BlogPage />} />
 <Route path="/accordion" element={<Accordion />} />
+<Route path="/icon-box" element={<Icon />} />
+<Route path="/portfolio" element={<Portfolio />} />
+<Route path="/faqs" element={<Faqs />} />
+
+
+
 
 
  </Route>

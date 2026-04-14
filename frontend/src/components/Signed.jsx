@@ -38,7 +38,7 @@ export default function Signed({ data }) {
   }, []);
 
   return (
-    <section className="w-full bg-[#f5f3ed] font-body">
+    <section className="w-full bg-[#f5f3ed] font-body max-w-[1440px] mx-auto">
       {/* Testimonial Area */}
       <div className="py-12 px-4 border-b border-[#e5e5e5]">
         <div className="max-w-5xl mx-auto">

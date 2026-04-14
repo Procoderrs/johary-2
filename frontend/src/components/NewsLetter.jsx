@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Newsletter() {
   return (
-    <section className="w-full  py-20 px-4 md:px-16 lg:px-16 font-body text-center">
+    <section className="w-full  pb-20 px-4 md:px-16 lg:px-16 font-body text-center">
       {/* Heading */}
       <h2 className="text-[28px] md:text-[32px]  font-medium text-[#111111] mb-4">
        Subscribe To Our Newsletter
