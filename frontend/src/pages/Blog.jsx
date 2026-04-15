@@ -2,10 +2,18 @@ import React, { useState, useRef } from "react";
 import { blogsData } from "../data/blogs";
 import { commentsData } from "../data/comments";
 import { useParams, Link } from "react-router-dom";
+import { useLocation } from 'react-router-dom'
 import { RiArrowLeftSLine, RiArrowRightSLine } from "@remixicon/react";
 
 export default function BlogPage() {
   const { slug } = useParams();
+  const location = useLocation();
+
+  const getTitle = () => {
+    const path = location.pathname;
+    if (path.includes("gallery")) return "gallery";
+    return "page";
+  };
   const blog = blogsData.find((b) => b.slug === slug) || blogsData[0];
 
   const similarScrollRef = useRef(null);

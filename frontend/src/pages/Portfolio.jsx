@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { RiCheckLine, RiCloseLine } from "@remixicon/react";
-import { blogsData } from "../data/blogs"; // adjust path if needed
+import { blogsData } from "../data/blogs"; // 
 
 export default function Portfolio() {
   const location = useLocation();

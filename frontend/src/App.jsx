@@ -11,6 +11,10 @@ import Accordion from "./pages/Accordion";
 import Icon from "./pages/Icon";
 import Portfolio from "./pages/Portfolio";
 import Faqs from "./pages/Faqs";
+import Gallery from "./pages/Gallery";
+import Tabs from "./pages/Tabs";
+import BlogPagee from "./pages/BlogPagee";
+import Contact from "./pages/Contact";
 
 function App() {
   return (
@@ -34,6 +38,15 @@ function App() {
 <Route path="/icon-box" element={<Icon />} />
 <Route path="/portfolio" element={<Portfolio />} />
 <Route path="/faqs" element={<Faqs />} />
+<Route path="/gallery" element={<Gallery />} />
+<Route path="/tabs" element={<Tabs />} />
+<Route path="/Blog" element={<BlogPagee />} />
+<Route path="/contact-us" element={<Contact />} />
+
+
+
+
+
 
 
 
