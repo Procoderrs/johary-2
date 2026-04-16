@@ -164,6 +164,22 @@ useEffect(() => {
       </div>
     </div>
 )}
+
+
+{/* ================= SHOP MEGA MENU ================= */}
+{item.label === "Shop" &&
+  openMenu === "Shop" && (
+    <div
+      onMouseEnter={() => handleEnter("Shop")}
+      onMouseLeave={handleLeave}
+      className="left-0 w-full z-[999]"
+    >
+      <MegaMenu
+        type="shop"
+        headerHeight={headerHeight}
+      />
+    </div>
+)}
           </div>
         );
       })}

@@ -16,6 +16,7 @@ import Tabs from "./pages/Tabs";
 import BlogPagee from "./pages/BlogPagee";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
+import Cart from "./pages/Cart";
 
 function App() {
   return (
@@ -44,6 +45,8 @@ function App() {
 <Route path="/Blog" element={<BlogPagee />} />
 <Route path="/about-us" element={<Contact />} />
 <Route path="/Contact-us" element={<About />} />
+<Route path="/cart" element={<Cart />} />
+
 
 
 
