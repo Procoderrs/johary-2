@@ -15,6 +15,7 @@ import Gallery from "./pages/Gallery";
 import Tabs from "./pages/Tabs";
 import BlogPagee from "./pages/BlogPagee";
 import Contact from "./pages/Contact";
+import About from "./pages/About";
 
 function App() {
   return (
@@ -41,7 +42,9 @@ function App() {
 <Route path="/gallery" element={<Gallery />} />
 <Route path="/tabs" element={<Tabs />} />
 <Route path="/Blog" element={<BlogPagee />} />
-<Route path="/contact-us" element={<Contact />} />
+<Route path="/about-us" element={<Contact />} />
+<Route path="/Contact-us" element={<About />} />
+
 
 
 

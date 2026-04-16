@@ -5,13 +5,14 @@ import {
   RiChat3Line,
   RiUser3Line,
 } from "@remixicon/react";
+import { Link } from "react-router-dom";
 
 export default function Contact() {
   const location = useLocation();
 
   const getTitle = () => {
     const path = location.pathname;
-    if (path.includes("contact-us")) return "contact-us";
+    if (path.includes("about-us")) return "about-us";
     return "page";
   };
 
@@ -71,7 +72,7 @@ export default function Contact() {
   ];
 
   return (
-    <div className="font-body">
+    <div className="font-body mb-20">
 
       {/* ================= BREADCRUMB ================= */}
       <div className="relative w-full min-h-[160px] overflow-hidden">
@@ -91,18 +92,22 @@ export default function Contact() {
         </div>
       </div>
 
+
+<div className="max-w-[1440px] mx-auto">
+
+
       {/* ================= SECTION 1: TABS ================= */}
       <div className=" mx-auto px-4 py-16">
 
         {/* Tabs */}
-        <div className="flex md:flex-row flex-col border-b md:items-center w-full md:justify-center border-[#666] ">
+        <div className="flex md:flex-row flex-col border-b md:items-center w-full md:justify-center border-[#f1efea] ">
           {tabs.map((tab, i) => (
                 <button
                   key={i}
                   onClick={() => setActiveTab(i)}
-                  className={`px-6 py-3 border text-left md:text-center border-[#666] ${
+                  className={`px-6 py-3 border text-left md:text-center border-[#f1efea] ${
                     activeTab === i
-                      ? "border-[#666]   md:font-bold text-[#c19417] cursor-pointer md:border-b-white"
+                      ? "border-[#f1efea]  md:font-bold text-[#c19417] cursor-pointer md:border-b-white"
                       : "md:border-transparent text-[#666] border- md:font-bold"
                   }`}
                 >
@@ -112,7 +117,7 @@ export default function Contact() {
         </div>
 
         {/* Content */}
-        <div className="text-[#666] border-[#666]  p-6  border-x border-b text-[15px]">
+        <div className="text-[#666] border-[#f1efea]  p-6  border-x border-b text-[15px]">
           {tabs[activeTab].content}
         </div>
       </div>
@@ -213,6 +218,84 @@ export default function Contact() {
         </div>
       </div>
 
+           
+{/* ================= SECTION 5: STATS PARALLAX ================= */}
+<div className="relative w-full h-[250px] md:h-[300px] 2xl:h-[280px] overflow-hidden">
+
+  {/* BACKGROUND IMAGE */}
+  <div
+    className="absolute inset-0 bg-cover bg-center 2xl:bg-fixed"
+    style={{ backgroundImage: "url('/about-parallax.jpg')" }}
+  >
+    {/* overlay */}
+    <div className="absolute inset-0 bg-black/10"></div>
+  </div>
+
+  {/* CENTER CONTENT */}
+  <div className="relative z-10 h-full flex items-center justify-center px-4">
+    
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white  w-full">
+
+      <div>
+        <h3 className="text-4xl md:text-5xl font-semibold">18+</h3>
+        <p className="mt-2 text-lg font-semibold">years</p>
+      </div>
+
+      <div>
+        <h3 className="text-4xl md:text-5xl font-semibold">200+</h3>
+        <p className="mt-2 text-lg font-semibold">Employee</p>
+      </div>
+
+      <div>
+        <h3 className="text-4xl md:text-5xl font-semibold">85%</h3>
+        <p className="mt-2 text-lg font-semibold">Page views</p>
+      </div>
+
+      <div>
+        <h3 className="text-4xl md:text-5xl font-semibold">27%</h3>
+        <p className="mt-2 text-lg font-semibold">Awards</p>
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+
+</div>
+
+
+
+{/* ================= SECTION 6: about-us-info ================= */}
+<div className="mx-auto px-4 py-20 border-b border-[#f1efea] ">
+
+  <div className="flex flex-col items-center text-center ">
+
+    <p className="text-[#666] text-[15px] mb-2">
+      Contact us
+    </p>
+
+    <h2 className="text-[32px] font-medium mb-4">
+      About us info
+    </h2>
+
+    <p className="text-[15px] text-[#666] max-w-[600px] leading-[28px] tracking-[0.1px] mb-8">
+      It is a long-established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using ‘Content here.
+    </p>
+
+    <Link
+      to="/"
+      className="bg-[#c19417] text-white font-medium hover:bg-black transition-colors px-6 py-3 inline-block"
+    >
+      CLICK HERE TO CONTACT US
+    </Link>
+
+  </div>
+
+</div>
+
+    </div>
     </div>
   );
 }

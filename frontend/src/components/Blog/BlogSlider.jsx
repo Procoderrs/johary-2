@@ -60,12 +60,12 @@ export default function BlogSlider({ blogs }) {
       {/* Slider */}
       <div
         ref={sliderRef}
-        className="flex gap-6 overflow-x-auto scroll-smooth scrollbar-hide "
+        className="flex gap-6 overflow-x-auto scroll-smooth scrollbar-hide  px-2"
       >
         {blogs.map((blog) => (
           <div
             key={blog.id}
-            className="flex-shrink-0 w-full sm:w-[100%] md:w-[51%] lg:w-[34%]  py-2"
+            className="flex-shrink-0 w-[85%] sm:w-[70%] md:w-[48%] lg:w-[32%]"
           >
             <BlogCard blog={blog} />
           </div>

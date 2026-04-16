@@ -77,8 +77,9 @@ const elementsDropdown = [
   { label: "Gallery", link: "/gallery" },
   { label: "Tabs", link: "/tabs", badge: "NEW", icon: true },
   { label: "Blog", link: "/blog" },
-  { label: "About Us", link: "/about-us" },
+  { label: "About Us ", link: "/about-us" },
   { label: "Contact Us", link: "/contact-us" },
+  
 ];
 
   return (
