@@ -25,3 +25,12 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+@keyframes moveBus {
+  0% {
+    left: 0%;
+  }
+  100% {
+    left: 80%;
+  }
+}

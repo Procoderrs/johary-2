@@ -8,7 +8,7 @@ import {
   RiStarLine,
 } from "@remixicon/react";
 
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, view }) {
   const [isHovered, setIsHovered] = useState(false);
 
   const renderStars = (rating) => {
@@ -30,91 +30,119 @@ export default function ProductCard({ product }) {
   };
 
   return (
-    <div className="group w-full font-body">
-      {/* Image Box */}
+    <div
+      className={
+        view === "list"
+          ? "flex gap-6 border border-[#f1efea] rounded-xl p-4 items-center"
+          : "group w-full font-body border border-[#f1efea] rounded-xl p-3"
+      }
+    >
+      {/* ================= IMAGE ================= */}
       <div
-        className="relative overflow-hidden bg-[#f8f8f8] "
+        className={
+          view === "list"
+            ? "w-[160px] h-[160px] min-w-[160px] bg-[#f8f8f8] overflow-hidden"
+            : "relative overflow-hidden bg-[#f8f8f8]"
+        }
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        {/* Top Right Icons */}
-        <div className="absolute sm:top-4 top-2 sm:right-4 right-3 z-20 flex flex-col gap-2">
-          <button
-            onClick={(e) => e.preventDefault()}
-            className="sm:w-10 sm:h-10 w-5 h-5 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-black hover:text-white transition duration-300"
-          >
-            <RiHeartLine size={14} />
-          </button>
-          <button
-            onClick={(e) => e.preventDefault()}
-            className="sm:w-10 sm:h-10 w-5 h-5 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-black hover:text-white transition duration-300"
-          >
-            <RiEyeLine size={18} className=""  />
-          </button>
-        </div>
+        {/* ICONS (only grid) */}
+        {view !== "list" && (
+          <div className="absolute sm:top-4 top-2 sm:right-4 right-3 z-20 flex flex-col gap-2">
+            <button
+              onClick={(e) => e.preventDefault()}
+              className="sm:w-10 sm:h-10 w-5 h-5 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-black hover:text-white transition"
+            >
+              <RiHeartLine size={14} />
+            </button>
+
+            <button
+              onClick={(e) => e.preventDefault()}
+              className="sm:w-10 sm:h-10 w-5 h-5 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-black hover:text-white transition"
+            >
+              <RiEyeLine size={18} />
+            </button>
+          </div>
+        )}
 
         <Link to={`/product/${product.slug}`}>
-          {/* FIXED IMAGE WRAPPER */}
-          <div className="relative h-[120px] sm:h-[220px] lg:h-[230px] xl:h-[300px] w-full overflow-hidden ">
+          {/* 🔥 FIXED IMAGE (no absolute in list view) */}
+          {view === "list" ? (
             <img
               src={product.images.main}
               alt={product.name}
-              className={`absolute inset-0 w-full h-full object-cover  transition-all duration-700 ${
-                isHovered ? "opacity-0 scale-110" : "opacity-100 scale-100"
-              }`}
+              className="w-full h-full object-cover"
             />
+          ) : (
+            <div className="relative h-[120px] sm:h-[220px] lg:h-[230px] xl:h-[300px] w-full overflow-hidden">
+              <img
+                src={product.images.main}
+                alt={product.name}
+                className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 ${
+                  isHovered ? "opacity-0" : "opacity-100"
+                }`}
+              />
 
-            <img
-              src={product.images.hover}
-              alt={product.name}
-              className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ${
-                isHovered ? "opacity-100 scale-105" : "opacity-0 scale-100"
-              }`}
-            />
-          </div>
+              <img
+                src={product.images.hover}
+                alt={product.name}
+                className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 ${
+                  isHovered ? "opacity-100" : "opacity-0"
+                }`}
+              />
+            </div>
+          )}
 
-          {/* Button */}
-        {/* Desktop Button - lg and up */}
-<div className="hidden lg:block absolute bottom-0 left-0 w-full px-4 pb-4 translate-y-full group-hover:translate-y-0 transition-all duration-500 z-20">
-  <button
-    onClick={(e) => e.preventDefault()}
-    className="w-full bg-[#c19417] text-white py-3 text-sm font-medium tracking-wide hover:bg-black transition duration-300"
-  >
-    Select Options
-  </button>
-</div>
+          {/* GRID BUTTON */}
+          {view !== "list" && (
+            <div className="hidden lg:block absolute bottom-0 left-0 w-full px-4 pb-4 translate-y-full group-hover:translate-y-0 transition-all duration-500 z-20">
+              <button
+                onClick={(e) => e.preventDefault()}
+                className="w-full bg-[#c19417] text-white py-3 text-sm hover:bg-black transition"
+              >
+                Select Options
+              </button>
+            </div>
+          )}
         </Link>
       </div>
 
-      {/* Product Info */}
-      <div className="pt-5 ">
-
- <Link to={`/product/${product.slug}`}>
-          <h3 className="sm:text-[17px] text-sm text-gray-900 leading-snug mb-2 hover:text-[#c19417] transition">
+      {/* ================= CONTENT ================= */}
+      <div className={view === "list" ? "flex-1 space-y-2" : "pt-5"}>
+        <Link to={`/product/${product.slug}`}>
+          <h3 className="text-[16px] text-gray-900 hover:text-[#c19417] transition">
             {product.name}
           </h3>
         </Link>
 
-        <div className="flex justify-start items-center gap-1 mb-2">
+        {/* STARS */}
+        <div className="flex items-center gap-1">
           {renderStars(product.rating)}
         </div>
 
-       
+        {/* PRICE */}
+        <p className="text-[18px] font-semibold text-black">
+          ${product.price}
+        </p>
 
-        <div className="flex items-center justify-start gap-2">
-          <span className="text-[18px] font-semibold text-black">
-            ${product.price}
-          </span>
+        {/* DESCRIPTION (LIST ONLY) */}
+        {view === "list" && (
+          <p className="text-sm text-[#666] line-clamp-2">
+            {product.description ||
+              "Premium quality product with elegant design."}
+          </p>
+        )}
+
+        {/* BUTTON */}
+        <div className={view === "list" ? "" : "lg:hidden mt-2"}>
+          <button
+            onClick={(e) => e.preventDefault()}
+            className="w-fit px-12 bg-[#c19417] text-white py-3 text-sm hover:bg-black transition"
+          >
+            Select Options
+          </button>
         </div>
-<div className="  lg:hidden bottom-0 left-0 w-full   mt-1 z-20">
-            <button
-              onClick={(e) => e.preventDefault()}
-              className="w-full bg-[#c19417] text-white py-3  text-sm font-medium tracking-wide hover:bg-black transition duration-300"
-            >
-              Select Options
-            </button>
-          </div>
-
       </div>
     </div>
   );

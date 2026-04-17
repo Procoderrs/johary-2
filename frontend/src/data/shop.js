@@ -22,7 +22,7 @@ export const shop = [
       { label: "My Account", link: "/account" },
       { label: "Shop Ajax Filter", link: "/wishlist",badge: "HOT"  },
       { label: "Product Category", link: "/order-tracking" },
-      { label: "Privacy Policy", link: "/compare" },
+      { label: "Privacy Policy", link: "/privacy" },
     ],
   },
 

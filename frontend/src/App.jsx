@@ -17,6 +17,9 @@ import BlogPagee from "./pages/BlogPagee";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
+import Account from "./pages/Account";
+import Privacypolicy from "./pages/Privacypolicy";
 
 function App() {
   return (
@@ -46,6 +49,10 @@ function App() {
 <Route path="/about-us" element={<Contact />} />
 <Route path="/Contact-us" element={<About />} />
 <Route path="/cart" element={<Cart />} />
+<Route path="/checkout" element={<Checkout />} />
+<Route path="/account" element={<Account />} />
+<Route path="/privacy" element={<Privacypolicy />} />
+
 
 
 

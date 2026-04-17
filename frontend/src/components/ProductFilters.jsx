@@ -36,19 +36,19 @@ export default function ProductFilters({ filters, setFilters }) {
 
   const FilterGroup = ({ title, keyName, options }) => (
     <div className="border border-gray-200 rounded-2xl p-5">
-      <h3 className="text-[16px] font-semibold text-black mb-4">{title}</h3>
+      <h3 className="text-[16px] md:text-2xl font-semibold text-black mb-4">{title}</h3>
 
       <div className="space-y-3">
         {options.map((item, index) => (
           <label
             key={index}
-            className="flex items-center gap-3 cursor-pointer text-sm text-gray-700"
+            className="flex items-center  gap-3 cursor-pointer text-[15px] text-[#666]"
           >
             <input
               type="checkbox"
               checked={filters[keyName].includes(item.value)}
               onChange={() => handleCheckbox(keyName, item.value)}
-              className="w-4 h-4 accent-black"
+              className="w-4 h-4 accent-black border border-[#f1efea]"
             />
             <span>{item.label}</span>
           </label>
