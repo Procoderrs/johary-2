@@ -36,14 +36,13 @@ function App() {
         {/* Default route */}
 
        
-        <Route path="/" element={<UserDashboard/>} />
-
+      
         {/* Public routes */}
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
 
         {/* User dashboard */}
-        <Route element={<CustomerLayout />}>
+        <Route path="/" element={<CustomerLayout />}>
         <Route path="/dashboard" element={<UserDashboard />} />
  <Route path="/product/:slug" element={<ProductPage />} />
  <Route path="/shop" element={<ShopPage />} />
