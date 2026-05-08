@@ -7,7 +7,10 @@ const productSchema = new mongoose.Schema(
     description: String,
     price: Number,
     discount: Number,
-    stock:Number,
+    stock: {
+  type: Number,
+  default: 0,
+},
 
     category: {
       type: mongoose.Schema.Types.ObjectId,
