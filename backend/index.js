@@ -1,8 +1,12 @@
 import express from "express";
 import dotenv from "dotenv";
 import authRoutes from "./routes/auth.js";
-import categoryRoutes from "./routes/category.js";
-
+import categoryRoutes from "./routes/admin/categoryRoutes.js";
+import categoryUserRoutes from "./routes/user/categoryRoutes.js";
+import productRoutes from './routes/admin/productRoutes.js'
+import userRoutes from './routes/admin/userRoutes.js'
+import variantRoutes from "./routes/admin/varientRoutes.js";
+import filterRoutes from './routes/admin/filterRoutes.js'
 import connectDb from "./config/db.js";
 import createAdmin from "./utils/createAdmin.js";
 import cors from 'cors';
@@ -13,8 +17,13 @@ app.use(express.json());
 app.use(cors());
 // Routes
 app.use("/api/auth", authRoutes);
-app.use("/api/categories", categoryRoutes);
-
+// ✅ Category APIs
+app.use("/api/admin/users", userRoutes);
+app.use("/api/admin/categories", categoryRoutes);
+app.use("/api/categories", categoryUserRoutes);
+app.use("/api/admin/product", productRoutes);
+app.use("/api/admin/filters", filterRoutes);
+app.use("/api/admin/variants", variantRoutes);
 // Startup sequence
 const startServer = async () => {
   try {

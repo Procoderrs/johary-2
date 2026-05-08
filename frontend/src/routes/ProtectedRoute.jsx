@@ -9,12 +9,17 @@ const ProtectedRoute = ({ children, adminOnly = false }) => {
     return <div className="text-center mt-10 text-lg">Loading...</div>;
   }
 
+  // 🔥 FIX: user null check
   if (!user) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/account" replace />;
   }
 
-  if (adminOnly && user.role !== "admin") {
+  if (adminOnly && user?.role !== "admin") {
     return <Navigate to="/dashboard" replace />;
+  }
+
+  if (!adminOnly && user?.role === "admin") {
+    return <Navigate to="/admin" replace />;
   }
 
   return children;

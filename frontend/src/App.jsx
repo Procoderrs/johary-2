@@ -20,7 +20,14 @@ import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import Account from "./pages/Account";
 import Privacypolicy from "./pages/Privacypolicy";
-
+import { AdminLayout } from "./Layout/AdminLayout";
+import AdminCategories from "./admin/AdminCategories";
+import ProtectedRoute from "./routes/ProtectedRoute";
+import AdminProduct from "./admin/AdminProduct";
+import AdminUsers from "./admin/AdminUsers";
+import ProductList from "./admin/ProductList";
+import ProductForm from "./admin/AdminProduct";
+import FilterAdmin from "./admin/Adminfilter";
 function App() {
   return (
     <BrowserRouter>
@@ -29,8 +36,8 @@ function App() {
         <Route path="/" element={<Navigate to="/dashboard" />} />
 
         {/* Public routes */}
-        {/* <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} /> */}
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
 
         {/* User dashboard */}
         <Route element={<CustomerLayout />}>
@@ -51,23 +58,31 @@ function App() {
 <Route path="/cart" element={<Cart />} />
 <Route path="/checkout" element={<Checkout />} />
 <Route path="/account" element={<Account />} />
-<Route path="/privacy" element={<Privacypolicy />} />
+<Route path="/privacy" element={<Privacypolicy />} /></Route>
 
 
 
 
-
-
-
-
-
-
-
-
-
- </Route>
         {/* Admin dashboard */}
-        <Route path="/admin" element={<AdminDashboard />} />
+         <Route
+  path="/admin"
+  element={
+    <ProtectedRoute adminOnly={true}>
+      <AdminLayout />
+    </ProtectedRoute>
+  }
+>
+  <Route index element={<AdminDashboard />} />
+  <Route path="categories" element={<AdminCategories />} />
+    <Route path="products" element={<ProductList />} />
+<Route path="products/create" element={<ProductForm />} />
+<Route path="products/edit/:slug" element={<ProductForm />} />
+    <Route path="users" element={<AdminUsers />} />
+        <Route path="filter" element={<FilterAdmin />} />
+
+
+
+</Route>
       </Routes>
     </BrowserRouter>
   );

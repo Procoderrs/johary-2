@@ -2,10 +2,16 @@ import mongoose from "mongoose";
 
 const categorySchema = new mongoose.Schema(
   {
-    name: { type: String, required: true },
+    name: { type: String, required: true ,trim:true,},
     slug: { type: String, required: true, unique: true },
-    parent: { type: mongoose.Schema.Types.ObjectId, ref: "Category", default: null },
-  },
+parentId: {
+  type: mongoose.Schema.Types.ObjectId,
+  ref: "JoharyCategory",
+  default: null,
+} ,
+
+ },
+
   { timestamps: true }
 );
 

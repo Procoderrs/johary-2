@@ -1,5 +1,6 @@
 import React from 'react';
-
+import { AuthContext } from '../context/AuthContext';
+import { useContext } from 'react';
 import {RiSearchLine,RiUser3Line,RiHeart3Line,RiShoppingBagLine,RiArrowDropDownLine ,RiTruckLine, RiBankFill , RiDiscountPercentLine, RiCustomerServiceLine ,RiDoubleQuotesL  } from '@remixicon/react'
 import Hero from '../components/Hero';
 import CategorySection from '../components/CategorySection';
@@ -17,7 +18,8 @@ import { blogsData } from "../data/blogs";
 import Newsletter from '../components/NewsLetter';
 
 const UserDashboard = () => {
- 
+ const {login,register}=useContext(AuthContext)
+ console.log(login);
  
 
 
