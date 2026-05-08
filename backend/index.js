@@ -25,21 +25,36 @@ app.use("/api/admin/product", productRoutes);
 app.use("/api/admin/filters", filterRoutes);
 app.use("/api/admin/variants", variantRoutes);
 // Startup sequence
-const startServer = async () => {
-  try {
-    // 1️⃣ Connect to MongoDB
-    await connectDb();
 
-    // 2️⃣ Safe admin creation
-    await createAdmin();  // ← async function, no next parameter needed
 
-    // 3️⃣ Start server
-    const PORT = process.env.PORT || 5000;
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-  } catch (error) {
-    console.error("Error starting server:", error.message);
-    process.exit(1);
-  }
-};
 
-startServer();
+app.use((req, res, next) => {
+  console.log("REQ:", req.method, req.url);
+  next();
+});
+
+// ----- Global Error Handler -----
+app.use((err, req, res, next) => {
+  console.error("Unhandled error:", err);
+  res.status(500).json({ message: "Server error", error: err.message });
+});
+
+// ----- DB + Seed -----
+connectDb()
+  .then(async () => {
+    console.log("Database connected");
+    await createAdmin();
+   
+    console.log("Admin created");
+  })
+  .catch((error) => {
+    console.error("Server startup error:", error);
+  });
+
+// ----- Export for Vercel -----
+ export default app;
+
+if (process.env.NODE_ENV !== "production") {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
