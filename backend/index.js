@@ -71,7 +71,7 @@ app.use((err, req, res, next) => {
 connectDb()
   .then(async () => {
     console.log("Database connected");
-    //await createAdmin();
+    await createAdmin();
    
     console.log("Admin created");
   })
