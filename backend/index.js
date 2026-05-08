@@ -21,7 +21,7 @@ app.use(express.json());
 
 // ----- CORS Setup -----
 const allowedOrigins = [
-  "https://johary-2.vercel.app/dashboard",
+  "https://johary-2.vercel.app",
   "http://localhost:5173"
 ];
 

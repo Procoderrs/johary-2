@@ -28,21 +28,19 @@ import AdminUsers from "./admin/AdminUsers";
 import ProductList from "./admin/ProductList";
 import ProductForm from "./admin/AdminProduct";
 import FilterAdmin from "./admin/Adminfilter";
-import PublicRoute from './routes/PublicRoute'
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         {/* Default route */}
+        <Route path="/" element={<Navigate to="/dashboard" />} />
 
-       
-      
         {/* Public routes */}
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
 
         {/* User dashboard */}
-        <Route path="/" element={<CustomerLayout />}>
+        <Route element={<CustomerLayout />}>
         <Route path="/dashboard" element={<UserDashboard />} />
  <Route path="/product/:slug" element={<ProductPage />} />
  <Route path="/shop" element={<ShopPage />} />
@@ -61,6 +59,7 @@ function App() {
 <Route path="/checkout" element={<Checkout />} />
 <Route path="/account" element={<Account />} />
 <Route path="/privacy" element={<Privacypolicy />} /></Route>
+
 
 
 
