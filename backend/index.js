@@ -15,6 +15,13 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(cors());
+
+
+
+app.get("/", (req, res) => {
+  res.send("Backend Running Successfully");
+});
+
 // Routes
 app.use("/api/auth", authRoutes);
 // ✅ Category APIs
