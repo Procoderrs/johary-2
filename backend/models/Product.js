@@ -7,11 +7,13 @@ const productSchema = new mongoose.Schema(
     description: String,
     price: Number,
     discount: Number,
+    stock:Number,
 
     category: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "JoharyCategory",
     },
+   
 slug: { type: String, unique: true, required: true },
     brand: {
       type: mongoose.Schema.Types.ObjectId,

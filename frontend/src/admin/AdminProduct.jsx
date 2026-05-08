@@ -32,6 +32,7 @@ useEffect(() => {
     price: "",
     discount: "",
     brand: "",
+    stock:"",
     metalType: "",
     stoneType: "",
   });
@@ -99,6 +100,7 @@ console.log(categories)
         description: product.description || "",
         price: product.price || "",
         discount: product.discount || "",
+        stock:product.stock||"",
         // populate ho chuka hai isliye ._id lena zaroori hai
         brand: product.brand?._id || "",
         metalType: product.metalType?._id || "",
@@ -220,6 +222,7 @@ console.log(categories);
       data.append("price", Number(form.price || 0));
       data.append("discount", form.discount || 0);
       data.append("brand", form.brand);
+      data.append("stock",form.stock||0)
       data.append("metalType", form.metalType);
       data.append("stoneType", form.stoneType);
       data.append("category", childCategoryId || parentId);
@@ -321,7 +324,7 @@ console.log(categories);
               />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
               <div>
                 <label className="text-sm font-medium text-secondary-text">
@@ -350,6 +353,21 @@ console.log(categories);
                     setForm({ ...form, discount: e.target.value })
                   }
                   placeholder="10%"
+                />
+              </div>
+
+               <div>
+                <label className="text-sm font-medium text-secondary-text">
+                  Stock
+                </label>
+
+                <input
+                  className="w-full mt-2 bg-bg-1 border border-border-2 rounded-2xl px-5 py-3 outline-none focus:border-[#C8A96B]"
+                  value={form.stock}
+                  onChange={(e) =>
+                    setForm({ ...form, stock: e.target.value })
+                  }
+                  placeholder="$299"
                 />
               </div>
 

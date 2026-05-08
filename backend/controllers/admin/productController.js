@@ -14,6 +14,7 @@ export const createProduct = async (req, res) => {
       brand,
       metalType,
       stoneType,
+      stock,
       variants,
     } = req.body;
  const slug = name
@@ -29,6 +30,7 @@ export const createProduct = async (req, res) => {
       discount,
       category,
       brand,
+      stock,
       metalType,
       stoneType,
       images: req.cloudinaryUrls || [], // 🔥 FIXED
@@ -66,6 +68,7 @@ export const updateProduct = async (req, res) => {
       discount,
       category,
       brand,
+      stock,
       metalType,
       stoneType,
       variants,
@@ -97,6 +100,7 @@ export const updateProduct = async (req, res) => {
         category,
         brand,
         metalType,
+        stock,
         stoneType,
         variants: parsedVariants,
         images: finalImages,    // ✅ merged images

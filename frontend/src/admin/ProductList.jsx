@@ -168,6 +168,12 @@ export default function ProductList() {
                         Delete
                       </button>
 
+    
+                    <span className="bg-bg-5 text-gray-500 text-xs px-4 py-1.5 rounded-full border border-gray-200">
+                        {p.stock} stock
+                      </span>
+
+
                     </div>
 
                   </div>
