@@ -15,7 +15,11 @@ export const createProduct = async (req, res) => {
       metalType,
       stoneType,
       stock,
+      isFeatured,
+      isTrending,
       variants,
+      rating,
+      reviewCount,
     } = req.body;
  const slug = name
       ? name.toLowerCase().replace(/\s+/g, "-")
@@ -33,8 +37,13 @@ export const createProduct = async (req, res) => {
       stock,
       metalType,
       stoneType,
+      rating,
+      reviewCount,
       images: req.cloudinaryUrls || [], // 🔥 FIXED
       variants: parsedVariants,
+
+  isFeatured: isFeatured === "true" || isFeatured === true,
+  isTrending: isTrending === "true" || isTrending === true,
     });
 
     res.json({
@@ -70,8 +79,12 @@ export const updateProduct = async (req, res) => {
       brand,
       stock,
       metalType,
+      isFeatured, 
+      isTrending,
       stoneType,
       variants,
+      rating,
+      reviewCount,
       existingImages = "[]",   // ✅ frontend se existing images lao
     } = req.body;
 
@@ -97,13 +110,19 @@ export const updateProduct = async (req, res) => {
         description,
         price: Number(price || 0),
         discount: Number(discount || 0),
+        rating:Number(rating ||0),
+        reviewCount:Number(reviewCount||0),
         category,
         brand,
         metalType,
         stock,
         stoneType,
+        
         variants: parsedVariants,
         images: finalImages,    // ✅ merged images
+
+        isFeatured: isFeatured === "true" || isFeatured === true,
+    isTrending: isTrending === "true" || isTrending === true,
       },
       { new: true }             // ✅ 'after' nahi, 'new' hota hai mongoose mein
     )

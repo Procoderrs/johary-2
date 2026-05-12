@@ -28,6 +28,10 @@ import AdminUsers from "./admin/AdminUsers";
 import ProductList from "./admin/ProductList";
 import ProductForm from "./admin/AdminProduct";
 import FilterAdmin from "./admin/Adminfilter";
+import Wishlist from "./pages/Wishlist";
+import OrderSuccess from "./pages/OrderSuccess";
+
+
 function App() {
   return (
     <BrowserRouter>
@@ -58,7 +62,11 @@ function App() {
 <Route path="/cart" element={<Cart />} />
 <Route path="/checkout" element={<Checkout />} />
 <Route path="/account" element={<Account />} />
-<Route path="/privacy" element={<Privacypolicy />} /></Route>
+<Route path="/wishlist" element={<Wishlist />} />
+<Route path="/privacy" element={<Privacypolicy />} />
+<Route path="/order-success" element={<OrderSuccess />} />
+
+</Route>
 
 
 
@@ -162,3 +170,6 @@ export default App; */
 
 
 
+
+
+/* https://johary-2-hjxs.vercel.app */

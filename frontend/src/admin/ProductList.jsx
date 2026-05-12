@@ -105,12 +105,40 @@ export default function ProductList() {
                     </div>
 
                     {/* NAME */}
-                    <h2
-                      className="text-3xl text-dark-text leading-tight font-heading"
-                      
-                    >
-                      {p.name}
-                    </h2>
+                    {/* NAME */}
+<h2 className="text-3xl text-dark-text leading-tight font-heading">
+  {p.name}
+</h2>
+
+{/* ✅ BADGES — yahan add karo */}
+<div className="flex items-center gap-2 mt-2">
+  {p.isFeatured && (
+    <span className="bg-amber-50 text-amber-600 text-xs px-3 py-1 rounded-full border border-amber-200">
+      ⭐ Featured
+    </span>
+  )}
+  {p.isTrending && (
+    <span className="bg-rose-50 text-rose-500 text-xs px-3 py-1 rounded-full border border-rose-200">
+      🔥 Trending
+    </span>
+  )}
+</div>
+
+
+
+{/* ✅ RATING — yahan add karo */}
+{p.rating > 0 && (
+  <div className="flex items-center gap-2 mt-2">
+    <div className="flex items-center gap-0.5">
+      {[1,2,3,4,5].map((star) => (
+        <span key={star} className={`text-sm ${star <= Math.round(p.rating) ? "text-amber-400" : "text-gray-300"}`}>
+          ★
+        </span>
+      ))}
+    </div>
+    <span className="text-xs text-gray-500">{p.rating}/5</span>
+  </div>
+)}
 
                     {/* DESCRIPTION */}
                     <p className="text-text-4 text-sm leading-7 mt-4 max-w-3xl">

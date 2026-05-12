@@ -7,6 +7,8 @@ import { productsData } from "../../data/product";
 import { RiUser3Line, RiShoppingBagLine } from "@remixicon/react";
 
 export default function Header({ data = {} }) {
+const {actionIcons=[]}=data;
+
   const [showSearch, setShowSearch] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
 
@@ -111,17 +113,50 @@ const elementsDropdown = [
     </div>
 
     {/* RIGHT - ICONS */}
-    <div className="flex justify-end items-center gap-4">
-
-      <Link to="/account">
-        <RiUser3Line size={24} />
-      </Link>
-
-      <Link to="/cart">
-        <RiShoppingBagLine size={24} />
-      </Link>
-
-    </div>
+   
+<div className="flex justify-end items-center gap-5">
+  {actionIcons.map((item) => (
+  item.onClick ? (
+    <button
+      key={item.type}
+      onClick={item.onClick}
+      className="relative flex items-center gap-2"
+    >
+      <div className="relative">
+        <item.icon size={24} />
+        {item.badge > 0 && (
+          <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-[#c19417] text-white text-[10px] flex items-center justify-center font-medium">
+            {item.badge}
+          </span>
+        )}
+      </div>
+      {item.extraText && (
+        <div className="hidden xl:flex flex-col leading-tight">
+          <span className="text-xs text-gray-400">My Cart</span>
+          <span className="text-sm font-semibold text-gray-900">{item.extraText}</span>
+        </div>
+      )}
+    </button>
+  ) : (
+    <Link key={item.type} to={item.link} className="relative flex items-center gap-2">
+      <div className="relative">
+        <item.icon size={24} />
+        {item.badge > 0 && (
+          <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-[#c19417] text-white text-[10px] flex items-center justify-center font-medium">
+            {item.badge}
+          </span>
+        )}
+      </div>
+      {item.extraText && (
+        <div className="hidden xl:flex flex-col leading-tight">
+          <span className="text-xs text-gray-400">My Cart</span>
+          <span className="text-sm font-semibold text-gray-900">{item.extraText}</span>
+        </div>
+      )}
+    </Link>
+  )
+))}
+</div>
   </div>
 
   {/* ================= MOBILE HEADER ================= */}
@@ -143,17 +178,22 @@ const elementsDropdown = [
     {/* Icons */}
     <div className="flex items-center gap-3">
 
-      <button onClick={() => setShowSearch(true)}>
-        {SearchIcon && <SearchIcon size={22} />}
-      </button>
+     <div className="flex items-center gap-3">
+  <button onClick={() => setShowSearch(true)}>
+    {SearchIcon && <SearchIcon size={22} />}
+  </button>
 
-      <Link to="/account">
-        <RiUser3Line size={22} />
-      </Link>
-
-      <Link to="/cart">
-        <RiShoppingBagLine size={22} />
-      </Link>
+  {actionIcons.map((item) => (
+    <Link key={item.type} to={item.link} className="relative">
+      <item.icon size={22} />
+      {item.badge > 0 && (
+        <span className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-[#c19417] text-white text-[9px] flex items-center justify-center font-medium">
+          {item.badge}
+        </span>
+      )}
+    </Link>
+  ))}
+</div>
 
     </div>
   </div>

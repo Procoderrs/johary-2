@@ -56,7 +56,7 @@ export default function CategorySection({ categories }) {
   >
     {categories.map((category) => (
       <div
-        key={category.id}
+        key={category._id}
         className="flex-shrink-0 w-[calc((100%-20px)/2)] sm:w-[calc((100%-40px)/3)] md:w-[calc((100%-48px)/5)] lg:w-[calc((100%-120px)/5)]"
       >
         <CategoryCard category={category} />

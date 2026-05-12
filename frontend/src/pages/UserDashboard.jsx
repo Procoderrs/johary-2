@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { useContext } from 'react';
+import { getTrendingProducts, getFeaturedProducts } from "../api/product";
 import {RiSearchLine,RiUser3Line,RiHeart3Line,RiShoppingBagLine,RiArrowDropDownLine ,RiTruckLine, RiBankFill , RiDiscountPercentLine, RiCustomerServiceLine ,RiDoubleQuotesL  } from '@remixicon/react'
 import Hero from '../components/Hero';
 import CategorySection from '../components/CategorySection';
 import { categoriesData } from '../data/categories';
+import {getCategories,} from "../api/category";
 import { productsData } from '../data/product';
 import SubBanner from '../components/SubBanner';
 import TrendingProducts from '../components/TrendingProducts';
@@ -20,9 +22,49 @@ import Newsletter from '../components/NewsLetter';
 const UserDashboard = () => {
  const {login,register}=useContext(AuthContext)
  console.log(login);
+
+ const [categories,setCategories]=useState([])
+ const [trendingProducts, setTrendingProducts] = useState([]);
+const [featuredProducts, setFeaturedProducts] = useState([]);
+
+ console.log(categories)
  
+ useEffect(()=>{
+loadCategories();
+loadTrending();
+loadFeatured();
+ },[])
+
+async function loadCategories() {
+  try {
+    const res=await getCategories();
+    console.log("User Categories",res.data)
+    setCategories(res.data?.data ||[])
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 
+async function loadTrending() {
+  try {
+    const res = await getTrendingProducts();
+    console.log('trending posts',res)
+    setTrendingProducts(res.data?.data || []);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+async function loadFeatured() {
+  try {
+    const res = await getFeaturedProducts();
+    console.log('featured posts',res)
+    setFeaturedProducts(res.data?.data || []);
+  } catch (err) {
+    console.log(err);
+  }
+}
 
 
 const heroData=[
@@ -93,13 +135,13 @@ const signed={
     <div>
     
       <Hero data={heroData}/>
-      <CategorySection categories={categoriesData} />
+      <CategorySection categories={categories} />
       <SubBanner data={sub_banner}/>
-      <TrendingProducts products={productsData} limit={7} />
-      <Delicate data={delicate}/>
+<TrendingProducts products={trendingProducts} limit={7} tabsList={categories.slice(0,3).map(c => ({ id: String(c._id), name: c.name }))}
+/>      <Delicate data={delicate}/>
       <Parallax data={parallex}/>
       <Services data={services}/>
-      <TrendingProducts products={productsData} title="Featured Products" subtitle="Best Collection" showTabs={false}filterTrending={false} />
+      <TrendingProducts products={featuredProducts} title="Featured Products" showTabs={false}filterTrending={false} tabsList={categories.map(c => ({ id: String(c._id), name: c.name }))} />
       <CmsBanner data={cms}/>
       <Signed data={signed}/>
       <BlogSlider blogs={blogsData} />

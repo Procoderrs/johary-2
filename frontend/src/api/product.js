@@ -24,3 +24,8 @@ export const updateProduct = (slug, formData) => {
 export const deleteProduct = (slug) => {
   return api.delete(`/admin/product/${slug}`);
 };
+
+
+// api/product.js (user wali)
+export const getTrendingProducts = () => api.get("/products/trending");
+export const getFeaturedProducts = () => api.get("/products/featured");

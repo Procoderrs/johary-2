@@ -13,10 +13,10 @@ export default function AdminCategories() {
   const [name, setName] = useState("");
   const [parentId, setParentId] = useState("");
   const [categories, setCategories] = useState([]);
-
+const [image,setImage]=useState(null)
   const [loading, setLoading] = useState(false);
   const [editingId, setEditingId] = useState(null);
-
+const [preview, setPreview] = useState("");
   // ================= LOAD =================
   useEffect(() => {
     load();
@@ -26,7 +26,7 @@ export default function AdminCategories() {
     setLoading(true);
     try {
       const res = await getCategories();
-
+console.log(res)
       const data = Array.isArray(res.data)
         ? res.data
         : res.data?.data || [];
@@ -43,36 +43,46 @@ export default function AdminCategories() {
     setName(cat.name);
     setParentId(cat.parentId || "");
     setEditingId(cat._id);
+    setPreview(cat.image || "");
   };
 
   // ================= SUBMIT =================
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!name.trim()) return;
+  e.preventDefault();
 
-    try {
-      if (editingId) {
-        await updateCategory(editingId, {
-          name,
-          parentId: parentId || null,
-        });
-      } else {
-        await createCategory({
-          name,
-          parentId: parentId || null,
-        });
-      }
+  if (!name.trim()) return;
 
-      setName("");
-      setParentId("");
-      setEditingId(null);
+  try {
+    const formData = new FormData();
 
-      load();
-    } catch (err) {
-      console.log(err);
+    formData.append("name", name);
+
+    if (parentId) {
+      formData.append("parentId", parentId);
     }
-  };
 
+    if (image) {
+      formData.append("image", image);
+    }
+
+    if (editingId) {
+      await updateCategory(editingId, formData);
+    } else {
+      await createCategory(formData);
+    }
+
+    setName("");
+    setParentId("");
+    setImage(null);
+    setEditingId(null);
+    setPreview(null)
+
+    load();
+
+  } catch (err) {
+    console.log(err.message);
+  }
+};
   // ================= DELETE =================
   const handleDelete = async (id) => {
     if (!window.confirm("Delete this category?")) return;
@@ -100,7 +110,7 @@ export default function AdminCategories() {
   };
 
   const flat = getFlatList(categories);
-
+  
   // ================= UI =================
   return (
   <div className="min-h-screen bg-bg p-6">
@@ -164,6 +174,35 @@ export default function AdminCategories() {
           "
         />
 
+
+      <div className="flex flex-col gap-3">
+
+  <input
+    type="file"
+    onChange={(e) => {
+      setImage(e.target.files[0]);
+
+      // instant local preview
+      setPreview(URL.createObjectURL(e.target.files[0]));
+    }}
+    className="
+      bg-bg-1
+      border border-border-2
+      rounded-2xl
+      px-5 py-3
+    "
+  />
+
+  {preview && (
+    <img
+      src={preview}
+      alt="preview"
+      className="w-24 h-24 object-cover rounded-2xl border"
+    />
+  )}
+
+</div>
+
         {/* SELECT */}
         <select
           value={parentId}
@@ -189,6 +228,7 @@ export default function AdminCategories() {
 
         </select>
 
+       
         {/* BUTTON */}
         <button
           type="submit"
@@ -232,73 +272,55 @@ export default function AdminCategories() {
           >
 
             {/* TOP */}
-            <div className="flex items-start justify-between gap-4 mb-6">
+           {/* TOP */}
+<div className="flex items-center gap-4 mb-6">
 
-              <div>
+  {/* Image */}
+  {cat.image ? (
+    <img
+      src={cat.image}
+      alt={cat.name}
+      className="w-14 h-14 object-cover rounded-2xl border border-border-1 flex-shrink-0"
+    />
+  ) : (
+    <div className="w-14 h-14 rounded-2xl border border-dashed border-border-2 flex-shrink-0 flex items-center justify-center">
+      <span className="text-text-6 text-xs">No img</span>
+    </div>
+  )}
 
-                <div className="flex items-center gap-3 mb-2">
+  {/* Name + badge + description — flex-1 min-w-0 zaroori hai */}
+  <div className="flex-1 min-w-0">
+    <div className="flex items-center gap-2 mb-1 flex-wrap">
+      <h3
+        className="text-2xl text-dark-text leading-none truncate"
+        style={{ fontFamily: "var(--font-heading)" }}
+      >
+        {cat.name}
+      </h3>
+      <span className="bg-bg-4 text-text-3 text-xs px-3 py-1 rounded-full flex-shrink-0">
+        {cat.children?.length || 0} items
+      </span>
+    </div>
+    <p className="text-text-light text-sm">Jewellery category collection</p>
+  </div>
 
-                  <h3
-                    className="text-3xl text-dark-text leading-none"
-                    style={{ fontFamily: "var(--font-heading)" }}
-                  >
-                    {cat.name}
-                  </h3>
+  {/* Actions */}
+  <div className="flex items-center gap-2 flex-shrink-0">
+    <button
+      onClick={() => handleEdit(cat)}
+      className="px-3 py-1.5 rounded-full border border-border-3 text-text-3 hover:bg-hover-soft transition-all text-sm"
+    >
+      Edit
+    </button>
+    <button
+      onClick={() => handleDelete(cat._id)}
+      className="px-3 py-1.5 rounded-full border border-red-100 text-discount hover:bg-red-50 transition-all text-sm"
+    >
+      Delete
+    </button>
+  </div>
 
-                  <span className="
-                    bg-bg-4
-                    text-text-3
-                    text-xs
-                    px-3 py-1
-                    rounded-full
-                  ">
-                    {cat.children?.length || 0} items
-                  </span>
-
-                </div>
-
-                <p className="text-text-light text-sm">
-                  Jewellery category collection
-                </p>
-
-              </div>
-
-              {/* ACTIONS */}
-              <div className="flex items-center gap-3">
-
-                <button
-                  onClick={() => handleEdit(cat)}
-                  className="
-                    px-4 py-2
-                    rounded-full
-                    border border-border-3
-                    text-text-3
-                    hover:bg-hover-soft
-                    transition-all
-                    text-sm
-                  "
-                >
-                  Edit
-                </button>
-
-                <button
-                  onClick={() => handleDelete(cat._id)}
-                  className="
-                    px-4 py-2
-                    rounded-full
-                    border border-red-100
-                    text-discount
-                    hover:bg-red-50
-                    transition-all
-                    text-sm
-                  "
-                >
-                  Delete
-                </button>
-
-              </div>
-
-            </div>
+</div>
 
             {/* CHILDREN */}
             {cat.children?.length > 0 ? (

@@ -18,7 +18,7 @@ export default function ProductForm() {
   const [preview, setPreview] = useState([]);
   const [loading, setLoading] = useState(false);
   const [pendingChildId, setPendingChildId] = useState("");
-
+  
   // product ka raw category _id store karne k liye
   // taake jab categories load hon to child set kar sakein
 useEffect(() => {
@@ -35,6 +35,10 @@ useEffect(() => {
     stock:"",
     metalType: "",
     stoneType: "",
+    isFeatured: false,  // ✅
+  isTrending: false,  // ✅
+  rating:"",
+ reviewCount:"",
   });
 
   const [variantTypes, setVariantTypes] = useState([
@@ -105,6 +109,10 @@ console.log(categories)
         brand: product.brand?._id || "",
         metalType: product.metalType?._id || "",
         stoneType: product.stoneType?._id || "",
+        isFeatured: product.isFeatured || false,  // ✅
+        isTrending: product.isTrending || false,  // ✅
+        rating:product.rating ||0,
+        reviewCount:product.reviewCount||0,
       });
 
       setVariants(product.variants || []);
@@ -228,7 +236,10 @@ console.log(categories);
       data.append("category", childCategoryId || parentId);
       data.append("variants", JSON.stringify(variants));
       data.append("existingImages", JSON.stringify(existingImages)); // ✅ yeh line add karo
-
+data.append("isFeatured", form.isFeatured);
+data.append("isTrending", form.isTrending);
+data.append("rating",form.rating||0);
+data.append("reviewCount",form.reviewCount||0);
     console.log("brand:", form.brand);
     console.log("metalType:", form.metalType);
     console.log("stoneType:", form.stoneType);
@@ -324,6 +335,64 @@ console.log(categories);
               />
             </div>
 
+
+            <div>
+  <label className="text-sm font-medium text-secondary-text">
+    Rating (0 - 5)
+  </label>
+  <input
+    type="number"
+    min="0"
+    max="5"
+    step="0.1"
+    className="w-full mt-2 bg-bg-1 border border-border-2 rounded-2xl px-5 py-3 outline-none focus:border-primary-gold-accent"
+    value={form.rating}
+    onChange={(e) => setForm({ ...form, rating: e.target.value })}
+    placeholder="4.5"
+  />
+</div>
+{/* isFeatured + isTrending toggles */}
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+  {/* Featured */}
+  <div className="flex items-center justify-between bg-bg-1 border border-border-2 rounded-2xl px-5 py-4">
+    <div>
+      <p className="text-sm font-medium text-dark-text">Featured Product</p>
+      <p className="text-xs text-text-light mt-0.5">Homepage pe show hoga</p>
+    </div>
+    <button
+      type="button"
+      onClick={() => setForm({ ...form, isFeatured: !form.isFeatured })}
+      className={`w-12 h-6 rounded-full transition-all duration-300 relative ${
+        form.isFeatured ? "bg-primary-gold-accent" : "bg-gray-200"
+      }`}
+    >
+      <span className={`absolute top-0.5 w-5 h-5 bg-white rounded-full shadow transition-all duration-300 ${
+        form.isFeatured ? "left-6" : "left-0.5"
+      }`} />
+    </button>
+  </div>
+
+  {/* Trending */}
+  <div className="flex items-center justify-between bg-bg-1 border border-border-2 rounded-2xl px-5 py-4">
+    <div>
+      <p className="text-sm font-medium text-dark-text">Trending Product</p>
+      <p className="text-xs text-text-light mt-0.5">Trending section mein aayega</p>
+    </div>
+    <button
+      type="button"
+      onClick={() => setForm({ ...form, isTrending: !form.isTrending })}
+      className={`w-12 h-6 rounded-full transition-all duration-300 relative ${
+        form.isTrending ? "bg-primary-gold-accent" : "bg-gray-200"
+      }`}
+    >
+      <span className={`absolute top-0.5 w-5 h-5 bg-white rounded-full shadow transition-all duration-300 ${
+        form.isTrending ? "left-6" : "left-0.5"
+      }`} />
+    </button>
+  </div>
+
+</div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
               <div>

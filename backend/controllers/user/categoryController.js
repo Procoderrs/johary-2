@@ -18,6 +18,8 @@ export const getCategories = async (req, res) => {
       _id: cat._id,
       name: cat.name,
       slug: cat.slug,
+        image: cat.image ?? null,  // ✅ yeh add karo
+
       children: buildtree(list, cat._id),
     }));
 };

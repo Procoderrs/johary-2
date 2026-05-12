@@ -7,11 +7,24 @@ const productSchema = new mongoose.Schema(
     description: String,
     price: Number,
     discount: Number,
+    // Product.js model mein add karo
+isFeatured: { type: Boolean, default: false },
+isTrending: { type: Boolean, default: false },
+soldCount: { type: Number, default: 0 }, // future ke liye
     stock: {
   type: Number,
   default: 0,
 },
-
+rating:{
+  type:Number,
+  default:0,
+  min:0,
+  max:5,
+},
+reviewCount:{
+type:Number,
+default:0
+},
     category: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "JoharyCategory",

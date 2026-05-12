@@ -4,8 +4,16 @@ import Footer from '../components/Footer'
 import {RiSearchLine,RiUser3Line,RiHeart3Line,RiShoppingBagLine,RiArrowDropDownLine ,RiTruckLine, RiBankFill , RiDiscountPercentLine, RiCustomerServiceLine ,RiDoubleQuotesL  } from '@remixicon/react'
 import Topbar from "../components/Topbar"
 import Newsletter from "../components/NewsLetter"
+import {useWishlist} from '../context/WishListContext';
+import WishlistPopup from '../components/WishListPopup'
+import {useCart} from '../context/CartContext'
+import CartDrawer from '../components/CartDrawer';
+
+
 export default function CustomerLayout(){
 
+  const {isPopupOpen,setIsPopupOpen,wishlist}=useWishlist();
+  const {cartCount,cartTotal,isCartOpen,setIsCartOpen}=useCart()
 
 
   const headerData = {
@@ -22,14 +30,16 @@ export default function CustomerLayout(){
       type: "wishlist",
       icon: RiHeart3Line,
       link: "/wishlist",
-      badge: 0,
+      badge: wishlist.length,
     },
     {
       type: "cart",
       icon: RiShoppingBagLine,
-      link: "/cart",
-      badge: 0,
-      extraText: "$0.00",
+      link:"#",
+      //link: "/cart",
+      badge: cartCount,
+      extraText: `$${cartTotal.toFixed(2)}`,
+  onClick: () => setIsCartOpen(true),  
     },
   ],
 
@@ -71,6 +81,14 @@ const topbarData = {
         <Outlet />
       </main>
 <Newsletter/>
+
+{/* ✅ Yahan lagao */}
+      <WishlistPopup
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+      />
+<CartDrawer isOpen={isCartOpen} onClose={()=>setIsCartOpen(false)} />
+
       {/* Shared Footer */}
       <Footer />
     </>
