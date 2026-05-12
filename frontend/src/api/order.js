@@ -1,11 +1,6 @@
 import api from "./api";
 
-// Order create karo
-export const createOrder = (orderData) => {
-  return api.post("/orders/create", orderData);
-};
-
-// My orders
-export const getMyOrders = () => {
-  return api.get("/orders/my-orders");
-};
+export const createOrder = (orderData) => api.post("/orders/create", orderData);
+export const getOrderById = (id) => api.get(`/orders/${id}`);
+export const payOrder = (id) => api.post(`/orders/${id}/pay`);
+export const getMyOrders = () => api.get("/orders/my-orders");

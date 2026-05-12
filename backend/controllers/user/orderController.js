@@ -1,72 +1,37 @@
-// controllers/user/orderController.js
 import Order from "../../models/Order.js";
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-// CREATE ORDER + STRIPE SESSION
+// CREATE ORDER — sirf save karo, payment baad mein
 export const createOrder = async (req, res) => {
   try {
-    const { items, shippingAddress, paymentMethod } = req.body;
+    const { items, shippingAddress, paymentMethod, shippingCost, notes } = req.body;
 
     if (!items || items.length === 0) {
       return res.status(400).json({ message: "Cart is empty" });
     }
 
     const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    const total = subtotal; // shipping baad mein add kar sakte ho
+    const total = subtotal + (shippingCost || 0);
 
-    // Order DB mein save karo
     const order = await Order.create({
       user: req.user?._id || null,
       items,
       shippingAddress,
       paymentMethod,
       subtotal,
+      shippingCost: shippingCost || 0,
       total,
+      notes,
       paymentStatus: "pending",
+      orderStatus: "pending",
     });
 
-    // Agar Stripe
-    if (paymentMethod === "stripe") {
-      const session = await stripe.checkout.sessions.create({
-        payment_method_types: ["card"],
-        mode: "payment",
-        line_items: items.map((item) => ({
-          price_data: {
-            currency: "usd",
-            product_data: {
-              name: item.name,
-              images: item.image ? [item.image] : [],
-            },
-            unit_amount: Math.round(item.price * 100), // cents mein
-          },
-          quantity: item.quantity,
-        })),
-        success_url: `${process.env.FRONTEND_URL}/order-success?orderId=${order._id}`,
-        cancel_url: `${process.env.FRONTEND_URL}/checkout`,
-        metadata: {
-          orderId: String(order._id),
-        },
-      });
-
-      // Session ID save karo
-      order.stripeSessionId = session.id;
-      await order.save();
-
-      return res.json({
-        success: true,
-        sessionUrl: session.url, // frontend isko open karega
-        orderId: order._id,
-      });
-    }
-
-    // COD
-    order.paymentStatus = "pending";
-    order.orderStatus = "processing";
-    await order.save();
-
-    res.json({ success: true, orderId: order._id });
+    res.json({
+      success: true,
+      orderId: order._id,
+    });
 
   } catch (err) {
     console.log("ORDER ERROR:", err);
@@ -74,7 +39,67 @@ export const createOrder = async (req, res) => {
   }
 };
 
-// STRIPE WEBHOOK — payment confirm hone pe
+// GET SINGLE ORDER BY ID
+export const getOrderById = async (req, res) => {
+  try {
+    const order = await Order.findById(req.params.id);
+    if (!order) return res.status(404).json({ message: "Order not found" });
+    res.json({ success: true, data: order });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+// PAY ORDER — Stripe session banao
+export const payOrder = async (req, res) => {
+  try {
+    const order = await Order.findById(req.params.id);
+
+    if (!order) {
+      return res.status(404).json({ message: "Order not found" });
+    }
+
+    if (order.paymentStatus === "paid") {
+      return res.status(400).json({ message: "Order already paid" });
+    }
+
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ["card"],
+      mode: "payment",
+      line_items: order.items.map((item) => ({
+        price_data: {
+          currency: "usd",
+          product_data: {
+            name: item.name,
+            images: item.image ? [item.image] : [],
+          },
+          unit_amount: Math.round(item.price * 100),
+        },
+        quantity: item.quantity,
+      })),
+      success_url: `${process.env.FRONTEND_URL}/order-success?orderId=${order._id}`,
+      cancel_url: `${process.env.FRONTEND_URL}/order/${order._id}`,
+      metadata: {
+        orderId: String(order._id),
+      },
+    });
+
+    // Session ID save karo
+    order.stripeSessionId = session.id;
+    await order.save();
+
+    res.json({
+      success: true,
+      sessionUrl: session.url,
+    });
+
+  } catch (err) {
+    console.log("PAY ERROR:", err);
+    res.status(500).json({ message: err.message });
+  }
+};
+
+// STRIPE WEBHOOK
 export const stripeWebhook = async (req, res) => {
   const sig = req.headers["stripe-signature"];
   let event;
@@ -102,7 +127,7 @@ export const stripeWebhook = async (req, res) => {
   res.json({ received: true });
 };
 
-// GET USER ORDERS
+// GET MY ORDERS
 export const getMyOrders = async (req, res) => {
   try {
     const orders = await Order.find({ user: req.user._id })

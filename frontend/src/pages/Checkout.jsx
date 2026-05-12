@@ -31,60 +31,55 @@ export default function Checkout() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handlePlaceOrder = async () => {
-    if (!form.firstName || !form.phone || !form.email || !form.address) {
-      alert("Please fill required fields!");
-      return;
-    }
+ const handlePlaceOrder = async () => {
+  if (!form.firstName || !form.phone || !form.email || !form.address) {
+    alert("Please fill required fields!");
+    return;
+  }
 
-    if (cart.length === 0) {
-      alert("Your cart is empty!");
-      return;
-    }
+  if (cart.length === 0) {
+    alert("Your cart is empty!");
+    return;
+  }
 
-    setLoading(true);
+  setLoading(true);
 
-    try {
-      const orderData = {
-        items: cart.map((item) => ({
-          product: item._id,
-          name: item.name,
-          image: item.image,
-          price: item.price,
-          quantity: item.quantity,
-          selectedVariant: item.selectedVariant,
-        })),
-        shippingAddress: {
-          fullName: `${form.firstName} ${form.lastName}`,
-          email: form.email,
-          phone: form.phone,
-          address: form.address,
-          city: form.state,
-          country: form.country,
-          zipCode: form.zipCode,
-        },
-        paymentMethod,
-        shippingCost,
-        notes: form.notes,
-      };
+  try {
+    const orderData = {
+      items: cart.map((item) => ({
+        product: item._id,
+        name: item.name,
+        image: item.image,
+        price: item.price,
+        quantity: item.quantity,
+        selectedVariant: item.selectedVariant,
+      })),
+      shippingAddress: {
+        fullName: `${form.firstName} ${form.lastName}`,
+        email: form.email,
+        phone: form.phone,
+        address: form.address,
+        city: form.state,
+        country: form.country,
+        zipCode: form.zipCode,
+      },
+      paymentMethod,
+      shippingCost,
+      notes: form.notes,
+    };
 
-const res = await createOrder(orderData);
+    const res = await createOrder(orderData);
 
-      if (paymentMethod === "stripe" && res.data.sessionUrl) {
-        // Stripe checkout pe redirect
-        window.location.href = res.data.sessionUrl;
-      } else {
-        // COD
-        navigate(`/order-success?orderId=${res.data.orderId}`);
-      }
+    // ✅ Order summary page pe bhejo
+    navigate(`/order/${res.data.orderId}`);
 
-    } catch (err) {
-      console.log(err);
-      alert("Order failed! Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
+  } catch (err) {
+    console.log(err);
+    alert("Order failed! Please try again.");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="font-body">

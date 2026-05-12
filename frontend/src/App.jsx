@@ -30,6 +30,7 @@ import ProductForm from "./admin/AdminProduct";
 import FilterAdmin from "./admin/Adminfilter";
 import Wishlist from "./pages/Wishlist";
 import OrderSuccess from "./pages/OrderSuccess";
+import OrderSummary from "./pages/OrderSummary";
 
 
 function App() {
@@ -65,6 +66,8 @@ function App() {
 <Route path="/wishlist" element={<Wishlist />} />
 <Route path="/privacy" element={<Privacypolicy />} />
 <Route path="/order-success" element={<OrderSuccess />} />
+<Route path="/order/:id" element={<OrderSummary />} />
+
 
 </Route>
 
