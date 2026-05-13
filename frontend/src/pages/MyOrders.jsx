@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import { Link } from "react-router-dom";
 import { getMyOrders } from "../api/order";
 import { RiShoppingBagLine, RiTruckLine, RiCheckboxCircleLine, RiTimeLine, RiCloseCircleLine } from "@remixicon/react";
 
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 
 
@@ -24,6 +26,8 @@ export default function MyOrders() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [expandedOrder, setExpandedOrder] = useState(null);
+    const { user } = useContext(AuthContext);
+
 
   useEffect(() => {
     loadOrders();
