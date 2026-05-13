@@ -141,7 +141,7 @@ const elementsDropdown = [
     </button>
 
     {showUserMenu && (
-      <div className="absolute right-0 top-10 w-48 bg-white border border-gray-100 shadow-xl rounded-2xl py-2 z-50">
+      <div className="absolute right-0 top-10 w-48 bg-white border border-gray-100 shadow-xl rounded-2xl py-2 z-[999]">
         {user ? (
           <>
             <div className="px-4 py-2 border-b border-gray-100">
