@@ -31,6 +31,8 @@ import FilterAdmin from "./admin/Adminfilter";
 import Wishlist from "./pages/Wishlist";
 import OrderSuccess from "./pages/OrderSuccess";
 import OrderSummary from "./pages/OrderSummary";
+import MyOrders  from './pages/MyOrders';
+import AdminOrders from "./pages/AdminOrders";
 
 
 function App() {
@@ -67,6 +69,8 @@ function App() {
 <Route path="/privacy" element={<Privacypolicy />} />
 <Route path="/order-success" element={<OrderSuccess />} />
 <Route path="/order/:id" element={<OrderSummary />} />
+<Route path="/my-orders" element={<MyOrders />} />
+
 
 
 </Route>
@@ -90,6 +94,8 @@ function App() {
 <Route path="products/edit/:slug" element={<ProductForm />} />
     <Route path="users" element={<AdminUsers />} />
         <Route path="filter" element={<FilterAdmin />} />
+        <Route path="orders" element={<AdminOrders />} />
+
 
 
 

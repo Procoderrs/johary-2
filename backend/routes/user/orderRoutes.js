@@ -12,8 +12,8 @@ const router = express.Router();
 
 router.post("/webhook", express.raw({ type: "application/json" }), stripeWebhook);
 router.post("/create", createOrder);
-router.get("/:id", getOrderById);
+router.get("/my-orders", protect, getMyOrders); 
+router.get("/:id", getOrderById);               
 router.post("/:id/pay", payOrder);
-router.get("/my-orders", protect, getMyOrders);
 
 export default router;
