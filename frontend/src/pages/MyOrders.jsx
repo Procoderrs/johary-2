@@ -32,6 +32,7 @@ export default function MyOrders() {
   const loadOrders = async () => {
     try {
       const res = await getMyOrders();
+      console.log(res);
       setOrders(res.data?.data || []);
     } catch (err) {
       console.log(err);

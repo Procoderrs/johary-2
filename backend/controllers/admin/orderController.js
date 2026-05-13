@@ -1,3 +1,5 @@
+import Order from "../../models/Order.js";
+
 // GET ALL ORDERS (Admin)
 export const getAllOrders = async (req, res) => {
   try {

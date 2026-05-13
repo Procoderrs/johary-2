@@ -28,6 +28,7 @@ export default function AdminOrders() {
   const loadOrders = async () => {
     try {
       const res = await getAllOrders();
+      console.log(res);
       setOrders(res.data?.data || []);
     } catch (err) {
       console.log(err);
