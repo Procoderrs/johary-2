@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getMyOrders } from "../api/order";
-import { RiPackageLine, RiTruckLine, RiCheckboxCircleLine, RiTimeLine, RiCloseCircleLine } from "@remixicon/react";
+import { RiShoppingBagLine, RiTruckLine, RiCheckboxCircleLine, RiTimeLine, RiCloseCircleLine } from "@remixicon/react";
+
 
 
 
 const STATUS_CONFIG = {
   pending: { label: "Pending", color: "text-yellow-600 bg-yellow-50 border-yellow-200", icon: RiTimeLine },
-  processing: { label: "Processing", color: "text-blue-600 bg-blue-50 border-blue-200", icon: RiPackageLine },
+  processing: { label: "Processing", color: "text-blue-600 bg-blue-50 border-blue-200", icon: RiShoppingBagLine },
   shipped: { label: "Shipped", color: "text-purple-600 bg-purple-50 border-purple-200", icon: RiTruckLine },
   delievered: { label: "Delivered", color: "text-green-600 bg-green-50 border-green-200", icon: RiCheckboxCircleLine },
   cancelled: { label: "Cancelled", color: "text-red-500 bg-red-50 border-red-200", icon: RiCloseCircleLine },
@@ -61,7 +62,7 @@ export default function MyOrders() {
 
         {orders.length === 0 ? (
           <div className="text-center py-20 border border-dashed border-gray-200 rounded-3xl">
-            <RiPackageLine size={48} className="mx-auto text-gray-200 mb-4" />
+            <RiShoppingBagLine size={48} className="mx-auto text-gray-200 mb-4" />
             <p className="text-gray-500 mb-4">No orders yet</p>
             <Link to="/shop" className="bg-[#c19417] text-white px-6 py-3 text-sm uppercase">
               Start Shopping
