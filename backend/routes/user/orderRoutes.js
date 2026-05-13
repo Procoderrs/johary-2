@@ -4,7 +4,7 @@ import {
   getOrderById,
   payOrder,
   stripeWebhook,
-  getMyOrders
+  getMyOrders,confirmPayment
 } from "../../controllers/user/orderController.js";
 import { protect } from "../../middleware/authMiddleware.js";
 
