@@ -76,6 +76,7 @@ useEffect(() => {
     };
 
     const res = await createOrder(orderData);
+    console.log(res)
 
     // ✅ Order summary page pe bhejo
     navigate(`/order/${res.data.orderId}`);
