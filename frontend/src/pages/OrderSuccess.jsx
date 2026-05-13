@@ -33,7 +33,7 @@ export default function OrderSuccess() {
             Continue Shopping
           </Link>
           <Link
-            to="/account"
+            to="/my-orders"
             className="border border-gray-300 text-gray-700 px-6 py-3 text-sm uppercase tracking-wider hover:bg-gray-50 transition"
           >
             My Orders
