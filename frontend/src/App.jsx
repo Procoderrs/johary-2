@@ -32,7 +32,7 @@ import Wishlist from "./pages/Wishlist";
 import OrderSuccess from "./pages/OrderSuccess";
 import OrderSummary from "./pages/OrderSummary";
 import MyOrders  from './pages/MyOrders';
-import AdminOrders from "./admin/AdminOrders";
+
 
 
 function App() {
@@ -94,7 +94,6 @@ function App() {
 <Route path="products/edit/:slug" element={<ProductForm />} />
     <Route path="users" element={<AdminUsers />} />
         <Route path="filter" element={<FilterAdmin />} />
-        <Route path="orders" element={<AdminOrders />} />
 
 
 
