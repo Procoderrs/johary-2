@@ -1,21 +1,16 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { createPortal } from "react-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useWishlist } from '../context/WishListContext';
-import QuickViewModal from '../components/QuickViewModel'
-
+import QuickViewModal from '../components/QuickViewModel';
 import {
-  RiHeartLine,
-  RiEyeLine,
-  RiStarFill,
-  RiStarHalfFill,
-  RiStarLine,
+  RiHeartLine, RiEyeLine, RiStarFill, RiStarHalfFill, RiStarLine,
 } from "@remixicon/react";
 
 export default function ProductCard({ product, view }) {
   const [isHovered, setIsHovered] = useState(false);
   const [showQuickView, setShowQuickView] = useState(false);
-  const { addToWishlist, removeFromWishlist, isInWishlist,setIsPopupOpen } = useWishlist();
+  const { addToWishlist, removeFromWishlist, isInWishlist, setIsPopupOpen } = useWishlist();
+  const navigate = useNavigate();
 
   const inWishlist = isInWishlist(product._id);
 
@@ -26,32 +21,26 @@ export default function ProductCard({ product, view }) {
     } else {
       addToWishlist(product);
       setIsPopupOpen(true);
-     
     }
   };
 
   const renderStars = (rating) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
-      if (rating >= i) {
-        stars.push(<RiStarFill key={i} size={16} className="text-[#c19417]" />);
-      } else if (rating >= i - 0.5) {
-        stars.push(<RiStarHalfFill key={i} size={16} className="text-[#c19417]" />);
-      } else {
-        stars.push(<RiStarLine key={i} size={16} className="text-[#c19417]" />);
-      }
+      if (rating >= i) stars.push(<RiStarFill key={i} size={16} className="text-[#c19417]" />);
+      else if (rating >= i - 0.5) stars.push(<RiStarHalfFill key={i} size={16} className="text-[#c19417]" />);
+      else stars.push(<RiStarLine key={i} size={16} className="text-[#c19417]" />);
     }
     return stars;
   };
 
   return (
-    <div
-      className={
-        view === "list"
-          ? "flex gap-6 border border-[#f1efea] rounded-xl p-4 items-center"
-          : "group w-full font-user rounded-xl p-3 relative"
-      }
-    >
+    <div className={
+      view === "list"
+        ? "flex gap-6 border border-[#f1efea] rounded-xl p-4 items-center"
+        : "group w-full font-user rounded-xl p-3 relative"
+    }>
+
       {/* IMAGE */}
       <div
         className={
@@ -69,24 +58,15 @@ export default function ProductCard({ product, view }) {
               onClick={handleWishlist}
               className="sm:w-10 sm:h-10 w-5 h-5 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-black hover:text-white transition"
             >
-              <RiHeartLine
-                size={14}
-                className={inWishlist ? "text-red-500" : ""}
-              />
+              <RiHeartLine size={14} className={inWishlist ? "text-red-500" : ""} />
             </button>
-            <button
-  onClick={(e) => { e.preventDefault(); setShowQuickView(true); }}
-  className="sm:w-10 sm:h-10 w-5 h-5 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-black hover:text-white transition"
->
-  <RiEyeLine size={18} />
-</button>
 
-{showQuickView && (
-  <QuickViewModal
-    product={product}
-    onClose={() => setShowQuickView(false)}
-  />
-)}
+            <button
+              onClick={(e) => { e.preventDefault(); setShowQuickView(true); }}
+              className="sm:w-10 sm:h-10 w-5 h-5 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-black hover:text-white transition"
+            >
+              <RiEyeLine size={18} />
+            </button>
           </div>
         )}
 
@@ -102,16 +82,12 @@ export default function ProductCard({ product, view }) {
               <img
                 src={product.images?.[0] || "/placeholder.jpg"}
                 alt={product.name}
-                className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 ${
-                  isHovered ? "opacity-0" : "opacity-100"
-                }`}
+                className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 ${isHovered ? "opacity-0" : "opacity-100"}`}
               />
               <img
                 src={product.images?.[1] || product.images?.[0] || "/placeholder.jpg"}
                 alt={product.name}
-                className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 ${
-                  isHovered ? "opacity-100" : "opacity-0"
-                }`}
+                className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 ${isHovered ? "opacity-100" : "opacity-0"}`}
               />
             </div>
           )}
@@ -120,7 +96,7 @@ export default function ProductCard({ product, view }) {
           {view !== "list" && (
             <div className="hidden lg:block absolute bottom-0 left-0 w-full px-4 pb-4 translate-y-full group-hover:translate-y-0 transition-all duration-500 z-20">
               <button
-                onClick={(e) => e.preventDefault()}
+                onClick={(e) => { e.preventDefault(); navigate(`/product/${product.slug}`); }}
                 className="w-full bg-[#c19417] text-white py-3 text-sm hover:bg-black transition"
               >
                 Select Options
@@ -128,11 +104,12 @@ export default function ProductCard({ product, view }) {
             </div>
           )}
         </Link>
-
-       
       </div>
 
-     
+      {/* QuickView Modal */}
+      {showQuickView && (
+        <QuickViewModal product={product} onClose={() => setShowQuickView(false)} />
+      )}
 
       {/* CONTENT */}
       <div className={view === "list" ? "flex-1 space-y-2" : "pt-5"}>
@@ -142,7 +119,6 @@ export default function ProductCard({ product, view }) {
           </h3>
         </Link>
 
-        {/* STARS */}
         <div className="flex items-center gap-1">
           {renderStars(product.rating)}
         </div>
@@ -151,40 +127,30 @@ export default function ProductCard({ product, view }) {
         {(() => {
           const hasVariants = product.variants?.length > 0;
           if (hasVariants) {
-            const prices = product.variants
-              .map(v => Number(v.price))
-              .filter(p => p > 0);
+            const prices = product.variants.map(v => Number(v.price)).filter(p => p > 0);
             const minPrice = prices.length > 0 ? Math.min(...prices) : product.price;
             const maxPrice = prices.length > 0 ? Math.max(...prices) : product.price;
             return (
-              <div>
-                <p className="text-[18px] font-semibold text-black">
-                  ${minPrice}
-                  {minPrice !== maxPrice && (
-                    <span className="text-[14px] text-gray-400 font-normal"> – ${maxPrice}</span>
-                  )}
-                </p>
-              </div>
+              <p className="text-[18px] font-semibold text-black">
+                ${minPrice}
+                {minPrice !== maxPrice && (
+                  <span className="text-[14px] text-gray-400 font-normal"> – ${maxPrice}</span>
+                )}
+              </p>
             );
           }
-          return (
-            <p className="text-[18px] font-semibold text-black">
-              ${product.price}
-            </p>
-          );
+          return <p className="text-[18px] font-semibold text-black">${product.price}</p>;
         })()}
 
-        {/* DESCRIPTION LIST ONLY */}
         {view === "list" && (
           <p className="text-sm text-[#666] line-clamp-2">
             {product.description || "Premium quality product with elegant design."}
           </p>
         )}
 
-        {/* BUTTON */}
         <div className={view === "list" ? "" : "lg:hidden mt-2"}>
           <button
-            onClick={(e) => e.preventDefault()}
+            onClick={() => navigate(`/product/${product.slug}`)}
             className="w-fit px-12 bg-[#c19417] text-white py-3 text-sm hover:bg-black transition"
           >
             Select Options

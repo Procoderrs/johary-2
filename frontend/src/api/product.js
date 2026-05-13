@@ -5,7 +5,7 @@ export const createProduct = (formData) => {
   return api.post("/admin/product", formData);
 };
 
-// 📦 GET ALL PRODUCTS
+// 📦 GET ALL PRODUCTS (admin)
 export const getProducts = () => {
   return api.get("/admin/product");
 };
@@ -25,7 +25,16 @@ export const deleteProduct = (slug) => {
   return api.delete(`/admin/product/${slug}`);
 };
 
-
-// api/product.js (user wali)
+// USER APIs
 export const getTrendingProducts = () => api.get("/products/trending");
 export const getFeaturedProducts = () => api.get("/products/featured");
+
+// ✅ Yeh add karo — filter params ke saath
+export const getAllProducts = (params = {}) => {
+  return api.get("/products", { params });
+};
+
+// ✅ User side — slug se product
+export const getProductBySlugUser = (slug) => {
+  return api.get(`/products/${slug}`);
+};
