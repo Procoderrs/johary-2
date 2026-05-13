@@ -12,6 +12,20 @@ export default function OrderSuccess() {
     clearCart(); // cart clear karo
   }, []);
 
+  useEffect(() => {
+  const confirmOrder = async () => {
+    if (orderId) {
+      try {
+        await api.post(`/orders/${orderId}/confirm-payment`);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
+  confirmOrder();
+  clearCart();
+}, []);
+
   return (
     <div className="font-user min-h-[60vh] flex items-center justify-center px-4">
       <div className="text-center max-w-md">

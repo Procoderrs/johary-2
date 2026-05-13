@@ -4,6 +4,7 @@ import User from '../models/User.js';
 // Protect routes middleware
 export const protect = async (req, res, next) => {
   let token;
+  console.log("AUTH HEADER:", req.headers.authorization); 
 
   if (
     req.headers.authorization &&

@@ -137,3 +137,25 @@ export const getMyOrders = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+
+
+export const confirmPayment = async (req, res) => {
+  try {
+    const order = await Order.findById(req.params.id);
+    if (!order) return res.status(404).json({ message: "Not found" });
+    
+    // Stripe session verify کریں
+    const session = await stripe.checkout.sessions.retrieve(order.stripeSessionId);
+    
+    if (session.payment_status === "paid") {
+      order.paymentStatus = "paid";
+      order.orderStatus = "processing";
+      await order.save();
+    }
+    
+    res.json({ success: true, data: order });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};

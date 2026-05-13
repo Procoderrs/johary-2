@@ -2,7 +2,7 @@ import {useState } from "react";
 import { Link } from "react-router-dom";
 import { getMyOrders } from "../api/order";
 import { RiShoppingBagLine, RiTruckLine, RiCheckboxCircleLine, RiTimeLine, RiCloseCircleLine } from "@remixicon/react";
-
+import { useNavigate } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { AuthContext } from "../context/AuthContext";
 
@@ -27,7 +27,7 @@ export default function MyOrders() {
   const [loading, setLoading] = useState(true);
   const [expandedOrder, setExpandedOrder] = useState(null);
     const { user } = useContext(AuthContext);
-
+const navigate = useNavigate(); 
 
   useEffect(() => {
     loadOrders();
