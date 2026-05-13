@@ -5,7 +5,6 @@ import { useCart } from "../context/CartContext";
 import { createOrder } from "../api/order";
 import { useContext, useEffect } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
 
 export default function Checkout() {
   const location = useLocation();
