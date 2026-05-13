@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Delicate({ data }) {
   return (
-    <section className="w-full py-24 px-4 max-w-[1440px] mx-auto font-body overflow-hidden">
+    <section className="w-full py-24 px-4 max-w-[1440px] mx-auto font-user overflow-hidden">
       <div className="grid grid-cols-1 md:grid-cols-[1.1fr_1fr_1fr] gap-4 items-center">
         
         {/* Left Text Column */}

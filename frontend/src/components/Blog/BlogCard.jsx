@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function BlogCard({ blog }) {
   return (
-    <div className="w-full   bg-white  overflow-hidden  mx-auto">
+    <div className="w-full font-user   bg-white  overflow-hidden  mx-auto">
       {/* Image */}
       <div className="overflow-hidden">
   <img

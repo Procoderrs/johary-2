@@ -21,11 +21,11 @@ export default function CustomerLayout(){
   searchPlaceholder: "Search products...",
   searchIcon: RiSearchLine,
   actionIcons: [
-    {
+    /* {
       type: "user",
       icon: RiUser3Line,
       link: "/account",
-    },
+    }, */
     {
       type: "wishlist",
       icon: RiHeart3Line,

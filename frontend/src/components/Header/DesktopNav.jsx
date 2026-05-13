@@ -33,7 +33,7 @@ useEffect(() => {
   };
 
   return (
-    <div className="sticky top-0 hidden lg:flex justify-center items-center gap-6 lg:gap-12 py-4.5 border-b border-[#e5e5e5] font-body z-[100] bg-white shadow-xl">
+    <div className="sticky top-0 hidden lg:flex justify-center items-center gap-6 lg:gap-12 py-4.5 border-b border-[#e5e5e5] font-user z-[100] bg-white shadow-xl">
       {navItems.map((item, index) => {
         const DropdownIcon = item.icon;
 

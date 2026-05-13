@@ -42,6 +42,8 @@ useEffect(() => {
   const loadOrders = async () => {
     try {
       const res = await getMyOrders();
+      console.log("MY ORDERS:", res.data);
+
       console.log(res);
       setOrders(res.data?.data || []);
     } catch (err) {
@@ -58,7 +60,7 @@ useEffect(() => {
   );
 
   return (
-    <div className="font-body">
+    <div className="font-user">
 
       {/* BREADCRUMB */}
       <div className="relative w-full min-h-[160px]">

@@ -28,7 +28,7 @@ export default function Tabs() {
   ];
 
   return (
-    <div className="font-body pb-12">
+    <div className="font-user pb-12">
 
       {/* ================= BREADCRUMB ================= */}
       <div className="relative w-full min-h-[160px] overflow-hidden">

@@ -37,7 +37,7 @@ const badgeStyles = {
 
   return (
    <div
-  className="absolute top-full left-0 right-0 flex justify-center w-full z-[999]"
+  className="absolute top-full font-user left-0 right-0 flex justify-center w-full z-[999]"
   onMouseEnter={() => handleEnter(type === "products" ? "Products" : "Categories")}
   onMouseLeave={handleLeave}
 >

@@ -2,7 +2,7 @@ import React from "react";
 
 export default function CategoryCard({ category }) {
   return (
-    <div className="group cursor-pointer flex flex-col items-center text-center">
+    <div className="group font-user cursor-pointer flex flex-col items-center text-center">
       <div className="overflow-hidden rounded-full transition duration-300">
         {category.image ? (
           <img

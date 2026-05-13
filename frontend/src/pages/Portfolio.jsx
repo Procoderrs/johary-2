@@ -16,7 +16,7 @@ export default function Portfolio() {
   const images = blogsData.slice(0, 6); // take 6 images
 
   return (
-    <div className="font-body">
+    <div className="font-user">
 
       {/* ================= BREADCRUMB ================= */}
       <div className="relative w-full min-h-[160px] overflow-hidden">

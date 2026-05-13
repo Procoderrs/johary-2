@@ -102,7 +102,7 @@ export default function ShopPage() {
   }, [loadProducts]);
 
   return (
-    <section className="w-full font-body">
+    <section className="w-full font-user">
       {/* BREADCRUMB */}
       <div className="relative w-full min-h-[160px]">
         <img src="/breadcumb-bkg.jpg" className="absolute inset-0 w-full h-full object-cover" alt="" />

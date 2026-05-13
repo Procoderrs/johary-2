@@ -10,7 +10,7 @@ export default function MobileNavItem({
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="border-b py-3">
+    <div className="border-b py-3 font-user">
 
       {/* MAIN ITEM */}
       <div

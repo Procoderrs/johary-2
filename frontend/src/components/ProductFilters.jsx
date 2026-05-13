@@ -58,7 +58,7 @@ export default function ProductFilters({
   });
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-5 font-user">
 
       {/* CATEGORIES */}
       <div className="border border-gray-200 rounded-2xl p-5">

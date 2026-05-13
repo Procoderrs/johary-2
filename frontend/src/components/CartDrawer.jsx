@@ -23,7 +23,7 @@ const handleCheckout = () => {
     <>
       {/* OVERLAY */}
       <div
-        className={`fixed inset-0 bg-black/50 z-40 transition-opacity duration-300 ${
+        className={`fixed inset-0 bg-black/50 z-40 transition-opacity duration-300 font-user ${
           isOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
         onClick={onClose}

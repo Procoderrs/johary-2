@@ -18,7 +18,7 @@ export default function About() {
 
   return (
     <div>
-      <div className="font-body mb-20">
+      <div className="font-user mb-20">
 
         {/* ================= BREADCRUMB ================= */}
         <div className="relative w-full min-h-[160px] overflow-hidden">

@@ -37,7 +37,7 @@ export default function ProductCard({ product, view }) {
   return (
     <div className={
       view === "list"
-        ? "flex gap-6 border border-[#f1efea] rounded-xl p-4 items-center"
+        ? "flex gap-6 border font-user border-[#f1efea] rounded-xl p-4 items-center"
         : "group w-full font-user rounded-xl p-3 relative"
     }>
 

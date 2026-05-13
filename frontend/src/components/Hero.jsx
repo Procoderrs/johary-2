@@ -20,7 +20,7 @@ export default function Hero({ data }) {
 
   return (
     <div
-      className="relative w-full h-[60vh] sm:h-[70vh] md:h-[85vh] 2xl:h-[70vh] 3xl:h-[45vh] font-body overflow-hidden"
+      className="relative font-user w-full h-[60vh] sm:h-[70vh] md:h-[85vh] 2xl:h-[70vh] 3xl:h-[45vh] font-body overflow-hidden"
       onMouseEnter={() => setShowButtons(true)}
       onMouseLeave={() => setShowButtons(false)}
     >

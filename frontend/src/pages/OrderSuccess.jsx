@@ -13,7 +13,7 @@ export default function OrderSuccess() {
   }, []);
 
   return (
-    <div className="font-body min-h-[60vh] flex items-center justify-center px-4">
+    <div className="font-user min-h-[60vh] flex items-center justify-center px-4">
       <div className="text-center max-w-md">
         <RiCheckboxCircleLine size={64} className="text-green-500 mx-auto mb-4" />
         <h1 className="text-3xl font-semibold text-gray-900 mb-2">Order Placed!</h1>

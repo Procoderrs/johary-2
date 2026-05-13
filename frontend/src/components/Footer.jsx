@@ -68,7 +68,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full overflow-hidden bg-black text-[#f5f5f5] font-body pt-16 md:pt-20 lg:pt-24 pb-8 md:pb-10 px-4">
+    <footer className="w-full overflow-hidden bg-black text-[#f5f5f5] font-user pt-16 md:pt-20 lg:pt-24 pb-8 md:pb-10 px-4">
       <div className="max-w-[1440px] mx-auto grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-[1.2fr_1fr_1fr_1fr] gap-10 pb-12 md:pb-16 lg:pb-20 border-b border-[#666666]">
         
         {/* Column 1 - Store Info */}

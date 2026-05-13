@@ -51,7 +51,7 @@ export function AdminDashboard() {
   };
 
   return (
-  <div className="min-h-screen bg-bg p-6">
+  <div className="min-h-screen font-user bg-bg p-6">
 
     {/* HEADER */}
     <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5 mb-10">

@@ -2,7 +2,7 @@ const CategoryList = ({ categories, onEdit, onDelete }) => {
   if (!categories || categories.length === 0) return null;
 
   return (
-    <ul className="pl-4">
+    <ul className="pl-4 font-user">
       {categories.map(cat => (
         <li key={cat._id} className="mb-2">
           <span className="font-medium">{cat.name}</span>

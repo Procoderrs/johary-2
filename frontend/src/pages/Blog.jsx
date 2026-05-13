@@ -54,7 +54,7 @@ export default function BlogPage() {
   };
 
   return (
-    <div className="font-body bg-white">
+    <div className="font-user bg-white">
       {/* ================= Breadcrumb Section ================= */}
       <div className="relative w-full min-h-[160px]  overflow-hidden">
         <img

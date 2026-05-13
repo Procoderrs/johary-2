@@ -15,7 +15,7 @@ export default function CmsBanner({ data }) {
   ];
 
   return (
-    <section className="w-full font-body py-16 px-4  max-w-[1440px] mx-auto">
+    <section className="w-full font-user py-16 px-4  max-w-[1440px] mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {banners.map((item, index) => (
           <div key={index} className="group">

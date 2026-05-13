@@ -20,7 +20,7 @@ export default function CategorySection({ categories }) {
   };
  
   return (
-    <section className="w-full  pt-24 font-body">
+    <section className="w-full  pt-24 font-user">
       {/* Container */}
       <div className="max-w-[1440px] mx-auto px-4 ">
         {/* Heading */}

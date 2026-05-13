@@ -49,7 +49,7 @@ export default function TrendingProducts({
   };
 
   return (
-    <section className={`w-full ${spacing} px-4 ${fullWidth ? "" : "max-w-[1440px] mx-auto"} font-body overflow-hidden`}>
+    <section className={`w-full ${spacing} font-user px-4 ${fullWidth ? "" : "max-w-[1440px] mx-auto"} font-user overflow-hidden`}>
 
       {/* Heading + Tabs */}
       <div className={`flex flex-col md:flex-row lg:items-center gap-2 mb-6 ${hideHeading ? "md:justify-center" : "md:justify-between"}`}>

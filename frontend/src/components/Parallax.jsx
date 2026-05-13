@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Parallax({ data }) {
   return (
     <section
-      className=" font-body relative w-full min-h-[350px] sm:min-h-[420px] md:min-h-[500px] lg:min-h-[500px] xl:min-h-[500px] overflow-hidden bg-cover 2xl:bg-fixed bg-top  flex items-center"
+      className=" font-user relative w-full min-h-[350px] sm:min-h-[420px] md:min-h-[500px] lg:min-h-[500px] xl:min-h-[500px] overflow-hidden bg-cover 2xl:bg-fixed bg-top  flex items-center"
       style={{ backgroundImage: `url(${data.img})` }}
     >
       {/* Overlay */}

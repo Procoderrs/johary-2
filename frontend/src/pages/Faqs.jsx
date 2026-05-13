@@ -50,7 +50,7 @@ const faqs = [
   },
 ];
   return (
-    <div className="font-body">
+    <div className="font-user">
 
       {/* ================= BREADCRUMB ================= */}
       <div className="relative w-full min-h-[160px] overflow-hidden">

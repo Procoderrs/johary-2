@@ -90,7 +90,7 @@ export default function ProductDetails({ product }) {
   return (
     <>
       {/* BREADCRUMB */}
-      <section className="relative w-full min-h-[160px] font-body overflow-hidden">
+      <section className="relative w-full min-h-[160px] font-user overflow-hidden">
         <img src="/breadcumb-bkg.jpg" alt="" className="absolute inset-0 w-full h-full object-cover scale-[1.03]" />
         <div className="absolute inset-0 flex items-center justify-center text-black px-4 text-center">
           <div>

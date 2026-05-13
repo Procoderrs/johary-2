@@ -39,7 +39,7 @@ export default function BlogSlider({ blogs }) {
   };
 
   return (
-    <section className="relative border-b px-4 border-[#e5e5e5] w-full max-w-[1440px] mx-auto py-14 md:py-24    font-body">
+    <section className="relative border-b px-4 border-[#e5e5e5] w-full max-w-[1440px] mx-auto py-14 md:py-24    font-user">
       <h2 className="text-[24px] sm:text-[28px] md:text-[32px] text-center font-medium mb-8">
        Our Latest Blogs
       </h2>

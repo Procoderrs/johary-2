@@ -89,7 +89,7 @@ useEffect(() => {
 };
 
   return (
-    <div className="font-body">
+    <div className="font-user">
       {/* BREADCRUMB */}
       <div className="relative w-full min-h-[160px]">
         <img src="/breadcumb-bkg.jpg" className="absolute inset-0 w-full h-full object-cover" alt="" />
