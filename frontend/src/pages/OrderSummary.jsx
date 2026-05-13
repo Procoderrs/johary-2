@@ -33,9 +33,10 @@ export default function OrderSummary() {
       if (res.data.sessionUrl) {
         window.location.href = res.data.sessionUrl;
       }
-    } catch (err) {
-      console.log(err);
-      alert("Payment failed!");
+    }  catch (err) {
+    console.log("ERROR STATUS:", err.response?.status);
+    console.log("ERROR MESSAGE:", err.response?.data);
+    alert("Payment failed!");
     } finally {
       setLoading(false);
     }
