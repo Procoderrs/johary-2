@@ -28,7 +28,13 @@ export default function MyOrders() {
   useEffect(() => {
     loadOrders();
   }, []);
-
+useEffect(() => {
+  if (!user) {
+    navigate("/account?redirect=my-orders");
+    return;
+  }
+  loadOrders();
+}, [user]);
   const loadOrders = async () => {
     try {
       const res = await getMyOrders();

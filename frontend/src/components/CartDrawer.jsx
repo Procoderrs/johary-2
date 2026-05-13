@@ -2,10 +2,23 @@ import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 import { RiCloseLine, RiDeleteBinLine, RiShoppingBagLine } from "@remixicon/react";
 import { useCart } from "../context/CartContext";
-
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 export default function CartDrawer({ isOpen, onClose }) {
   const { cart, removeFromCart, updateQuantity, cartTotal, cartCount } = useCart();
+  const {user}=useContext(AuthContext);
+  const navigate=useNavigate();
 
+
+const handleCheckout = () => {
+  onClose();
+  if (!user) {
+    navigate("/account?redirect=checkout");
+  } else {
+    navigate("/checkout");
+  }
+};
   return createPortal(
     <>
       {/* OVERLAY */}
@@ -151,13 +164,12 @@ export default function CartDrawer({ isOpen, onClose }) {
               View Cart
             </Link>
 
-            <Link
-              to="/checkout"
-              onClick={onClose}
-              className="block w-full text-center bg-[#c19417] hover:bg-black text-white py-3 text-sm font-medium uppercase tracking-wider transition"
-            >
-              Checkout
-            </Link>
+            <button
+  onClick={handleCheckout}
+  className="block w-full text-center bg-[#c19417] hover:bg-black text-white py-3 text-sm font-medium uppercase tracking-wider transition"
+>
+  Checkout
+</button>
 
           </div>
         )}

@@ -3,15 +3,23 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { RiBus2Line, RiCheckLine } from "@remixicon/react";
 import { useCart } from "../context/CartContext";
 import { createOrder } from "../api/order";
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Checkout() {
   const location = useLocation();
   const navigate = useNavigate();
   const { cart, cartTotal, cartCount } = useCart();
+  const { user } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState("stripe");
   const [shipping, setShipping] = useState("free");
-
+useEffect(() => {
+  if (!user) {
+    navigate("/account?redirect=checkout");
+  }
+}, [user]);
   const shippingCost = shipping === "flat" ? 10 : shipping === "local" ? 5 : 0;
   const total = cartTotal + shippingCost;
 

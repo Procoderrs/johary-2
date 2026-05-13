@@ -3,7 +3,11 @@ import { RiEyeLine, RiEyeOffLine } from "@remixicon/react";
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import {useSearchParams} from 'react-router-dom'
+
 export default function Account() {
+  const [searchParams] = useSearchParams();
+
   const location = useLocation();
   const [showPassword, setShowPassword] = useState(false);
 const navigate = useNavigate();
@@ -20,18 +24,19 @@ const [password, setPassword] = useState("");
 const [name, setName] = useState("");
 const handleSubmit = async (e) => {
   e.preventDefault();
-
   try {
     const loggedUser = await login(email, password);
-
     if (!loggedUser) return;
+
+    const redirect = searchParams.get("redirect");
 
     if (loggedUser.role === "admin") {
       navigate("/admin");
+    } else if (redirect) {
+      navigate(`/${redirect}`); // ✅ checkout pe bhejo
     } else {
       navigate("/dashboard");
     }
-
   } catch (err) {
     alert(err.response?.data?.message || "Login failed");
   }
