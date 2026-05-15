@@ -18,6 +18,8 @@ export function AdminLayout() {
     { name: "Categories", path: "/admin/categories" },
     { name: "Products", path: "/admin/products" },
     { name: "Filter", path: "/admin/filter" },
+    { name: "Newsletter", path: "/admin/newsletter" },
+
   ];
 
   return (

@@ -12,6 +12,7 @@ import createAdmin from "./utils/createAdmin.js";
 import productUserRoutes from "./routes/user/productRoutes.js";
 import orderRoutes from "./routes/user/orderRoutes.js";
 import adminOrderRoutes from "./routes/admin/orderRoutes.js";
+import newsletterRoutes from './routes/admin/newsletterRoutes.js';
 
 import cors from 'cors';
 
@@ -64,6 +65,8 @@ app.use("/api/products", productUserRoutes);
 app.use("/api/admin/variants", variantRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/admin/orders", adminOrderRoutes);
+app.use('/api/newsletter', newsletterRoutes);
+
 
 
 // Logger
