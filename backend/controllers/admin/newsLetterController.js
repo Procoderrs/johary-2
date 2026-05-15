@@ -1,18 +1,5 @@
-// controllers/newsletterController.js
 import Newsletter from '../../models/NewsLetter.js';
-import nodemailer from 'nodemailer';
-
-// transporter — ek baar banao
-// ✅ replace karo
-const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 587,
-  secure: false,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  }
-});
+import { sendEmail } from '../../utils/sendEmail.js';
 
 // SUBSCRIBE
 export const subscribe = async (req, res) => {
@@ -20,29 +7,32 @@ export const subscribe = async (req, res) => {
     const { email } = req.body;
     if (!email) return res.status(400).json({ message: 'Email required' });
 
-    const exists = await Newsletter.findOne({ email });
-    if (exists) return res.status(400).json({ message: 'Already subscribed' });
+    const normalizedEmail = email.toLowerCase().trim();
+    const existing = await Newsletter.findOne({ email: normalizedEmail });
+    if (existing) return res.status(409).json({ message: 'Already subscribed' });
 
-    await Newsletter.create({ email });
+    await Newsletter.create({ email: normalizedEmail });
 
     // welcome email
-    await transporter.sendMail({
-      from: `"Johary Jewellery" <${process.env.EMAIL_USER}>`,
-      to: email,
+    await sendEmail({
+      to: normalizedEmail,
       subject: 'Welcome to Johary Newsletter!',
       html: `
-        <h2>Thank you for subscribing!</h2>
-        <p>You'll receive our latest offers and discounts.</p>
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #c19417;">Welcome to Johary Jewellery!</h2>
+          <p>Thank you for subscribing. You'll receive our latest offers and discounts.</p>
+        </div>
       `,
     });
 
-    res.json({ success: true, message: 'Subscribed successfully!' });
+    res.status(201).json({ success: true, message: 'Subscribed successfully!' });
   } catch (err) {
+    console.log('subscribe error:', err);
     res.status(500).json({ message: err.message });
   }
 };
 
-// GET ALL SUBSCRIBERS (admin)
+// GET ALL SUBSCRIBERS
 export const getSubscribers = async (req, res) => {
   try {
     const subscribers = await Newsletter.find().sort({ createdAt: -1 });
@@ -52,36 +42,38 @@ export const getSubscribers = async (req, res) => {
   }
 };
 
-// SEND EMAIL TO ALL (admin)
+// SEND EMAIL TO ALL
 export const sendNewsletterEmail = async (req, res) => {
   try {
     const { subject, message } = req.body;
-    const subscribers = await Newsletter.find();
+    if (!subject || !message) {
+      return res.status(400).json({ message: 'Subject & message required' });
+    }
 
-    if (subscribers.length === 0) {
-      return res.status(400).json({ message: 'No subscribers' });
+    const subscribers = await Newsletter.find();
+    if (!subscribers.length) {
+      return res.status(404).json({ message: 'No subscribers found' });
     }
 
     const emails = subscribers.map(s => s.email);
 
-    await transporter.sendMail({
-      from: `"Johary Jewellery" <${process.env.EMAIL_USER}>`,
-      bcc: emails, // sab ko ek saath
+    await sendEmail({
+      to: process.env.EMAIL_USER,
+      bcc: emails,
       subject,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #c19417;">Johary Jewellery</h2>
           <div>${message}</div>
           <hr/>
-          <p style="font-size: 12px; color: #999;">
-            To unsubscribe, reply to this email.
-          </p>
+          <p style="font-size: 12px; color: #999;">Unsubscribe by replying to this email.</p>
         </div>
       `,
     });
 
     res.json({ success: true, message: `Email sent to ${emails.length} subscribers!` });
   } catch (err) {
+    console.log('send error:', err);
     res.status(500).json({ message: err.message });
   }
 };
