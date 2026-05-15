@@ -235,7 +235,7 @@ console.log(categories);
       data.append("stoneType", form.stoneType);
       data.append("category", childCategoryId || parentId);
       data.append("variants", JSON.stringify(variants));
-      data.append("existingImages", JSON.stringify(existingImages)); // ✅ yeh line add karo
+      data.append("existingImages", JSON.stringify(existingImages)); 
 data.append("isFeatured", form.isFeatured);
 data.append("isTrending", form.isTrending);
 data.append("rating",form.rating||0);
