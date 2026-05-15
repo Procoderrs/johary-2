@@ -11,45 +11,46 @@ export const AuthProvider = ({ children }) => {
 
   const [loading, setLoading] = useState(true);
 
-  // ✅ Verify saved token on app load
-  useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const localUser = localStorage.getItem("user");
+  
+useEffect(() => {
+  const checkAuth = async () => {
+    try {
+      const localUser = localStorage.getItem("user");
 
-        if (!localUser) {
-          setLoading(false);
-          return;
-        }
-
-        const parsedUser = JSON.parse(localUser);
-
-        // profile API hit to verify token
-        const res = await api.get("/auth/profile", {
-          headers: {
-            Authorization: `Bearer ${parsedUser.token}`,
-          },
-        });
-
-        // keep old token + fresh profile data
-        const updatedUser = {
-          ...parsedUser,
-          ...res.data,
-        };
-
-        setUser(updatedUser);
-        localStorage.setItem("user", JSON.stringify(updatedUser));
-      } catch (error) {
-        console.log("Token invalid or expired");
-        localStorage.removeItem("user");
-        setUser(null);
-      } finally {
+      if (!localUser) {
         setLoading(false);
+        return;
       }
-    };
 
-    checkAuth();
-  }, []);
+      const parsedUser = JSON.parse(localUser);
+
+      // agar token nahi hai toh call hi mat karo
+      if (!parsedUser.token) {
+        setUser(parsedUser);
+        setLoading(false);
+        return;
+      }
+
+      const res = await api.get("/auth/profile", {
+        headers: {
+          Authorization: `Bearer ${parsedUser.token}`,
+        },
+      });
+
+      const updatedUser = { ...parsedUser, ...res.data };
+      setUser(updatedUser);
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+    } catch (error) {
+      // token expired — localStorage clear karo
+      localStorage.removeItem("user");
+      setUser(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  checkAuth();
+}, []);
 
   // Register
   const register = async (name, email, password) => {

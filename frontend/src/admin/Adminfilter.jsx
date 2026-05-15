@@ -1,39 +1,31 @@
 import { useEffect, useState } from "react";
 import { getFilters, createFilter, deleteFilter } from "../api/filter";
 import { RiCloseLine } from "@remixicon/react";
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 
 export default function FilterAdmin() {
   const [type, setType] = useState("brand");
   const [name, setName] = useState("");
-  const [filters, setFilters] = useState({});
-  const [loading, setLoading] = useState(false);
 
-  const loadFilters = async () => {
-    try {
-      setLoading(true);
-      const res = await getFilters();
-      setFilters(res.data.data);
-    } finally {
-      setLoading(false);
-    }
-  };
+  
+const queryClient = useQueryClient();
 
-  useEffect(() => {
-    loadFilters();
-  }, []);
+const { data: filters = {}, isLoading: loading } = useQuery({
+  queryKey: ['filters'],
+  queryFn: () => getFilters().then(r => r.data?.data || {}),
+});
 
   const handleAdd = async () => {
     if (!name.trim()) return;
 
     await createFilter({ type, name });
     setName("");
-    loadFilters();
+    queryClient.invalidateQueries(['filters']);
   };
 
   const handleDelete = async (id) => {
     await deleteFilter(id);
-    loadFilters();
-  };
+queryClient.invalidateQueries(['filters']);  };
 
   return (
     <div className="min-h-screen bg-[#faf9f7] p-6">

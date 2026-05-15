@@ -16,6 +16,7 @@ export default function TrendingProducts({
 }) {
   const [activeTab, setActiveTab] = useState("");
   const [showButtons, setShowButtons] = useState(false);
+  const[categories,setCategories]=useState([])
   const scrollRef = useRef(null);
 
   const tabs = tabsList || [];
@@ -31,7 +32,6 @@ export default function TrendingProducts({
         .filter((item) => {
           const parentId = String(item.category?.parentId?._id || "");
           const catId = String(item.category?._id || "");
-            console.log("parentId:", parentId, "catId:", catId, "activeTab:", activeTab);
 
           return (parentId === activeTab || catId === activeTab) && item.isTrending;
         })

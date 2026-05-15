@@ -1,26 +1,24 @@
 import { useEffect, useState } from "react";
 import { getProducts, deleteProduct } from "../api/product";
 import { useNavigate } from "react-router-dom";
+import {useQuery,useQueryClient} from '@tanstack/react-query'
 
 export default function ProductList() {
-  const [products, setProducts] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    loadProducts();
-  }, []);
+const queryClient = useQueryClient();
 
-  const loadProducts = async () => {
-    const res = await getProducts();
-    console.log(res);
-    setProducts(res.data.data || []);
-  };
+const { data: products = [] } = useQuery({
+  queryKey: ['admin-products'],
+  queryFn: () => getProducts().then(r => r.data?.data || []),
+});
 
-  const handleDelete = async (id) => {
-    if (!window.confirm("Delete this product?")) return;
-    await deleteProduct(id);
-    loadProducts();
-  };
+ const handleDelete = async (slug) => {
+  if (!window.confirm("Delete this product?")) return;
+  await deleteProduct(slug);
+  // ✅ cache invalidate karo
+  queryClient.invalidateQueries(['admin-products']);
+};
 
   return (
   <div className="min-h-screen bg-bg py-10">

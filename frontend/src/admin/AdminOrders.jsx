@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAllOrders, updateOrderStatus } from "../api/order";
+import {useQuery,useQueryClient} from '@tanstack/react-query'
 
 const STATUS_COLORS = {
   pending: "bg-yellow-50 text-yellow-600 border-yellow-200",
@@ -16,40 +17,31 @@ const PAYMENT_COLORS = {
 };
 
 export default function AdminOrders() {
-  const [orders, setOrders] = useState([]);
-  const [loading, setLoading] = useState(true);
+  
   const [expandedOrder, setExpandedOrder] = useState(null);
   const [updating, setUpdating] = useState(null);
 
-  useEffect(() => {
-    loadOrders();
-  }, []);
+  const queryClient = useQueryClient();
 
-  const loadOrders = async () => {
-    try {
-      const res = await getAllOrders();
-      console.log(res);
-      setOrders(res.data?.data || []);
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setLoading(false);
-    }
-  };
+const { data: orders = [], isLoading: loading } = useQuery({
+  queryKey: ['admin-orders'],
+  queryFn: () => getAllOrders().then(r => r.data?.data || []),
+});
 
-  const handleStatusUpdate = async (id, field, value) => {
-    setUpdating(id);
-    try {
-      await updateOrderStatus(id, { [field]: value });
-      setOrders((prev) =>
-        prev.map((o) => (o._id === id ? { ...o, [field]: value } : o))
-      );
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setUpdating(null);
-    }
-  };
+ const handleStatusUpdate = async (id, field, value) => {
+  setUpdating(id);
+  try {
+    await updateOrderStatus(id, { [field]: value });
+    // ✅ cache update karo
+    queryClient.setQueryData(['admin-orders'], (old) =>
+      old.map((o) => (o._id === id ? { ...o, [field]: value } : o))
+    );
+  } catch (err) {
+    console.log(err);
+  } finally {
+    setUpdating(null);
+  }
+};
 
   if (loading) return (
     <div className="flex items-center justify-center py-20">

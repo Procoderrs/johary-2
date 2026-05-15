@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
+import { useQuery } from '@tanstack/react-query';
 import { useContext } from 'react';
 import { getTrendingProducts, getFeaturedProducts } from "../api/product";
 import {RiSearchLine,RiUser3Line,RiHeart3Line,RiShoppingBagLine,RiArrowDropDownLine ,RiTruckLine, RiBankFill , RiDiscountPercentLine, RiCustomerServiceLine ,RiDoubleQuotesL  } from '@remixicon/react'
@@ -23,48 +24,21 @@ const UserDashboard = () => {
  const {login,register}=useContext(AuthContext)
  console.log(login);
 
- const [categories,setCategories]=useState([])
- const [trendingProducts, setTrendingProducts] = useState([]);
-const [featuredProducts, setFeaturedProducts] = useState([]);
+// ✅ yeh lagao
+const { data: categories = [] } = useQuery({
+  queryKey: ['categories'],
+  queryFn: () => getCategories().then(r => r.data?.data || []),
+});
 
- console.log(categories)
- 
- useEffect(()=>{
-loadCategories();
-loadTrending();
-loadFeatured();
- },[])
+const { data: trendingProducts = [] } = useQuery({
+  queryKey: ['trending-products'],
+  queryFn: () => getTrendingProducts().then(r => r.data?.data || []),
+});
 
-async function loadCategories() {
-  try {
-    const res=await getCategories();
-    console.log("User Categories",res.data)
-    setCategories(res.data?.data ||[])
-  } catch (error) {
-    console.log(error)
-  }
-}
-
-
-async function loadTrending() {
-  try {
-    const res = await getTrendingProducts();
-    console.log('trending posts',res)
-    setTrendingProducts(res.data?.data || []);
-  } catch (err) {
-    console.log(err);
-  }
-}
-
-async function loadFeatured() {
-  try {
-    const res = await getFeaturedProducts();
-    console.log('featured posts',res)
-    setFeaturedProducts(res.data?.data || []);
-  } catch (err) {
-    console.log(err);
-  }
-}
+const { data: featuredProducts = [] } = useQuery({
+  queryKey: ['featured-products'],
+  queryFn: () => getFeaturedProducts().then(r => r.data?.data || []),
+});
 
 
 const heroData=[

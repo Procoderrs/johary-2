@@ -1,25 +1,13 @@
 import { useEffect, useState } from "react";
 import { getUsers } from "../api/users";
+import {useQuery} from '@tanstack/react-query'
 
 export default function AdminUsers() {
-  const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    loadUsers();
-  }, []);
-
-  const loadUsers = async () => {
-    try {
-      setLoading(true);
-      const res = await getUsers();
-      setUsers(res.data.data || []);
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setLoading(false);
-    }
-  };
+  
+const { data: users = [], isLoading: loading } = useQuery({
+  queryKey: ['admin-users'],
+  queryFn: () => getUsers().then(r => r.data?.data || []),
+});
 
   return (
   <div className="min-h-screen bg-bg p-6">

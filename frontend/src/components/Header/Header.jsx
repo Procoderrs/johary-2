@@ -205,7 +205,7 @@ const elementsDropdown = [
         )}
       </button>
     ) : (
-      <Link key={item.type} to={item.link} className="relative flex items-center gap-2">
+      <Link key={item.type} to={item.link}  className="relative flex items-center gap-2">
         <div className="relative">
           <item.icon size={24} />
           {item.badge > 0 && (
