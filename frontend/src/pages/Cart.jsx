@@ -2,15 +2,38 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { RiCloseLine, RiPokerHeartsFill, RiArrowLeftRightLine, RiGift2Fill, RiBus2Line } from "@remixicon/react";
 import { useCart } from "../context/CartContext";
+import { validateCoupon } from "../api/coupan";
+
 
 export default function Cart() {
   const { cart, removeFromCart, updateQuantity, cartTotal } = useCart();
   const [shipping, setShipping] = useState("free");
   const [showAddress, setShowAddress] = useState(false);
+
+  const [couponCode, setCouponCode] = useState("");
+const [appliedCoupon, setAppliedCoupon] = useState(null);
+const [couponError, setCouponError] = useState("");
+const [couponLoading, setCouponLoading] = useState(false);
   const navigate = useNavigate();
 
   const shippingCost = shipping === "flat" ? 10 : shipping === "local" ? 5 : 0;
-  const total = cartTotal + shippingCost;
+  const discountAmount = appliedCoupon?.discountAmount || 0;
+const total = cartTotal + shippingCost - discountAmount;
+
+const handleApplyCoupon = async () => {
+  if (!couponCode.trim()) return;
+  setCouponLoading(true);
+  setCouponError("");
+  try {
+    const res = await validateCoupon(couponCode, cartTotal);
+    setAppliedCoupon(res.data.coupon);
+  } catch (err) {
+    setCouponError(err.response?.data?.message || "Invalid coupon");
+    setAppliedCoupon(null);
+  } finally {
+    setCouponLoading(false);
+  }
+};
 
   return (
     <div className="font-user">
@@ -152,14 +175,39 @@ export default function Cart() {
             )}
 
             {/* COUPON INPUT */}
-            <div className="flex flex-col gap-4 justify-between md:flex-row">
-              <div className="flex gap-2 w-full sm:w-auto">
-                <input type="text" placeholder="Coupon code" className="border border-[#f1efea] p-2 w-full" />
-                <button className="bg-[#c19417] text-white px-4 py-2 text-[15px] font-medium uppercase">
-                  Apply Coupon
-                </button>
-              </div>
-            </div>
+           {/* COUPON INPUT */}
+<div className="flex flex-col gap-4 justify-between md:flex-row">
+  <div className="flex gap-2 w-full sm:w-auto">
+    <input
+      type="text"
+      value={couponCode}
+      onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
+      placeholder="Coupon code"
+      className="border border-[#f1efea] p-2 w-full"
+    />
+    <button
+      onClick={handleApplyCoupon}
+      disabled={couponLoading}
+      className="bg-[#c19417] text-white px-4 py-2 text-[15px] font-medium uppercase disabled:opacity-50"
+    >
+      {couponLoading ? "..." : "Apply"}
+    </button>
+  </div>
+
+  {/* SUCCESS */}
+  {/* DISCOUNT */}
+{appliedCoupon && (
+  <div className="flex justify-between text-green-600 pb-3 border-b border-[#ddd]">
+    <span>Discount ({appliedCoupon.code})</span>
+    <span>-${appliedCoupon.discountAmount}</span>
+  </div>
+)}
+
+  {/* ERROR */}
+  {couponError && (
+    <p className="text-red-500 text-sm">{couponError}</p>
+  )}
+</div>
 
             {/* FEATURES */}
             <div className="overflow-x-auto">
@@ -236,11 +284,12 @@ export default function Cart() {
 
               {/* CHECKOUT BTN */}
               <Link
-                to="/checkout"
-                className="block w-full bg-[#c19417] text-white py-3 text-[16px] font-medium hover:bg-black transition text-center uppercase"
-              >
-                Proceed to Checkout
-              </Link>
+  to="/checkout"
+  state={{ discount: discountAmount, couponCode: appliedCoupon?.code }}
+  className="block w-full bg-[#c19417] text-white py-3 text-[16px] font-medium hover:bg-black transition text-center uppercase"
+>
+  Proceed to Checkout
+</Link>
 
               <p className="text-center text-sm mt-2 font-medium">Guaranteed Safe And Secure Checkout</p>
               <img src="/payment.png" className="mx-auto mt-2" />

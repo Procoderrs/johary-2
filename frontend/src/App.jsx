@@ -34,6 +34,7 @@ import OrderSummary from "./pages/OrderSummary";
 import MyOrders  from './pages/MyOrders';
 import AdminOrders from './admin/AdminOrders';
 import AdminNewsletter from './admin/AdminNewsletter';
+import AdminCoupons from './admin/AdminCoupan'
 
 
 
@@ -44,9 +45,7 @@ function App() {
         {/* Default route */}
         <Route path="/" element={<Navigate to="/dashboard" />} />
 
-        {/* Public routes */}
-        {/* <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} /> */}
+        
 
         {/* User dashboard */}
         <Route element={<CustomerLayout />}>
@@ -99,6 +98,8 @@ function App() {
          <Route path="newsletter" element={<AdminNewsletter />} />
  
 <Route path="orders" element={<AdminOrders />} />
+<Route path="coupons" element={<AdminCoupons />} />
+
 
 
 

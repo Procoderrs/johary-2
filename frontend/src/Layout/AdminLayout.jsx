@@ -19,6 +19,8 @@ export function AdminLayout() {
     { name: "Products", path: "/admin/products" },
     { name: "Filter", path: "/admin/filter" },
     { name: "Newsletter", path: "/admin/newsletter" },
+    { name: "Coupons", path: "/admin/coupons" },
+
 
   ];
 

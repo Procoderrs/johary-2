@@ -19,8 +19,11 @@ useEffect(() => {
     navigate("/account?redirect=checkout");
   }
 }, [user]);
-  const shippingCost = shipping === "flat" ? 10 : shipping === "local" ? 5 : 0;
-  const total = cartTotal + shippingCost;
+ 
+const discountAmount = location.state?.discount || 0;
+const couponCode = location.state?.couponCode || null;
+const shippingCost = shipping === "flat" ? 10 : shipping === "local" ? 5 : 0;
+const total = cartTotal + shippingCost - discountAmount;
 
   const [form, setForm] = useState({
     firstName: "",
@@ -72,6 +75,8 @@ useEffect(() => {
       },
       paymentMethod,
       shippingCost,
+      discountAmount,  
+  couponCode,      
       notes: form.notes,
     };
 
@@ -233,6 +238,12 @@ useEffect(() => {
                     <span className="font-medium">${shippingCost}</span>
                   </div>
                 )}
+                {discountAmount > 0 && (
+  <div className="flex justify-between items-center mb-2 text-green-600">
+    <span className="text-sm">Discount ({couponCode})</span>
+    <span className="font-medium">-${discountAmount.toFixed(2)}</span>
+  </div>
+)}
                 <div className="flex justify-between font-semibold text-lg mt-2">
                   <span>Total</span>
                   <span>${total.toFixed(2)}</span>

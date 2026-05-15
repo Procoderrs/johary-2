@@ -3,17 +3,17 @@ import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-// CREATE ORDER — sirf save karo, payment baad mein
+// createOrder controller mein
 export const createOrder = async (req, res) => {
   try {
-    const { items, shippingAddress, paymentMethod, shippingCost, notes } = req.body;
+    const { items, shippingAddress, paymentMethod, shippingCost, notes, discountAmount, couponCode } = req.body;
 
     if (!items || items.length === 0) {
       return res.status(400).json({ message: "Cart is empty" });
     }
 
     const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    const total = subtotal + (shippingCost || 0);
+    const total = subtotal + (shippingCost || 0) - (discountAmount || 0);
 
     const order = await Order.create({
       user: req.user?._id || null,
@@ -22,6 +22,8 @@ export const createOrder = async (req, res) => {
       paymentMethod,
       subtotal,
       shippingCost: shippingCost || 0,
+      discountAmount: discountAmount || 0,
+      couponCode: couponCode || null,
       total,
       notes,
       paymentStatus: "pending",

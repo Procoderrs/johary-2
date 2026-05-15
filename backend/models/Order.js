@@ -25,6 +25,9 @@ const orderSchema=new mongoose.Schema({
     zipcode:String,
   },
 
+  discountAmount: { type: Number, default: 0 },
+couponCode: { type: String, default: null },
+
   paymentMethod:{
     type:String,
     enum:["stripe","cod"],
