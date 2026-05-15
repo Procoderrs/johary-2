@@ -33,7 +33,7 @@ import OrderSuccess from "./pages/OrderSuccess";
 import OrderSummary from "./pages/OrderSummary";
 import MyOrders  from './pages/MyOrders';
 import AdminOrders from './admin/AdminOrders';
-//import AdminNewsletter from './admin/AdminNewsletter';
+import AdminNewsletter from './admin/AdminNewsletter';
 
 
 
@@ -96,8 +96,8 @@ function App() {
 <Route path="products/edit/:slug" element={<ProductForm />} />
     <Route path="users" element={<AdminUsers />} />
         <Route path="filter" element={<FilterAdmin />} />
-{/*         <Route path="newsletter" element={<AdminNewsletter />} />
- */}
+         <Route path="newsletter" element={<AdminNewsletter />} />
+ 
 <Route path="orders" element={<AdminOrders />} />
 
 
