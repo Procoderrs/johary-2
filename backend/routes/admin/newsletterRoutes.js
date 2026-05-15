@@ -1,7 +1,9 @@
 // routes/newsletterRoutes.js
 import express from 'express';
-import { subscribe, getSubscribers, sendNewsletterEmail } from "../../controllers/admin/newsLetterController.js";
-import { protect, admin } from '../middleware/authMiddleware.js';
+/* import { subscribe, getSubscribers, sendNewsletterEmail } from "../../controllers/admin/newsLetterController.js"; */
+
+import {subscribe,getSubscribers,sendNewsletterEmail} from "../../controllers/admin/newsLetterController.js"
+import { protect, admin } from "../../middleware/authMiddleware.js";
 
 const router = express.Router();
 

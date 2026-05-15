@@ -1,5 +1,5 @@
 // controllers/newsletterController.js
-import Newsletter from '../models/Newsletter.js';
+import Newsletter from '../../models/NewsLetter.js';
 import nodemailer from 'nodemailer';
 
 // transporter — ek baar banao
