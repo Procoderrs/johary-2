@@ -2,12 +2,13 @@ import React, { useState ,useContext,useRef,useEffect} from "react";
 import { Link } from "react-router-dom";
 import DesktopNav from "./DesktopNav";
 import { AuthContext } from "../../context/AuthContext";
-import { useNavigate } from "react-router-dom";
 import MobileNavItem from "./MobileNavItem";
 import { categoriesData } from "../../data/categories";
 import { productsData } from "../../data/product";
 import { RiUser3Line, RiShoppingBagLine } from "@remixicon/react";
-
+import { useNavigate } from "react-router-dom";
+import { useQuery } from '@tanstack/react-query';
+import { getAllProducts } from '../../api/product';
 export default function Header({ data = {} }) {
 const {actionIcons=[]}=data;
 const { user, logout } = useContext(AuthContext);
@@ -17,6 +18,32 @@ const userMenuRef = useRef(null);
 const [showUserMenu, setShowUserMenu] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+const [showResults, setShowResults] = useState(false);
+const searchRef = useRef(null);
+
+// products search
+const { data: allProducts = [] } = useQuery({
+  queryKey: ['all-products'],
+  queryFn: () => getAllProducts({ limit: 20 }).then(r => r.data?.data || []),
+});
+
+const searchResults = searchQuery.trim().length > 1
+  ? allProducts.filter(p =>
+      p.name.toLowerCase().includes(searchQuery.toLowerCase())
+    ).slice(0, 5)
+  : [];
+
+// outside click se results band karo
+useEffect(() => {
+  const handleClick = (e) => {
+    if (searchRef.current && !searchRef.current.contains(e.target)) {
+      setShowResults(false);
+    }
+  };
+  document.addEventListener("mousedown", handleClick);
+  return () => document.removeEventListener("mousedown", handleClick);
+}, []);
 useEffect(() => {
   const handleOutsideClick = (e) => {
     if (userMenuRef.current && !userMenuRef.current.contains(e.target)) {
@@ -108,16 +135,56 @@ const elementsDropdown = [
   <div className="hidden lg:grid grid-cols-3 items-center gap-4">
 
     {/* LEFT - SEARCH */}
-    <div className="flex items-center bg-[#f5f5f5] overflow-hidden">
-      <input
-        type="text"
-        placeholder={searchPlaceholder}
-        className="p-3 w-full bg-transparent outline-none text-sm"
-      />
-      <button className="px-4">
-        {SearchIcon && <SearchIcon size={20} />}
-      </button>
+    {/* LEFT - SEARCH */}
+<div className="relative" ref={searchRef}>
+  <div className="flex items-center bg-[#f5f5f5] overflow-hidden">
+    <input
+      type="text"
+      value={searchQuery}
+      onChange={(e) => { setSearchQuery(e.target.value); setShowResults(true); }}
+      onFocus={() => setShowResults(true)}
+      placeholder={searchPlaceholder}
+      className="p-3 w-full bg-transparent outline-none text-sm"
+    />
+    <button
+      onClick={() => { if (searchQuery.trim()) navigate(`/shop?search=${searchQuery}`); }}
+      className="px-4"
+    >
+      {SearchIcon && <SearchIcon size={20} />}
+    </button>
+  </div>
+
+  {/* RESULTS DROPDOWN */}
+  {showResults && searchResults.length > 0 && (
+    <div className="absolute top-full left-0 w-full bg-white border border-[#e5e5e5] shadow-xl z-[999]">
+      {searchResults.map((product) => (
+        <Link
+          key={product._id}
+          to={`/product/${product.slug}`}
+          onClick={() => { setShowResults(false); setSearchQuery(""); }}
+          className="flex items-center gap-3 px-4 py-3 hover:bg-[#f5f5f5] transition"
+        >
+          <img
+            src={product.images?.[0] || "/placeholder.jpg"}
+            className="w-10 h-10 object-cover flex-shrink-0"
+            alt={product.name}
+          />
+          <div>
+            <p className="text-sm text-gray-800 line-clamp-1">{product.name}</p>
+            <p className="text-xs text-[#c19417] font-medium">${product.price}</p>
+          </div>
+        </Link>
+      ))}
+      <Link
+        to={`/shop?search=${searchQuery}`}
+        onClick={() => setShowResults(false)}
+        className="block px-4 py-3 text-sm text-center text-[#c19417] hover:bg-[#f5f5f5] border-t border-[#e5e5e5]"
+      >
+        See all results for "{searchQuery}"
+      </Link>
     </div>
+  )}
+</div>
 
     {/* CENTER - LOGO */}
     <div className="flex justify-center">
