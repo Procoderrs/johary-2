@@ -33,7 +33,7 @@ import OrderSuccess from "./pages/OrderSuccess";
 import OrderSummary from "./pages/OrderSummary";
 import MyOrders  from './pages/MyOrders';
 import AdminOrders from './admin/AdminOrders';
-import AdminNewsletter from './admin/AdminNewsletter';
+import AdminNewsletter from './admin/adminNewsLetter';
 import AdminCoupons from './admin/AdminCoupan'
 
 
