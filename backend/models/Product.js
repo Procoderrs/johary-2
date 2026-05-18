@@ -7,10 +7,10 @@ const productSchema = new mongoose.Schema(
     description: String,
     price: Number,
     discount: Number,
-    // Product.js model mein add karo
+    
 isFeatured: { type: Boolean, default: false },
 isTrending: { type: Boolean, default: false },
-soldCount: { type: Number, default: 0 }, // future ke liye
+soldCount: { type: Number, default: 0 }, 
     stock: {
   type: Number,
   default: 0,

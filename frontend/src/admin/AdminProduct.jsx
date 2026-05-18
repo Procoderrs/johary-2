@@ -680,55 +680,47 @@ data.append("reviewCount",form.reviewCount||0);
             <div className="w-16 h-0.5px bg-primary-gold-accent mt-2 rounded-full"></div>
           </div>
 
-          {variants.map((v, i) => (
-            <div
-              key={i}
-              className="flex flex-col lg:flex-row lg:items-center justify-between gap-5 p-6 rounded-3xl border 
-              border-border-1 bg-bg-1 mb-4"
-            >
+        {variants.map((v, i) => (
+  <div
+    key={i}
+    className="flex flex-col lg:flex-row lg:items-center justify-between gap-5 p-6 rounded-3xl border 
+    border-border-1 bg-bg-1 mb-4"
+  >
+    <div className="flex flex-wrap gap-3">
+      {Object.entries(v.combination || {}).map(([key, value], idx) => (
+        <div key={idx} className="bg-white border border-border-2 px-4 py-2 rounded-full text-sm">
+          <span className="text-secondary-text capitalize">{key}:</span>
+          <span className="ml-2 text-dark-text font-semibold">{value}</span>
+        </div>
+      ))}
+    </div>
 
-              <div className="flex flex-wrap gap-3">
-                {Object.entries(v.combination || {}).map(
-                  ([key, value], idx) => (
-                    <div
-                      key={idx}
-                      className="bg-white border border-border-2 px-4 py-2 rounded-full text-sm"
-                    >
-                      <span className="text-secondary-text capitalize">
-                        {key}:
-                      </span>
+    <div className="flex gap-4">
+      <input
+        className="w-32 bg-white border border-border-2 rounded-2xl px-4 py-3 outline-none focus:border-primary-gold-accent"
+        placeholder="Price"
+        value={v.price || ""}
+        onChange={(e) => updateVariantField(i, "price", e.target.value)}
+      />
+      <input
+        className="w-32 bg-white border border-border-2 rounded-2xl px-4 py-3 outline-none focus:border-primary-gold-accent"
+        placeholder="Stock"
+        value={v.stock || ""}
+        onChange={(e) => updateVariantField(i, "stock", e.target.value)}
+      />
 
-                      <span className="ml-2 text-dark-text font-semibold">
-                        {value}
-                      </span>
-                    </div>
-                  )
-                )}
-              </div>
+      {/* ✅ DELETE BUTTON — yeh add karo */}
+      <button
+        type="button"
+        onClick={() => setVariants(variants.filter((_, idx) => idx !== i))}
+        className="w-10 h-10 rounded-full border border-red-100 text-red-400 hover:bg-red-50 transition-all flex items-center justify-center text-lg"
+      >
+        ×
+      </button>
 
-              <div className="flex gap-4">
-
-                <input
-                  className="w-32 bg-white border border-border-2 rounded-2xl px-4 py-3 outline-none focus:border-primary-gold-accent"
-                  placeholder="Price"
-                  value={v.price || ""}
-                  onChange={(e) =>
-                    updateVariantField(i, "price", e.target.value)
-                  }
-                />
-
-                <input
-                  className="w-32 bg-white border border-border-2 rounded-2xl px-4 py-3 outline-none focus:border-primary-gold-accent"
-                  placeholder="Stock"
-                  value={v.stock || ""}
-                  onChange={(e) =>
-                    updateVariantField(i, "stock", e.target.value)
-                  }
-                />
-
-              </div>
-            </div>
-          ))}
+    </div>
+  </div>
+))}
         </div>
 
         {/* IMAGES */}
