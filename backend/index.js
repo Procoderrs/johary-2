@@ -5,7 +5,7 @@ import categoryRoutes from "./routes/admin/categoryRoutes.js";
 import categoryUserRoutes from "./routes/user/categoryRoutes.js";
 import productRoutes from './routes/admin/productRoutes.js';
 import userRoutes from './routes/admin/userRoutes.js';
-import variantRoutes from "./routes/admin/varientRoutes.js";
+
 import filterRoutes from './routes/admin/filterRoutes.js';
 import connectDb from "./config/db.js";
 import createAdmin from "./utils/createAdmin.js";
@@ -63,7 +63,6 @@ app.use("/api/categories", categoryUserRoutes);
 app.use("/api/admin/product", productRoutes);
 app.use("/api/admin/filters", filterRoutes);
 app.use("/api/products", productUserRoutes);
-app.use("/api/admin/variants", variantRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/admin/orders", adminOrderRoutes);
 app.use('/api/newsletter', newsletterRoutes);
